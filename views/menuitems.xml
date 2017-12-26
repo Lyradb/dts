@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--Document Tracking-->
+    <menuitem id="menu_dts_root"
+              name="Document"
+              sequence="90"
+              groups="group_dts_document_manager,group_dts_document_user"/>
+
+    <menuitem id="menu_dts_incoming"
+              parent="menu_dts_root"
+              name="Incoming"
+              sequence="100"
+              action="open_view_dts_document_incoming"/>
+
+    <menuitem id="menu_dts_outgoing"
+              parent="menu_dts_root"
+              name="Outgoing"
+              sequence="200"
+              action="open_view_dts_document_outgoing"/>
+
+    <menuitem id="menu_dts_documents"
+              name="Documents"
+              parent="menu_dts_root"
+              action="dts_documents_cabinet"
+              sequence="300"/>
+
+    <menuitem id="menu_dts_configuration"
+              name="Configuration"
+              parent="menu_dts_root"
+              sequence="400"
+              groups="group_dts_document_manager"/>
+
+    <menuitem id="menu_dts_document_type"
+              parent="menu_dts_configuration"
+              action="action_dts_document_type"/>
+
+
+</odoo>

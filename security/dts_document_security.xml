@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!--Bioclock-->
+        <record id="module_dts_document" model="ir.module.category">
+            <field name="name">Document Tracking</field>
+        </record>
+
+        <!--user-->
+        <record id="group_dts_document_user" model="res.groups">
+            <field name="name">User</field>
+            <field name="category_id" ref="module_dts_document"/>
+        </record>
+
+        <!--manager-->
+        <record id="group_dts_document_manager" model="res.groups">
+            <field name="name">Manager</field>
+            <field name="category_id" ref="module_dts_document"/>
+            <field name="implied_ids" eval="[(4, ref('group_dts_document_user'))]"/>
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        </record>
+
+    </data>
+</odoo>

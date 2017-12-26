@@ -1,0 +1,210 @@
+<odoo>
+  <data>
+
+      <!--Department-->
+      <record id="view_department_form_inherit_dts_document" model="ir.ui.view">
+          <field name="name">hr.department.form</field>
+          <field name="model">hr.department</field>
+          <field name="inherit_id" ref="hr.view_department_form"/>
+          <field name="priority">10</field>
+          <field name="arch" type="xml">
+
+              <field name="name" position="after">
+                  <field name="dept_code"/>
+              </field>
+          </field>
+      </record>
+
+      <!-- DTS -->
+      <record id="view_dts_document_form" model="ir.ui.view">
+          <field name="name">dts.document.form</field>
+          <field name="model">dts.document</field>
+          <field name="type">form</field>
+          <field name="arch" type="xml">
+              <form string="Incoming/Outgoing" version="7.0">
+                  <header>
+                      <button name="action_send" string="Send" class="oe_stat_button"
+                              icon="fa-send" type="object" confirm="Send it?"
+                              attrs="{'invisible':[('state','!=','draft')]}"/>
+                      <button name="action_received" string="Accept" class="oe_stat_button"
+                              icon="fa-download" type="object" confirm="Mark as Received?"
+                              attrs="{'invisible':[('state','in',['draft','receive','cancel'])]}" states="send"/>
+                      <field name="state"
+                             widget="statusbar"
+                             nolabel="1"
+                             statusbar_visible="draft,send,read,receive"
+                             on_change="1"
+                             modifiers="{'readonly': true}"/>
+                  </header>
+                  <sheet>
+                      <div class="oe_left">
+                          <h1>
+                              <field name="transaction_date" required="1"/>
+                          </h1>
+                      </div>
+                      <field name="tracking_type" invisible="1"/>
+                      <div class="oe_right oe_button_box">
+                          <button name="action_get_attachment_tree_view" class="oe_stat_button" icon="fa-book" type="object">
+                              <field name="attachment_number" widget="statinfo" string="Documents"/>
+                          </button>
+                      </div>
+                      <br/>
+                      <group col="4" colspan="4">
+                          <field name="sender_office_id" />
+                          <field name="sender_id"/>
+                          <field name="recipient_office_id" />
+                          <field name="recipient_id"/>
+                          <field name="document_type_id"/>
+                          <newline/>
+                          <field name="subject" colspan="4"/>
+                      </group>
+                      <group>
+                          <field name="message" widget="html"/>
+                          <!--<field name="attachment_ids" filter_domain="[('attachment_ids.index_content', 'ilike', self)]" string="Attachments" nolabel="1">
+                              <tree>
+                                  <field name="name"/>
+                                  <field name="url"/>
+                              </tree>
+                          </field>-->
+                      </group>
+                  </sheet>
+              </form>
+          </field>
+      </record>
+
+      <record id="view_dts_document_tree" model="ir.ui.view">
+          <field name="name">dts.document.tree</field>
+          <field name="model">dts.document</field>
+          <field name="type">tree</field>
+          <field name="arch" type="xml">
+              <tree string="Biometric Machine" version="7.0">
+                  <field name="transaction_date"/>
+                  <field name="document_type_id"/>
+                  <field name="subject"/>
+                  <field name="sender_id" string="From"/>
+                  <field name="recipient_id" string="To"/>
+                  <field name="state"/>
+              </tree>
+          </field>
+      </record>
+
+      <record id="open_view_dts_document_outgoing" model="ir.actions.act_window">
+          <field name="name">Outgoing Documents</field>
+          <field name="res_model">dts.document</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">tree,form</field>
+          <field name="domain">[('sender_id.user_id.id','=',uid)]</field>
+          <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                  Click here to Create Outgoing Document.
+              </p>
+          </field>
+      </record>
+
+      <record id="open_view_dts_document_incoming" model="ir.actions.act_window">
+          <field name="name">Incoming Documents</field>
+          <field name="res_model">dts.document</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">tree,form</field>
+          <field name="domain">[('recipient_id.user_id.id','=',uid)]</field>
+          <field name="context">{'create': False,'write':False}</field>
+          <field name="help" type="html">
+              <p>
+                  No document yet.
+              </p><p>
+                 Your Incoming Documents will appear here.
+              </p>
+          </field>
+      </record>
+
+      <!-- Documents -->
+      <record id="ir_attachment_view_search_inherit_dts_document" model="ir.ui.view">
+          <field name="name">ir.attachment.search.inherit.recruitment</field>
+          <field name="model">ir.attachment</field>
+          <field name="mode">primary</field>
+          <field name="inherit_id" ref="base.view_attachment_search"/>
+          <field name="arch" type="xml">
+              <xpath expr="//field[@name='create_date']" position="after">
+                  <field name="index_content" string="Content"/>
+              </xpath>
+              <xpath expr="//filter[@name='my_documents_filter']" position="attributes">
+                  <attribute name='invisible'>1</attribute>
+              </xpath>
+              <xpath expr="//filter[@name='url_filter']" position="attributes">
+                  <attribute name='invisible'>1</attribute>
+              </xpath>
+              <xpath expr="//filter[@name='binary_filter']" position="attributes">
+                  <attribute name='invisible'>1</attribute>
+              </xpath>
+          </field>
+      </record>
+
+      <record model="ir.actions.act_window" id="dts_documents_cabinet">
+          <field name="name">Documents</field>
+          <field name="res_model">ir.attachment</field>
+          <field name="view_type">form</field>
+          <field name="view_mode">kanban,tree,form</field>
+          <field name="view_id" ref="mail.view_document_file_kanban"/>
+          <field name="search_view_id" ref="ir_attachment_view_search_inherit_dts_document"/>
+          <field name="domain">[('res_model','=','dts.document')]</field>
+          <field name="context">{'create': False}</field>
+          <field name="help" type="html">
+              <p>
+                  No document yet.
+              </p><p>
+                  This menu helps you search through resumes and motivation
+                  letters. Odoo automatically indexes .PDF, .DOC, DOCX, .TXT
+                  files so that you can search keywords from the content of these
+                  files.
+              </p>
+          </field>
+      </record>
+      
+      <record id="view_dts_document_type_form" model="ir.ui.view">
+          <field name="name">dts.document.type.form</field>
+          <field name="model">dts.document.type</field>
+          <field name="arch" type="xml">
+              <form string="Document Type">
+                  <sheet>
+                      <div class="oe_right oe_button_box">
+                          <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                              <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                          </button>
+                      </div>
+                      <br/>
+                      <br/>
+                      <br/>
+                      <group>
+                          <field name="name"/>
+                      </group>
+                  </sheet>
+              </form>
+          </field>
+      </record>
+
+      <record id="view_dts_document_type_tree" model="ir.ui.view">
+          <field name="name">dts.document.type.tree</field>
+          <field name="model">dts.document.type</field>
+          <field name="arch" type="xml">
+              <tree string="Document Type">
+                  <field name="name"/>
+              </tree>
+          </field>
+      </record>
+
+      <record id="action_dts_document_type" model="ir.actions.act_window">
+          <field name="name">Document Type</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">dts.document.type</field>
+          <field name="view_mode">tree,form</field>
+          <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                Click here to Create Document Type.
+            </p><p>
+              <!-- More details about what a user can do with this object will be OK -->
+            </p>
+          </field>
+      </record>
+
+  </data>
+</odoo>
