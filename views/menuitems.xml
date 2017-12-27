@@ -5,6 +5,7 @@
     <menuitem id="menu_dts_root"
               name="Document"
               sequence="90"
+              web_icon="dts,icon/link tracker.png"
               groups="group_dts_document_manager,group_dts_document_user"/>
 
     <menuitem id="menu_dts_incoming"
@@ -23,7 +24,8 @@
               name="Documents"
               parent="menu_dts_root"
               action="dts_documents_cabinet"
-              sequence="300"/>
+              sequence="300"
+              groups="group_dts_document_manager"/>
 
     <menuitem id="menu_dts_configuration"
               name="Configuration"

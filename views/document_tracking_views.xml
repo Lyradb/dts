@@ -15,7 +15,7 @@
           </field>
       </record>
 
-      <!-- DTS -->
+      <!-- DTS Outgoing-->
       <record id="view_dts_document_form" model="ir.ui.view">
           <field name="name">dts.document.form</field>
           <field name="model">dts.document</field>
@@ -23,12 +23,15 @@
           <field name="arch" type="xml">
               <form string="Incoming/Outgoing" version="7.0">
                   <header>
-                      <button name="action_send" string="Send" class="oe_stat_button"
-                              icon="fa-send" type="object" confirm="Send it?"
-                              attrs="{'invisible':[('state','!=','draft')]}"/>
-                      <button name="action_received" string="Accept" class="oe_stat_button"
+                      <field name="recipient_user_id" invisible="1"/>
+                      <field name="current_user" invisible="1"/>
+                      <button name="action_received" string="Accept" class="oe_highlight"
                               icon="fa-download" type="object" confirm="Mark as Received?"
-                              attrs="{'invisible':[('state','in',['draft','receive','cancel'])]}" states="send"/>
+                              states="send,read"
+                              attrs="{'invisible':[('recipient_user_id','=','current_user')]}" />
+                      <button name="action_send" string="Send" class="oe_highlight"
+                              icon="fa-send" type="object" confirm="Send it?"
+                              states="draft"/>
                       <field name="state"
                              widget="statusbar"
                              nolabel="1"
@@ -50,22 +53,16 @@
                       </div>
                       <br/>
                       <group col="4" colspan="4">
-                          <field name="sender_office_id" />
+                          <field name="sender_office_id"/>
                           <field name="sender_id"/>
-                          <field name="recipient_office_id" />
-                          <field name="recipient_id"/>
-                          <field name="document_type_id"/>
-                          <newline/>
-                          <field name="subject" colspan="4"/>
+                          <field name="recipient_office_id" attrs="{'readonly':[('state','!=','draft')]}"/>
+                          <field name="recipient_id" attrs="{'readonly':[('state','!=','draft')]}"/>
+                          <field name="document_type_id" attrs="{'readonly':[('state','!=','draft')]}"/>
+                          <field name="receive_date" states="send,receive,read"/>
+                          <field name="subject" colspan="4" attrs="{'readonly':[('state','!=','draft')]}"/>
                       </group>
                       <group>
-                          <field name="message" widget="html"/>
-                          <!--<field name="attachment_ids" filter_domain="[('attachment_ids.index_content', 'ilike', self)]" string="Attachments" nolabel="1">
-                              <tree>
-                                  <field name="name"/>
-                                  <field name="url"/>
-                              </tree>
-                          </field>-->
+                          <field name="message" widget="html" attrs="{'readonly':[('state','!=','draft')]}"/>
                       </group>
                   </sheet>
               </form>
@@ -93,7 +90,7 @@
           <field name="res_model">dts.document</field>
           <field name="view_type">form</field>
           <field name="view_mode">tree,form</field>
-          <field name="domain">[('sender_id.user_id.id','=',uid)]</field>
+          <field name="domain">[('sender_id.user_id.id','=',uid),('tracking_type','=','outgoing')]</field>
           <field name="help" type="html">
               <p class="oe_view_nocontent_create">
                   Click here to Create Outgoing Document.
@@ -106,8 +103,7 @@
           <field name="res_model">dts.document</field>
           <field name="view_type">form</field>
           <field name="view_mode">tree,form</field>
-          <field name="domain">[('recipient_id.user_id.id','=',uid)]</field>
-          <field name="context">{'create': False,'write':False}</field>
+          <field name="domain">[('recipient_id.user_id.id','=',uid),('state','in',['send','read','receive'])]</field>
           <field name="help" type="html">
               <p>
                   No document yet.
@@ -147,7 +143,7 @@
           <field name="view_id" ref="mail.view_document_file_kanban"/>
           <field name="search_view_id" ref="ir_attachment_view_search_inherit_dts_document"/>
           <field name="domain">[('res_model','=','dts.document')]</field>
-          <field name="context">{'create': False}</field>
+          <field name="context">{'create':False, 'edit':False}</field>
           <field name="help" type="html">
               <p>
                   No document yet.
@@ -159,7 +155,7 @@
               </p>
           </field>
       </record>
-      
+
       <record id="view_dts_document_type_form" model="ir.ui.view">
           <field name="name">dts.document.type.form</field>
           <field name="model">dts.document.type</field>

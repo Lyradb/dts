@@ -11,6 +11,7 @@
         <record id="group_dts_document_user" model="res.groups">
             <field name="name">User</field>
             <field name="category_id" ref="module_dts_document"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
         </record>
 
         <!--manager-->
