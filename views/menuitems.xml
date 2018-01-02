@@ -6,7 +6,7 @@
               name="Document"
               sequence="90"
               web_icon="dts,icon/link tracker.png"
-              groups="group_dts_document_manager,group_dts_document_user"/>
+              groups="group_dts_document_manager,group_dts_document_supervisor,group_dts_document_user"/>
 
     <menuitem id="menu_dts_incoming"
               parent="menu_dts_root"
@@ -18,7 +18,8 @@
               parent="menu_dts_root"
               name="Outgoing"
               sequence="200"
-              action="open_view_dts_document_outgoing"/>
+              action="open_view_dts_document_outgoing"
+              groups="group_dts_document_manager,group_dts_document_supervisor"/>
 
     <menuitem id="menu_dts_documents"
               name="Documents"
@@ -37,5 +38,8 @@
               parent="menu_dts_configuration"
               action="action_dts_document_type"/>
 
+    <menuitem id="menu_dts_document_delivery"
+              parent="menu_dts_configuration"
+              action="action_dts_document_delivery"/>
 
 </odoo>

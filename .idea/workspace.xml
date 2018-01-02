@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="04e7721a-9d03-417c-86cb-a8fb0e8fb473" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/icon/link tracker.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/data/init_data.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/__manifest__.py" afterPath="$PROJECT_DIR$/__manifest__.py" />
       <change beforePath="$PROJECT_DIR$/models/document_tracking.py" afterPath="$PROJECT_DIR$/models/document_tracking.py" />
       <change beforePath="$PROJECT_DIR$/security/dts_document_security.xml" afterPath="$PROJECT_DIR$/security/dts_document_security.xml" />
       <change beforePath="$PROJECT_DIR$/security/ir.model.access.csv" afterPath="$PROJECT_DIR$/security/ir.model.access.csv" />
@@ -18,15 +19,15 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/dts$odoo_dts.coverage" NAME="odoo-dts Coverage Results" MODIFIED="1514365465951" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/dts$odoo_dts.coverage" NAME="odoo-dts Coverage Results" MODIFIED="1514879248208" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="document_tracking_views.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/document_tracking_views.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="701">
-              <caret line="130" column="22" lean-forward="true" selection-start-line="130" selection-start-column="22" selection-end-line="130" selection-end-column="22" />
+            <state relative-caret-position="36">
+              <caret line="209" column="58" lean-forward="false" selection-start-line="209" selection-start-column="58" selection-end-line="209" selection-end-column="58" />
               <folding />
             </state>
           </provider>
@@ -35,8 +36,8 @@
       <file leaf-file-name="__manifest__.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/__manifest__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+            <state relative-caret-position="288">
+              <caret line="16" column="23" lean-forward="false" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -45,39 +46,31 @@
       <file leaf-file-name="dts_document_security.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/security/dts_document_security.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="16" column="22" lean-forward="true" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
+            <state relative-caret-position="162">
+              <caret line="9" column="19" lean-forward="false" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ir.model.access.csv" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ir.model.access.csv" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/security/ir.model.access.csv">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="36">
-              <caret line="2" column="87" lean-forward="false" selection-start-line="2" selection-start-column="87" selection-end-line="2" selection-end-column="87" />
+            <state relative-caret-position="162">
+              <caret line="9" column="33" lean-forward="true" selection-start-line="9" selection-start-column="33" selection-end-line="9" selection-end-column="33" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="menuitems.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/menuitems.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="27" column="49" lean-forward="false" selection-start-line="27" selection-start-column="49" selection-end-line="27" selection-end-column="49" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="document_tracking.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="document_tracking.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/document_tracking.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="46" column="20" lean-forward="false" selection-start-line="46" selection-start-column="20" selection-end-line="46" selection-end-column="20" />
-              <folding />
+            <state relative-caret-position="444">
+              <caret line="327" column="19" lean-forward="false" selection-start-line="327" selection-start-column="19" selection-end-line="327" selection-end-column="19" />
+              <folding>
+                <element signature="e#25#61#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -86,36 +79,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>biometric_machine</find>
-      <find>MemoDocument</find>
+      <find>self.id</find>
+      <find>write</find>
+      <find>receiver_id</find>
+      <find>att</find>
+      <find>raise</find>
+      <find>dts.document.recipient</find>
+      <find>found</find>
+      <find>res</find>
+      <find>open_view_dts_document_incoming</find>
+      <find>dts.employee.document</find>
       <find>subject</find>
-      <find>hr_applicant_resumes</find>
-      <find>required</find>
-      <find>doc</find>
-      <find>res_model</find>
-      <find>oe_view_nocontent_create</find>
-      <find>ir_attachment_view_search_inherit_hr_recruitment</find>
-      <find>DocDocument</find>
-      <find>bioclock_attendance</find>
-      <find>hr_recruitment</find>
-      <find>searc</find>
-      <find>active</find>
-      <find>doma</find>
-      <find>receive</find>
-      <find>tracking_type</find>
       <find>user_id</find>
-      <find>view_dts_document_incoming</find>
-      <find>view_dts_document_outgoing</find>
-      <find>hide</find>
-      <find>hide_accept</find>
-      <find>oe_</find>
+      <find>Biometric Machine</find>
+      <find>document_type_id</find>
       <find>receive_date</find>
+      <find>action_re</find>
+      <find>action_se</find>
+      <find>attrs</find>
+      <find>ir.attachment</find>
+      <find>_code_get</find>
+      <find>process</find>
+      <find>branch</find>
+      <find>get</find>
+      <find>employee_id</find>
       <find>domain</find>
-      <find>body</find>
-      <find>context</find>
-      <find>sudo</find>
-      <find>_get_current_user_employee_id</find>
-      <find>domai</find>
+      <find>_get_code_series</find>
+      <find>doc_code</find>
+      <find>action_send</find>
+      <find>document T</find>
+      <find>action_none</find>
     </findStrings>
     <replaceStrings>
       <replace>doc.documents</replace>
@@ -127,6 +120,10 @@
       <replace>dts_document</replace>
       <replace>view_dts_document_incoming_form</replace>
       <replace>view_dts_document_</replace>
+      <replace>view_dts_document_delivery</replace>
+      <replace>dts.document.delivery</replace>
+      <replace>office</replace>
+      <replace>dts.employee.documents</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -144,12 +141,15 @@
         <option value="$PROJECT_DIR$/models/__init__.py" />
         <option value="$PROJECT_DIR$/views/menu.xml" />
         <option value="$PROJECT_DIR$/views/document_incoming_views.xml" />
-        <option value="$PROJECT_DIR$/__manifest__.py" />
         <option value="$PROJECT_DIR$/views/menuitems.xml" />
         <option value="$PROJECT_DIR$/security/dts_document_security.xml" />
-        <option value="$PROJECT_DIR$/security/ir.model.access.csv" />
-        <option value="$PROJECT_DIR$/models/document_tracking.py" />
+        <option value="$PROJECT_DIR$/__manifest__.py" />
+        <option value="$PROJECT_DIR$/data/init_data.xml" />
+        <option value="$PROJECT_DIR$/sequences/dts_document_sequence.xml" />
+        <option value="$PROJECT_DIR$/models/sequence.py" />
         <option value="$PROJECT_DIR$/views/document_tracking_views.xml" />
+        <option value="$PROJECT_DIR$/models/document_tracking.py" />
+        <option value="$PROJECT_DIR$/security/ir.model.access.csv" />
       </list>
     </option>
   </component>
@@ -211,12 +211,17 @@
             <path>
               <item name="dts" type="b2602c69:ProjectViewProjectNode" />
               <item name="dts" type="462c0819:PsiDirectoryNode" />
-              <item name="security" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="dts" type="b2602c69:ProjectViewProjectNode" />
               <item name="dts" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dts" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dts" type="462c0819:PsiDirectoryNode" />
+              <item name="security" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -228,11 +233,13 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../odoo-10.0/addons" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="preferences.customizations" />
     <property name="settings.editor.splitter.proportion" value="0.26019946" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/models" />
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/icon" />
       <recent name="$PROJECT_DIR$/views" />
       <recent name="$PROJECT_DIR$/security" />
@@ -274,6 +281,9 @@
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
+  <component name="StructureViewFactory">
+    <option name="ACTIVE_ACTIONS" value=",SHOW_INHERITED,SHOW_FIELDS" />
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -292,7 +302,14 @@
       <option name="project" value="LOCAL" />
       <updated>1514255444293</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="halfway.">
+      <created>1514376216811</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1514376216811</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TodoView">
@@ -315,13 +332,13 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32984293" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32946378" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32879582" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17855169" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18297403" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1641791" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.460733" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36335078" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -346,7 +363,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32984293" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32946378" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32879582" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17855169" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18297403" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -355,7 +372,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1641791" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.460733" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36335078" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
@@ -367,66 +384,16 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="working code, just like an email." />
-    <option name="LAST_COMMIT_MESSAGE" value="working code, just like an email." />
+    <MESSAGE value="halfway." />
+    <option name="LAST_COMMIT_MESSAGE" value="halfway." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="17" />
+      <option name="time" value="107" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/views/document_tracking_views.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="11" column="31" lean-forward="false" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/__manifest__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="27" lean-forward="false" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/templates.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/document_tracking_views.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="11" column="31" lean-forward="false" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/security/ir.model.access.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo/demo.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/controllers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/controllers/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -438,7 +405,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="486">
           <caret line="27" column="155" lean-forward="true" selection-start-line="27" selection-start-column="155" selection-end-line="27" selection-end-column="155" />
-          <folding />
+          <folding>
+            <element signature="e#25#61#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -503,7 +472,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
           <caret line="22" column="49" lean-forward="true" selection-start-line="22" selection-start-column="49" selection-end-line="22" selection-end-column="49" />
-          <folding />
+          <folding>
+            <element signature="e#25#61#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -568,7 +539,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
           <caret line="22" column="49" lean-forward="true" selection-start-line="22" selection-start-column="49" selection-end-line="22" selection-end-column="49" />
-          <folding />
+          <folding>
+            <element signature="e#25#61#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -605,7 +578,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#25#61#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -638,13 +613,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controllers/controllers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo/demo.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -680,26 +648,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/document_incoming_views.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="71" column="15" lean-forward="false" selection-start-line="71" selection-start-column="15" selection-end-line="71" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/__manifest__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/views/document_incoming_views.xml" />
     <entry file="file://$PROJECT_DIR$/../../odoo-10.0/odoo/fields.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2234">
-          <caret line="926" column="0" lean-forward="false" selection-start-line="926" selection-start-column="0" selection-end-line="926" selection-end-column="0" />
+        <state relative-caret-position="288">
+          <caret line="865" column="0" lean-forward="false" selection-start-line="865" selection-start-column="0" selection-end-line="865" selection-end-column="0" />
           <folding>
             <marker date="1498066059000" expanded="true" signature="90680:90729" ph="SELECT id FR... missing_value" />
             <marker date="1498066059000" expanded="true" signature="95337:95407" ph="SELECT relna... pg_class" />
@@ -716,42 +669,204 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/menuitems.xml">
+    <entry file="file://$PROJECT_DIR$/../../odoo-10.0/odoo/tools/func.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="27" column="49" lean-forward="false" selection-start-line="27" selection-start-column="49" selection-end-line="27" selection-end-column="49" />
+        <state relative-caret-position="414">
+          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/menuitems.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="28" lean-forward="false" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/base.config.settings.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="1" column="48" lean-forward="false" selection-start-line="1" selection-start-column="36" selection-end-line="1" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/__manifest__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="16" column="23" lean-forward="false" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/demo.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/icon/link tracker.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/security/dts_document_security.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="16" column="22" lean-forward="true" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
+        <state relative-caret-position="162">
+          <caret line="9" column="19" lean-forward="false" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/security/ir.model.access.csv">
+    <entry file="file://$PROJECT_DIR$/data/init_data.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="87" lean-forward="false" selection-start-line="2" selection-start-column="87" selection-end-line="2" selection-end-column="87" />
+        <state relative-caret-position="414">
+          <caret line="50" column="103" lean-forward="false" selection-start-line="50" selection-start-column="103" selection-end-line="50" selection-end-column="103" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/sequence.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="738">
+          <caret line="41" column="32" lean-forward="false" selection-start-line="41" selection-start-column="24" selection-end-line="41" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../odoo-10.0/odoo/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4127">
+          <caret line="1082" column="0" lean-forward="false" selection-start-line="1082" selection-start-column="0" selection-end-line="1082" selection-end-column="0" />
+          <folding>
+            <marker date="1498066059000" expanded="true" signature="10569:10746" ph="UPDATE ir_model... " />
+            <marker date="1498066059000" expanded="true" signature="10815:11005" ph="INSERT INTO ir_model... " />
+            <marker date="1498066059000" expanded="true" signature="11391:11446" ph="SELECT * FRO... ir_model_data" />
+            <marker date="1498066059000" expanded="true" signature="11569:11759" ph="INSERT INTO ir_model_data... " />
+            <marker date="1498066059000" expanded="true" signature="11946:11990" ph="SELECT * FRO... ir_model_fields" />
+            <marker date="1498066059000" expanded="true" signature="14022:14079" ph="INSERT INTO ir_model_fields... " />
+            <marker date="1498066059000" expanded="true" signature="14587:14631" ph="SELECT name ir_model_data" />
+            <marker date="1498066059000" expanded="true" signature="14777:14971" ph="INSERT INTO ir_model_data... " />
+            <marker date="1498066059000" expanded="true" signature="15212:15296" ph="UPDATE ir_model_fields... " />
+            <marker date="1498066059000" expanded="true" signature="30724:30828" ph="SELECT 1 FRO... pg_class" />
+            <marker date="1498066059000" expanded="true" signature="58012:58095" ph="SELECT res_i... ir_model_data" />
+            <marker date="1498066059000" expanded="true" signature="87553:87777" ph="SELECT min(&quot;... missing_value" />
+            <marker date="1498066059000" expanded="true" signature="92061:92101" ph="SELECT id FR... missing_value" />
+            <marker date="1498066059000" expanded="true" signature="92200:92260" ph="UPDATE missing_value... " />
+            <marker date="1498066059000" expanded="true" signature="92650:92694" ph="SELECT id FR... missing_value" />
+            <marker date="1498066059000" expanded="true" signature="93699:94076" ph="SELECT a.att... pg_class" />
+            <marker date="1498066059000" expanded="true" signature="94408:94456" ph="ALTER TABLE &quot;missing_value&quot;... " />
+            <marker date="1498066059000" expanded="true" signature="95228:95452" ph="SELECT type,... ir_model_constraint" />
+            <marker date="1498066059000" expanded="true" signature="95608:95942" ph="INSERT INTO ir_model_constraint... " />
+            <marker date="1498066059000" expanded="true" signature="95825:95870" ph="SELECT id FR... ir_module_module" />
+            <marker date="1498066059000" expanded="true" signature="95894:95932" ph="SELECT id FR... ir_model" />
+            <marker date="1498066059000" expanded="true" signature="96169:96367" ph="UPDATE ir_model_constraint... " />
+            <marker date="1498066059000" expanded="true" signature="96545:96576" ph="ALTER TABLE missing_value... " />
+            <marker date="1498066059000" expanded="true" signature="96913:97116" ph="SELECT 1 FRO... ir_model_relation" />
+            <marker date="1498066059000" expanded="true" signature="97214:97517" ph="INSERT INTO ir_model_relation... " />
+            <marker date="1498066059000" expanded="true" signature="97408:97453" ph="SELECT id FR... ir_module_module" />
+            <marker date="1498066059000" expanded="true" signature="97477:97515" ph="SELECT id FR... ir_model" />
+            <marker date="1498066059000" expanded="true" signature="99089:99972" ph="SELECT confd... pg_constraint" />
+            <marker date="1498066059000" expanded="true" signature="102385:102427" ph="UPDATE &quot;missing_value&quot;... " />
+            <marker date="1498066059000" expanded="true" signature="104462:104488" ph="SELECT 1 FRO... missing_value" />
+            <marker date="1498066059000" expanded="true" signature="105889:105925" ph="ALTER TABLE &quot;missing_value&quot;... " />
+            <marker date="1498066059000" expanded="true" signature="107655:107695" ph="ALTER TABLE &quot;missing_value&quot;... " />
+            <marker date="1498066059000" expanded="true" signature="108103:108158" ph="ALTER TABLE &quot;missing_value&quot;... " />
+            <marker date="1498066059000" expanded="true" signature="108231:108264" ph="ALTER TABLE &quot;missing_value&quot;... " />
+            <marker date="1498066059000" expanded="true" signature="108355:108394" ph="UPDATE &quot;missing_value&quot;... " />
+            <marker date="1498066059000" expanded="true" signature="108485:108538" ph="ALTER TABLE &quot;missing_value&quot;... " />
+            <marker date="1498066059000" expanded="true" signature="109255:109295" ph="ALTER TABLE &quot;missing_value&quot;... " />
+            <marker date="1498066059000" expanded="true" signature="109579:109634" ph="ALTER TABLE &quot;missing_value&quot;... " />
+            <marker date="1498066059000" expanded="true" signature="109715:109748" ph="ALTER TABLE &quot;missing_value&quot;... " />
+            <marker date="1498066059000" expanded="true" signature="109837:109875" ph="UPDATE &quot;missing_value&quot;... " />
+            <marker date="1498066059000" expanded="true" signature="109964:110018" ph="ALTER TABLE &quot;missing_value&quot;... " />
+            <marker date="1498066059000" expanded="true" signature="110653:110903" ph="SELECT count... pg_class" />
+            <marker date="1498066059000" expanded="true" signature="111198:111246" ph="ALTER TABLE &quot;missing_value&quot;... " />
+            <marker date="1498066059000" expanded="true" signature="111319:111362" ph="ALTER TABLE &quot;missing_value&quot;... " />
+            <marker date="1498066059000" expanded="true" signature="111444:111477" ph="ALTER TABLE &quot;missing_value&quot;... " />
+            <marker date="1498066059000" expanded="true" signature="112348:112395" ph="ALTER TABLE &quot;missing_value&quot;... " />
+            <marker date="1498066059000" expanded="true" signature="113242:113290" ph="ALTER TABLE &quot;missing_value&quot;... " />
+            <marker date="1498066059000" expanded="true" signature="113685:113757" ph="SELECT index... pg_indexes" />
+            <marker date="1498066059000" expanded="true" signature="115687:115720" ph="ALTER TABLE &quot;missing_value&quot;... " />
+            <marker date="1498066059000" expanded="true" signature="117331:117378" ph="ALTER TABLE &quot;missing_value&quot;... " />
+            <marker date="1498066059000" expanded="true" signature="118163:118233" ph="SELECT relna... pg_class" />
+            <marker date="1498066059000" expanded="true" signature="119337:119405" ph="ALTER TABLE &quot;%s&quot;... " />
+            <marker date="1498066059000" expanded="true" signature="119965:120035" ph="SELECT relna... pg_class" />
+            <marker date="1498066059000" expanded="true" signature="120192:120247" ph="CREATE TABLE... missing_value" />
+            <marker date="1498066059000" expanded="true" signature="120496:120621" ph="SELECT c.rel... pg_class" />
+            <marker date="1498066059000" expanded="true" signature="120804:120853" ph="ALTER TABLE &quot;missing_value&quot;... " />
+            <marker date="1498066059000" expanded="true" signature="120899:120949" ph="ALTER TABLE &quot;missing_value&quot;... " />
+            <marker date="1498066059000" expanded="true" signature="122479:122849" ph="SELECT c.rel... " />
+            <marker date="1498066059000" expanded="true" signature="123383:123420" ph="ALTER TABLE &quot;missing_value&quot;... " />
+            <marker date="1498066059000" expanded="true" signature="123890:123927" ph="ALTER TABLE &quot;missing_value&quot;... " />
+            <marker date="1498066059000" expanded="true" signature="125030:125261" ph="SELECT defin... ir_model_constraint" />
+            <marker date="1498066059000" expanded="true" signature="144263:144353" ph="SELECT missi... missing_value" />
+            <marker date="1498066059000" expanded="true" signature="148247:148464" ph="SELECT missi... " />
+            <marker date="1498066059000" expanded="true" signature="149898:149922" ph="SELECT id FR... missing_value" />
+            <marker date="1498066059000" expanded="true" signature="150847:150880" ph="SELECT id FR... missing_value" />
+            <marker date="1498066059000" expanded="true" signature="153554:153604" ph="SELECT DISTI... missing_value" />
+            <marker date="1498066059000" expanded="true" signature="154120:154163" ph="SELECT missi... missing_value" />
+            <marker date="1498066059000" expanded="true" signature="157612:157642" ph="DELETE FROM missing_value... " />
+            <marker date="1498066059000" expanded="true" signature="158973:159037" ph="SELECT id FR... ir_attachment" />
+            <marker date="1498066059000" expanded="true" signature="166612:166685" ph="SELECT id FR... missing_value" />
+            <marker date="1498066059000" expanded="true" signature="166905:166969" ph="SELECT id FR... missing_value" />
+            <marker date="1498066059000" expanded="true" signature="168807:168841" ph="UPDATE &quot;missing_value&quot;... " />
+            <marker date="1498066059000" expanded="true" signature="171437:171479" ph="SELECT DISTI... missing_value" />
+            <marker date="1498066059000" expanded="true" signature="173061:173114" ph="SELECT paren... missing_value" />
+            <marker date="1498066059000" expanded="true" signature="173687:173737" ph="SELECT id, p... missing_value" />
+            <marker date="1498066059000" expanded="true" signature="174350:174389" ph="SELECT paren... missing_value" />
+            <marker date="1498066059000" expanded="true" signature="174722:174786" ph="UPDATE missing_value... " />
+            <marker date="1498066059000" expanded="true" signature="174852:174919" ph="UPDATE missing_value... " />
+            <marker date="1498066059000" expanded="true" signature="175113:175266" ph="UPDATE missing_value... " />
+            <marker date="1498066059000" expanded="true" signature="175437:175590" ph="UPDATE missing_value... " />
+            <marker date="1498066059000" expanded="true" signature="181674:181719" ph="INSERT INTO &quot;missing_value&quot;... " />
+            <marker date="1498066059000" expanded="true" signature="182990:183040" ph="SELECT paren... missing_value" />
+            <marker date="1498066059000" expanded="true" signature="183489:183528" ph="SELECT paren... missing_value" />
+            <marker date="1498066059000" expanded="true" signature="183754:183784" ph="SELECT MAX(p... missing_value" />
+            <marker date="1498066059000" expanded="true" signature="183965:184027" ph="UPDATE missing_value... " />
+            <marker date="1498066059000" expanded="true" signature="184109:184174" ph="UPDATE missing_value... " />
+            <marker date="1498066059000" expanded="true" signature="184256:184316" ph="UPDATE missing_value... " />
+            <marker date="1498066059000" expanded="true" signature="205590:205625" ph="SELECT id FR... missing_value" />
+            <marker date="1498066059000" expanded="true" signature="206687:206723" ph="SELECT &quot;miss... missing_value" />
+            <marker date="1498066059000" expanded="true" signature="207745:207811" ph="SELECT &quot;miss... missing_value" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sequences/dts_document_sequence.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/document_tracking_views.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="701">
-          <caret line="130" column="22" lean-forward="true" selection-start-line="130" selection-start-column="22" selection-end-line="130" selection-end-column="22" />
+        <state relative-caret-position="36">
+          <caret line="209" column="58" lean-forward="false" selection-start-line="209" selection-start-column="58" selection-end-line="209" selection-end-column="58" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/models/document_tracking.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="46" column="20" lean-forward="false" selection-start-line="46" selection-start-column="20" selection-end-line="46" selection-end-column="20" />
+        <state relative-caret-position="444">
+          <caret line="327" column="19" lean-forward="false" selection-start-line="327" selection-start-column="19" selection-end-line="327" selection-end-column="19" />
+          <folding>
+            <element signature="e#25#61#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/security/ir.model.access.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="33" lean-forward="true" selection-start-line="9" selection-start-column="33" selection-end-line="9" selection-end-column="33" />
           <folding />
         </state>
       </provider>

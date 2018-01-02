@@ -3,8 +3,7 @@
     'name': "Document Tracking System",
 
     'summary': """
-        Short (1 phrase/line) summary of the module's purpose, used as
-        subtitle on modules listing or apps.openerp.com""",
+        Document Tracking System (DTS)""",
 
     'description': """
         Long description of module's purpose
@@ -24,6 +23,7 @@
 
     # always loaded
     'data': [
+        'data/init_data.xml',
         'security/dts_document_security.xml',
         'security/ir.model.access.csv',
         'views/document_tracking_views.xml',

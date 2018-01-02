@@ -12,13 +12,21 @@
             <field name="name">User</field>
             <field name="category_id" ref="module_dts_document"/>
             <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+            <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        </record>
+
+        <!--user-->
+        <record id="group_dts_document_supervisor" model="res.groups">
+            <field name="name">Supervisor</field>
+            <field name="category_id" ref="module_dts_document"/>
+            <field name="implied_ids" eval="[(4, ref('group_dts_document_user'))]"/>
         </record>
 
         <!--manager-->
         <record id="group_dts_document_manager" model="res.groups">
             <field name="name">Manager</field>
             <field name="category_id" ref="module_dts_document"/>
-            <field name="implied_ids" eval="[(4, ref('group_dts_document_user'))]"/>
+            <field name="implied_ids" eval="[(4, ref('group_dts_document_supervisor'))]"/>
             <field name="users" eval="[(4, ref('base.user_root'))]"/>
         </record>
 

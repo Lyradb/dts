@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="base.PHP" model="res.currency">
+            <field name="active" eval="True"/>
+            <field name="symbol">₱</field>
+            <field name="position">before</field>
+        </record>
+
+        <record id="base.USD" model="res.currency">
+            <field name="active" eval="False"/>
+        </record>
+
+        <record id="base.EUR" model="res.currency">
+            <field name="active" eval="False"/>
+        </record>
+
+        <record id="base.user_root" model="res.users">
+            <field name="in_group_5" eval="True"/>
+        </record>
+
+        <record id="base.default_user" model="res.users">
+            <field name="tz">Asia/Manila</field>
+        </record>
+
+        <record id="base.main_partner" model="res.partner">
+            <field name="name">DTS Company</field>
+            <field name="email">info@dts.com</field>
+            <field name="website">www.dts.com</field>
+            <!--<field name="image" type="base64" file="mgc_base/static/src/img/mutigroup_logo.png"/>-->
+            <field name="is_company" eval="True"/>
+            <field name="owned_company" eval="True"/>
+        </record>
+
+        <record id="base.partner_root" model="res.partner">
+            <field name="name">Systems Administrator</field>
+            <field name="email">admin@dts.com</field>
+            <!--<field name="image" type="base64" file="mgc_base/static/src/img/mutigroup_logo.png"/>-->
+            <field name="active" eval="False"/>
+            <field name="tz">Asia/Manila</field>
+        </record>
+
+        <!-- Basic Company  -->
+        <record id="base.main_company" model="res.company">
+            <field name="name">DTS Company</field>
+            <field name="abbreviation">DTS</field>
+            <field name="rml_header1">Public Service is our priority.</field>
+            <!--<field name="type">business_unit</field>-->
+            <field name="currency_id" ref="base.PHP"/>
+            <!--<field name="logo" type="base64" file="mgc_base/static/src/img/mutigroup_logo.png"/>-->
+            <field name="partner_id" ref="base.main_partner"/>
+        </record>
+
+    </data>
+</odoo>

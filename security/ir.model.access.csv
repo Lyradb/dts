@@ -1,4 +1,11 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_dts_sequence_user,dts.sequence,model_dts_sequence,base.group_user,1,1,1,0
 access_dts_document_user,dts.document,model_dts_document,base.group_user,1,1,1,0
 access_dts_document_type_user,dts.document.type,model_dts_document_type,base.group_user,1,0,0,0
+access_dts_document_delivery_user,dts.document.delivery,model_dts_document_delivery,base.group_user,1,0,0,0
+access_dts_employee_documents_user,dts.employee.documents,model_dts_employee_documents,base.group_user,1,1,0,0
+access_dts_document_recipient_user,dts.document.recipient,model_dts_document_recipient,base.group_user,1,1,1,1
 access_dts_document_type_manager,dts.document.type,model_dts_document_type,group_dts_document_manager,1,1,1,0
+access_dts_document_delivery_manager,dts.document.delivery,model_dts_document_delivery,group_dts_document_manager,1,0,0,0
+access_dts_res_users_manager,res.users,base.model_res_users,group_dts_document_manager,1,1,1,0
+
