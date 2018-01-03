@@ -52,5 +52,54 @@
             <field name="partner_id" ref="base.main_partner"/>
         </record>
 
+
+
+        <!-- Delivery Method -->
+        <record id="dts_delivery_hand_carry" model="dts.document.delivery">
+            <field name="name">Hand Carry</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="dts_delivery_email" model="dts.document.delivery">
+            <field name="name">Email</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="dts_delivery_post_mail" model="dts.document.delivery">
+            <field name="name">Post Mail</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="dts_delivery_fax" model="dts.document.delivery">
+            <field name="name">Fax</field>
+            <field name="active" eval="True"/>
+        </record>
+
+
+        <!-- Document Type -->
+        <record id="dts_doctype_memo" model="dts.document.type">
+            <field name="name">Memo</field>
+            <field name="doc_code">MEMO</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="dts_doctype_letter" model="dts.document.type">
+            <field name="name">Letter</field>
+            <field name="doc_code">LTR</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="dts_doctype_meeting" model="dts.document.type">
+            <field name="name">Minute of Meeting</field>
+            <field name="doc_code">MOM</field>
+            <field name="active" eval="True"/>
+        </record>
+
+        <record id="dts_doctype_notice" model="dts.document.type">
+            <field name="name">Notice</field>
+            <field name="doc_code">NOTICE</field>
+            <field name="active" eval="True"/>
+        </record>
+
     </data>
 </odoo>
