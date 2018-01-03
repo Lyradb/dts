@@ -52,8 +52,6 @@
             <field name="partner_id" ref="base.main_partner"/>
         </record>
 
-
-
         <!-- Delivery Method -->
         <record id="dts_delivery_hand_carry" model="dts.document.delivery">
             <field name="name">Hand Carry</field>
