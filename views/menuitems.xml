@@ -3,7 +3,7 @@
 
     <!--Document Tracking-->
     <menuitem id="menu_dts_root"
-              name="Document"
+              name="Documents"
               sequence="90"
               web_icon="dts,icon/link tracker.png"
               groups="group_dts_document_manager,group_dts_document_supervisor,group_dts_document_user"/>
