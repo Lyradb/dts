@@ -76,6 +76,10 @@ class HrEmployee(models.Model):
     @api.model
     def create(self, values):
         vals = {}
+        name = '%s, %s' % (values['last_name'].title().strip(), values['first_name'].title().strip())
+        if values['suffix']:
+            name = '%s %s' % (name, values['suffix'])
+        values['name'] = '%s %s' % (name, values['middle_name'].title().strip())
         res = super(HrEmployee, self).create(values)
         if 'department_id' in values:
             if values['department_id']:
@@ -95,16 +99,41 @@ class HrEmployee(models.Model):
                 'state': 'active',
                 'password': res.identification_id,
                 'active': res.active
-
             })
-
+            print 'user_id',user_id
             res.write({'user_id': user_id.id})
 
         return res
 
     @api.multi
     def write(self, values):
+        if 'last_name' in values or 'first_name' in values or 'middle_name' in values or 'suffix' in values:
+            last_name = 'last_name' in values if values['last_name'].title().strip() else self.last_name
+            first_name = 'first_name' in values if values['first_name'].title().strip() else self.first_name
+            middle_name = 'middle_name' in values if values['middle_name'].title().strip() else self.middle_name
+            suffix = 'suffix' in values if values['suffix'] else self.suffix
+            name = '%s, %s' % (last_name, first_name)
+            if suffix:
+                name = '%s %s' % (name, suffix)
+            values['name'] = '%s %s' % (name, middle_name)
+
+        add_user = not self.identification_id and 'identification_id' in values
+
         res = super(HrEmployee, self).write(values)
+
+        if add_user:
+            user_id = self.env['res.users'].sudo().create({
+                'name': self.name,
+                'login': self.identification_id,
+                'company_id': self.company_id.id,
+                'state': 'active',
+                'password': self.identification_id,
+                'active': self.active
+
+            })
+            print user_id
+            self.write({'user_id': user_id.id})
+
         recipient_env = self.env['dts.document.recipient']
         if res:
             vals={}
@@ -268,22 +297,56 @@ class DtsDocument(models.Model):
                 vals['receiver_id'] = found.user_id.id
                 vals['employee_id'] = found.employee_id.id
                 self.env['dts.employee.documents'].sudo().create(vals)
-                # self.send_to_channel('Hi! You got '+self.document_type_id.name+' with subject: '+self.subject, found.user_id.id)
+                self.send_to_channel('Hi! I send '+self.name+' with subject: '+self.subject, found.user_id.id)
         return self.write({'state': 'send', 'tracking_type': 'outgoing','send_date':fields.datetime.today()})
 
 
-    def send_to_channel(self, body, to_user):
-        users = to_user
+    def send_to_channel(self, body, to_user_id):
+        to_user_rec = self.env['res.users'].browse(to_user_id)
+        fr_user_rec = self.env['res.users'].browse(self.env.user.id)
         ch_obj = self.env['mail.channel']
-        if users:
-            for user in users:
-                ch_name = user.name + ', ' + self.env.user.name
-                ch = ch_obj.sudo().search([('name', 'ilike', str(ch_name))])
-                if not ch:
-                    ch = ch_obj.sudo().search([('name', 'ilike', str(self.env.user.name + ', ' + user.name))])
+        ch_partner_obj = self.env['mail.channel.partner']
+        vals = {}
+
+        if to_user_rec:
+            to_partner_id = to_user_rec.partner_id.id
+            to_partner_name = to_user_rec.partner_id.name
+            fr_partner_id = self.env.user.partner_id.id
+            fr_partner_name = self.env.user.partner_id.name
+
+            ch_name = '%s, %s' % (to_partner_name, fr_partner_name)
+
+            sql = """select a.channel_id
+            from mail_channel_partner a, (
+            select channel_id, partner_id 
+            from mail_channel_partner
+            where partner_id = %s) b
+            where a.partner_id = %s
+            and a.channel_id = b.channel_id""" % (to_partner_id, fr_partner_id)
+
+            self.env.cr.execute(sql)
+
+            res = self.env.cr.dictfetchone()
+            if res:
+                channel_id = res['channel_id']
+
+            else:
+                vals['public'] = 'private'
+                vals['name'] = ch_name
+                vals['channel_type'] = 'chat'
+                vals['group_public_id'] = 1
+                ch_rec = ch_obj.sudo().create(vals)
+                if ch_rec:
+                    channel_id = ch_rec.id
+                    ch_partner_obj.create({'channel_id':channel_id,'partner_id':to_partner_id})
+                    ch_partner_obj.create({'channel_id':channel_id,'partner_id':fr_partner_id})
+
+            ch = ch_obj.sudo().search([('id', '=', channel_id)])
+
+            if ch:
                 ch.message_post(attachment_ids=[], body=body, content_subtype='html',
-                message_type='comment', partner_ids=[], subtype='mail.mt_comment',
-                email_from=self.env.user.partner_id.email, author_id=self.env.user.partner_id.id)
+                                message_type='comment', partner_ids=[], subtype='mail.mt_comment',
+                                email_from=self.env.user.partner_id.email, author_id=self.env.user.partner_id.id)
 
         return True
 
@@ -313,13 +376,11 @@ class DtsEmployeeDocuments(models.Model):
     attachment_number = fields.Integer(compute='_get_attachment_number', store=False, related='document_id.attachment_number')
     attachment_ids = fields.One2many('ir.attachment','res_id', string='Attachments', store=False, related='document_id.attachment_ids')
     delivery_method_id = fields.Many2one(comodel_name="dts.document.delivery",string="Delivery Method", store=False, related='document_id.delivery_method_id')
-    # read_date = fields.Datetime(string="Read Date", required=False, readonly="1")
-    # view_doc_date = fields.Datetime(string="View Docs Date", required=False, readonly="1")
-    # receive_date = fields.Datetime(string="Received Date", required=False, readonly="1")
     state_date = fields.Datetime(string="Status Date", required=False, readonly="1")
 
     @api.multi
     def action_read(self):
+        self.env['dts.document'].send_to_channel('Hi! I am reading the document '+self.name+' with subject: '+self.subject, self.sender_id.user_id.id)
         return self.write({'state': 'read','state_date':fields.datetime.today()})
 
     @api.multi
@@ -329,11 +390,12 @@ class DtsEmployeeDocuments(models.Model):
 
     @api.multi
     def action_accept(self):
-        # self.send_to_channel('Hi! I accepted your '+self.document_type_id.name+' with subject: '+self.subject, self.sender_id.user_id)
+        self.env['dts.document'].send_to_channel('Hi! I now accept the document '+self.name+' with subject: '+self.subject, self.sender_id.user_id.id)
         return self.write({'state': 'receive','state_date':fields.datetime.today()})
 
     @api.multi
     def action_viewed_docs(self):
+        self.env['dts.document'].send_to_channel('Hi! I am viewing the attachments of document '+self.name+' with subject: '+self.subject, self.sender_id.user_id.id)
         return self.write({'state': 'view','state_date':fields.datetime.today()})
 
     @api.multi

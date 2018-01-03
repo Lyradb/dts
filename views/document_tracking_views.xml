@@ -1,375 +1,447 @@
 <odoo>
-  <data>
+    <data>
 
 
-      <record id="hrms_employee_view_form" model="ir.ui.view">
-          <field name="name">hr.employee.form</field>
-          <field name="model">hr.employee</field>
-          <field name="inherit_id" ref="hr.view_employee_form"/>
-          <field name="arch" type="xml">
+        <record id="hrms_employee_view_form" model="ir.ui.view">
+            <field name="name">hr.employee.form</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
 
-              <field name="name" position="attributes">
-                  <attribute name="readonly">True</attribute>
-              </field>
-
-              <xpath expr="//page[1]" position="attributes">
-                  <attribute name="string">Organizational Information</attribute>
-              </xpath>
-              <xpath expr="//page[1]/group/group" position="before">
-                  <group string="General Information" >
-                      <field name="first_name" required="True"/>
-                      <field name="middle_name" required="True"/>
-                      <field name="last_name" required="True"/>
-                      <field name="suffix"/>
-                      <field name="prefix"/>
-                  </group>
-              </xpath>
-
-          </field>
-      </record>
-
-      <!--Department-->
-      <record id="view_department_form_inherit_dts_document" model="ir.ui.view">
-          <field name="name">hr.department.form</field>
-          <field name="model">hr.department</field>
-          <field name="inherit_id" ref="hr.view_department_form"/>
-          <field name="priority">10</field>
-          <field name="arch" type="xml">
-
-              <field name="name" position="after">
-                  <field name="dept_code"/>
-              </field>
-
-          </field>
-      </record>
-
-      <!-- For Outgoing -->
-      <record id="view_dts_document_form" model="ir.ui.view">
-          <field name="name">dts.document.form</field>
-          <field name="model">dts.document</field>
-          <field name="type">form</field>
-          <field name="arch" type="xml">
-              <form string="Outgoing" version="7.0">
-                  <header>
-                      <button name="action_send" string="Send" class="oe_highlight"
-                              icon="fa-send" type="object" confirm="Send it?"
-                              states="draft"/>
-                      <field name="state"
-                             widget="statusbar"
-                             nolabel="1"
-                             statusbar_visible="draft,send"
-                             on_change="1"
-                             modifiers="{'readonly':true}"/>
-                  </header>
-                  <sheet>
-                      <div class="oe_left">
-                          <h1>
-                              <field name="name" required="1"/>
-                          </h1>
-                      </div>
-                      <field name="tracking_type" invisible="1"/>
-                      <div class="oe_right oe_button_box">
-                          <button name="action_get_attachment_tree_view" class="oe_stat_button" icon="fa-book" type="object">
-                              <field name="attachment_number" widget="statinfo" string="Documents"/>
-                          </button>
-                      </div>
-                      <br/>
-                      <group col="4" colspan="4">
-                          <field name="transaction_date" required="1"/>
-                          <field name="send_date"/>
-                          <field name="document_type_id" attrs="{'readonly':[('state','!=','draft')]}"/>
-                          <field name="delivery_method_id" attrs="{'readonly':[('state','!=','draft')]}"/>
-                          <!--<field name="receive_date" states="send,receive,read"/>-->
-                          <field name="sender_office_id"/>
-                          <field name="sender_id"/>
-                          <field name="recipient_id" widget="many2many_tags" colspan="4" attrs="{'readonly':[('state','!=','draft')]}"/>
-                          <!--<field name="recipient_office_id" attrs="{'readonly':[('state','!=','draft')]}"/>
-                          <field name="recipient_id" attrs="{'readonly':[('state','!=','draft')]}"/>-->
-                          <field name="subject" colspan="4" attrs="{'readonly':[('state','!=','draft')]}"/>
-                      </group>
-                      <group>
-                          <field name="message" widget="html" attrs="{'readonly':[('state','!=','draft')]}"/>
-                      </group>
-                      <br/>
-                      <br/>
-                      <br/>
-                      <notebook>
-                          <page string="Recipient Status" states="send">
-                              <br/>
-                              <field name="recipient_ids">
-                                  <tree string="Status" create="false" edit="false" delete="false" list_options = '{"limit":50}'>
-                                      <field name="receiver_office_id" string="Office"/>
-                                      <field name="employee_id" string="Name"/>
-                                      <field name="state"/>
-                                      <field name="state_date" string="Date"/>
-                                  </tree>
-                              </field>
-                          </page>
-                      </notebook>
-                  </sheet>
-              </form>
-          </field>
-      </record>
-
-      <record id="view_dts_document_tree" model="ir.ui.view">
-          <field name="name">dts.document.tree</field>
-          <field name="model">dts.document</field>
-          <field name="type">tree</field>
-          <field name="arch" type="xml">
-              <tree string="Documents" version="7.0">
-                  <field name="transaction_date"/>
-                  <field name="document_type_id" string="Type"/>
-                  <field name="name" string="Code"/>
-                  <field name="subject"/>
-                  <field name="sender_id" string="From"/>
-                  <field name="recipient_id" string="To" widget="many2many_tags"/>
-                  <field name="state"/>
-                  <field name="send_date"/>
-              </tree>
-          </field>
-      </record>
-
-      <record id="open_view_dts_document_outgoing" model="ir.actions.act_window">
-          <field name="name">Outgoing Documents</field>
-          <field name="res_model">dts.document</field>
-          <field name="view_type">form</field>
-          <field name="view_mode">tree,form</field>
-          <field name="domain">[('sender_id.user_id.id','=',uid),('tracking_type','=','outgoing')]</field>
-          <field name="help" type="html">
-              <p class="oe_view_nocontent_create">
-                  Click here to Create Outgoing Document.
-              </p>
-          </field>
-      </record>
-
-      <!-- For Incoming-->
-            <record id="view_dts_employee_document_form" model="ir.ui.view">
-                <field name="name">dts.employee.documents.form</field>
-                <field name="model">dts.employee.documents</field>
-                <field name="type">form</field>
-                <field name="arch" type="xml">
-                    <form string="Incoming" version="7.0">
-                        <header>
-                            <button name="action_read" string="Read Message" class="oe_highlight"
-                                    icon="fa-eye" type="object" confirm="Read it?"
-                                    states="unread"/>
-                            <button name="action_none" string="Accept" class="oe_highlight"
-                                    icon="fa-check" type="object"
-                                    states="read" help="You must click the Documents first to accept it."/>
-                            <button name="action_accept" string="Accept" class="oe_highlight"
-                                    icon="fa-check" type="object" confirm="Accept it?"
-                                    states="view" attrs="{'readonly':[('state','=','read')]}"/>
-                            <field name="state"
-                                   widget="statusbar"
-                                   nolabel="1"
-                                   statusbar_visible="unread,read,view,receive"
-                                   on_change="1"
-                                   modifiers="{'readonly':true}"/>
-                        </header>
-                        <sheet>
-                            <div class="oe_left">
-                                <h1>
-                                    <field name="name" required="1"/>
-                                </h1>
-                            </div>
-                            <div class="oe_right oe_button_box">
-                                <button name="action_get_attachment_tree_view" class="oe_stat_button" icon="fa-book" type="object" states="read,view,receive">
-                                    <field name="attachment_number" widget="statinfo" string="Documents"/>
-                                </button>
-                            </div>
-                            <br/>
-                            <group col="4" colspan="4">
-                                <field name="transaction_date" required="1"/>
-                                <field name="send_date" required="1"/>
-                                <field name="document_type_id"/>
-                                <field name="delivery_method_id"/>
-                                <field name="state_date" states="receive"/>
-                                <newline/>
-                                <field name="sender_office_id"/>
-                                <field name="sender_id"/>
-                                <!--<field name="receiver_id" colspan="4"/>-->
-                                <field name="subject" colspan="4" states="read,view,receive"/>
-                            </group>
-                            <group>
-                                <field name="message" widget="html" states="read,view,receive"/>
-                            </group>
-                        </sheet>
-                    </form>
+                <field name="name" position="attributes">
+                    <attribute name="readonly">True</attribute>
                 </field>
-            </record>
 
-            <record id="view_dts_employee_document_tree" model="ir.ui.view">
-                <field name="name">dts.employee.documents.tree</field>
-                <field name="model">dts.employee.documents</field>
-                <field name="type">tree</field>
-                <field name="arch" type="xml">
-                    <tree string="Documents" version="7.0">
-                        <field name="send_date"/>
-                        <field name="transaction_date"/>
-                        <field name="document_type_id" string="Type"/>
-                        <field name="name" string="Code"/>
-                        <field name="subject"/>
-                        <field name="sender_id" string="From"/>
-                        <field name="state"/>
-                        <field name="state_date"/>
+                <xpath expr="//page[1]" position="attributes">
+                    <attribute name="string">Organizational Information</attribute>
+                </xpath>
+                <xpath expr="//page[1]/group/group" position="before">
+                    <group string="General Information">
+                        <field name="first_name" required="True"/>
+                        <field name="middle_name" required="True"/>
+                        <field name="last_name" required="True"/>
+                        <field name="suffix"/>
+                        <field name="prefix"/>
+                    </group>
+                </xpath>
 
-                    </tree>
+            </field>
+        </record>
+
+        <!--Department-->
+        <record id="view_department_form_inherit_dts_document" model="ir.ui.view">
+            <field name="name">hr.department.form</field>
+            <field name="model">hr.department</field>
+            <field name="inherit_id" ref="hr.view_department_form"/>
+            <field name="priority">10</field>
+            <field name="arch" type="xml">
+
+                <field name="name" position="after">
+                    <field name="dept_code"/>
                 </field>
-            </record>
 
-      <record id="open_view_dts_document_incoming" model="ir.actions.act_window">
-          <field name="name">Incoming Documents</field>
-          <field name="res_model">dts.employee.documents</field>
-          <field name="view_type">form</field>
-          <field name="view_mode">tree,form</field>
-          <field name="context">{'create':False, 'edit':False}</field>
-          <field name="domain">[('receiver_id','=',uid)]</field>
-          <field name="help" type="html">
-              <p>
-                  No document yet.
-              </p><p>
-                 Your Incoming Documents will appear here.
-              </p>
-          </field>
-      </record>
+            </field>
+        </record>
 
-      <!-- Documents -->
-      <record id="ir_attachment_view_search_inherit_dts_document" model="ir.ui.view">
-          <field name="name">ir.attachment.search.inherit.recruitment</field>
-          <field name="model">ir.attachment</field>
-          <field name="mode">primary</field>
-          <field name="inherit_id" ref="base.view_attachment_search"/>
-          <field name="arch" type="xml">
-              <xpath expr="//field[@name='create_date']" position="after">
-                  <field name="index_content" string="Content"/>
-              </xpath>
-              <xpath expr="//filter[@name='my_documents_filter']" position="attributes">
-                  <attribute name='invisible'>1</attribute>
-              </xpath>
-              <xpath expr="//filter[@name='url_filter']" position="attributes">
-                  <attribute name='invisible'>1</attribute>
-              </xpath>
-              <xpath expr="//filter[@name='binary_filter']" position="attributes">
-                  <attribute name='invisible'>1</attribute>
-              </xpath>
-          </field>
-      </record>
+        <!-- For Outgoing -->
+        <record model="ir.ui.view" id="view_dts_document_filter">
+            <field name="name">dts.document</field>
+            <field name="model">dts.document</field>
+            <field name="arch" type="xml">
+                <search string="Document Search">
+                    <filter icon="terp-stock_align_left_24" string="Draft" name="draft_documents"
+                            domain="[('state', '=', 'draft')]"/>
+                    <filter icon="terp-stock_align_left_24" string="Send" name="send_documents"
+                            domain="[('state', '=', 'send')]"/>
+                    <filter string="Current Month"
+                            domain="['|',('transaction_date', '&gt;=', datetime.datetime.now().strftime('%Y-%m-01')),('send_date', '&gt;=', datetime.datetime.now().strftime('%Y-%m-01'))]"/>
+                    <separator/>
+                    <group expand="0" string="Group By">
+                        <filter name="group_state" string="Status" context="{'group_by':'state'}"/>
+                        <separator/>
+                        <filter name="groupby_trans_date" string="Transaction Date" context="{'group_by':'transaction_date'}"/>
+                        <separator/>
+                        <filter name="groupby_send_date" string="Send Date" context="{'group_by':'send_date'}"/>
+                        <separator/>
+                        <filter name="groupby_document_type" string="Type" context="{'group_by':'document_type_id'}"/>
+                        <separator/>
+                        <filter name="groupby_delivery_type" string="Delivery" context="{'group_by':'delivery_method_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
 
-      <record model="ir.actions.act_window" id="dts_documents_cabinet">
-          <field name="name">Documents</field>
-          <field name="res_model">ir.attachment</field>
-          <field name="view_type">form</field>
-          <field name="view_mode">kanban,tree,form</field>
-          <field name="view_id" ref="mail.view_document_file_kanban"/>
-          <field name="search_view_id" ref="ir_attachment_view_search_inherit_dts_document"/>
-          <field name="domain">[('res_model','=','dts.document')]</field>
-          <field name="context">{'create':False, 'edit':False}</field>
-          <field name="help" type="html">
-              <p>
-                  No document yet.
-              </p><p>
-                  This menu helps you search through resumes and motivation
-                  letters. Odoo automatically indexes .PDF, .DOC, DOCX, .TXT
-                  files so that you can search keywords from the content of these
-                  files.
-              </p>
-          </field>
-      </record>
+        <record id="view_dts_document_form" model="ir.ui.view">
+            <field name="name">dts.document.form</field>
+            <field name="model">dts.document</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Outgoing" version="7.0">
+                    <header>
+                        <button name="action_send" string="Send" class="oe_highlight"
+                                icon="fa-send" type="object" confirm="Send it?"
+                                states="draft"/>
+                        <field name="state"
+                               widget="statusbar"
+                               nolabel="1"
+                               statusbar_visible="draft,send"
+                               on_change="1"
+                               modifiers="{'readonly':true}"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_left">
+                            <h1>
+                                <field name="name" required="1"/>
+                            </h1>
+                        </div>
+                        <field name="tracking_type" invisible="1"/>
+                        <div class="oe_right oe_button_box">
+                            <button name="action_get_attachment_tree_view" class="oe_stat_button" icon="fa-book"
+                                    type="object">
+                                <field name="attachment_number" widget="statinfo" string="Documents"/>
+                            </button>
+                        </div>
+                        <br/>
+                        <group col="4" colspan="4">
+                            <field name="transaction_date" required="1"/>
+                            <field name="send_date"/>
+                            <field name="document_type_id" attrs="{'readonly':[('state','!=','draft')]}"/>
+                            <field name="delivery_method_id" attrs="{'readonly':[('state','!=','draft')]}"/>
+                            <!--<field name="receive_date" states="send,receive,read"/>-->
+                            <field name="sender_office_id"/>
+                            <field name="sender_id"/>
+                            <field name="recipient_id" widget="many2many_tags" colspan="4"
+                                   attrs="{'readonly':[('state','!=','draft')]}"/>
+                            <!--<field name="recipient_office_id" attrs="{'readonly':[('state','!=','draft')]}"/>
+                            <field name="recipient_id" attrs="{'readonly':[('state','!=','draft')]}"/>-->
+                            <field name="subject" colspan="4" attrs="{'readonly':[('state','!=','draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="message" widget="html" attrs="{'readonly':[('state','!=','draft')]}"/>
+                        </group>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <notebook>
+                            <page string="Recipient Status" states="send">
+                                <br/>
+                                <field name="recipient_ids">
+                                    <tree string="Status" create="false" edit="false" delete="false"
+                                          list_options='{"limit":50}'>
+                                        <field name="receiver_office_id" string="Office"/>
+                                        <field name="employee_id" string="Name"/>
+                                        <field name="state"/>
+                                        <field name="state_date" string="Date"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
 
-      <!-- Type -->
-      <record id="view_dts_document_type_form" model="ir.ui.view">
-          <field name="name">dts.document.type.form</field>
-          <field name="model">dts.document.type</field>
-          <field name="arch" type="xml">
-              <form string="Document Type">
-                  <sheet>
-                      <div class="oe_right oe_button_box">
-                          <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
-                              <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
-                          </button>
-                      </div>
-                      <br/>
-                      <br/>
-                      <br/>
-                      <group>
-                          <field name="name"/>
-                          <field name="doc_code"/>
-                      </group>
-                  </sheet>
-              </form>
-          </field>
-      </record>
+        <record id="view_dts_document_tree" model="ir.ui.view">
+            <field name="name">dts.document.tree</field>
+            <field name="model">dts.document</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Documents" version="7.0">
+                    <field name="transaction_date"/>
+                    <field name="document_type_id" string="Type"/>
+                    <field name="name" string="Code"/>
+                    <field name="subject"/>
+                    <field name="sender_id" string="From"/>
+                    <field name="recipient_id" string="To" widget="many2many_tags"/>
+                    <field name="state"/>
+                    <field name="send_date"/>
+                </tree>
+            </field>
+        </record>
 
-      <record id="view_dts_document_type_tree" model="ir.ui.view">
-          <field name="name">dts.document.type.tree</field>
-          <field name="model">dts.document.type</field>
-          <field name="arch" type="xml">
-              <tree string="Document Type">
-                  <field name="name"/>
-              </tree>
-          </field>
-      </record>
+        <record id="open_view_dts_document_outgoing" model="ir.actions.act_window">
+            <field name="name">Outgoing Documents</field>
+            <field name="res_model">dts.document</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('sender_id.user_id.id','=',uid),('tracking_type','=','outgoing')]</field>
+            <field name="search_view_id" ref="view_dts_document_filter"/>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click here to Create Outgoing Document.
+                </p>
+            </field>
+        </record>
 
-      <record id="action_dts_document_type" model="ir.actions.act_window">
-          <field name="name">Document Type</field>
-          <field name="type">ir.actions.act_window</field>
-          <field name="res_model">dts.document.type</field>
-          <field name="view_mode">tree,form</field>
-          <field name="help" type="html">
-            <p class="oe_view_nocontent_create">
-                Click here to Create Document Type.
-            </p><p>
-              <!-- More details about what a user can do with this object will be OK -->
-            </p>
-          </field>
-      </record>
+        <!-- For Incoming-->
+        <record model="ir.ui.view" id="view_dts_employee_documents_filter">
+            <field name="name">dts.employee.documents</field>
+            <field name="model">dts.employee.documents</field>
+            <field name="arch" type="xml">
+                <search string="Document Search">
+                    <filter icon="terp-stock_align_left_24" string="Unread" name="unread_documents"
+                            domain="[('state', '=', 'unread')]"/>
+                    <separator/>
+                    <filter icon="terp-stock_align_left_24" string="Read" name="read_documents"
+                            domain="[('state', '=', 'read')]"/>
+                    <separator/>
+                    <filter icon="terp-stock_align_left_24" string="Viewed" name="view_documents"
+                            domain="[('state', '=', 'view')]"/>
+                    <separator/>
+                    <filter icon="terp-stock_align_left_24" string="Accepted" name="accept_documents"
+                            domain="[('state', '=', 'receive')]"/>
+                    <separator/>
+                    <filter string="Current Month"
+                            domain="['|',('state_date', '&gt;=', datetime.datetime.now().strftime('%Y-%m-01')),('send_date', '&gt;=', datetime.datetime.now().strftime('%Y-%m-01'))]"/>
+                    <separator/>
+                    <group expand="0" string="Group By">
+                        <filter name="group_state" string="Status" context="{'group_by':'state'}"/>
+                        <separator/>
+                        <filter name="groupby_state_date" string="Status Date" context="{'group_by':'state_date'}"/>
+                        <separator/>
+                        <filter name="groupby_send_date" string="Send Date" context="{'group_by':'send_date'}"/>
+                        <separator/>
+                        <filter name="groupby_type" string="Type" context="{'group_by':'document_type_id'}"/>
+                        <separator/>
+                        <filter name="groupby_delivery" string="Delivery" context="{'group_by':'delivery_method_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
 
-      <!-- Delivery Method -->
-      <record id="view_dts_document_delivery_form" model="ir.ui.view">
-          <field name="name">dts.document.delivery.form</field>
-          <field name="model">dts.document.delivery</field>
-          <field name="arch" type="xml">
-              <form string="Document Type">
-                  <sheet>
-                      <div class="oe_right oe_button_box">
-                          <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
-                              <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
-                          </button>
-                      </div>
-                      <br/>
-                      <br/>
-                      <br/>
-                      <group>
-                          <field name="name"/>
-                      </group>
-                  </sheet>
-              </form>
-          </field>
-      </record>
+        <record id="view_dts_employee_document_form" model="ir.ui.view">
+            <field name="name">dts.employee.documents.form</field>
+            <field name="model">dts.employee.documents</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Incoming" version="7.0">
+                    <header>
+                        <button name="action_read" string="Read Message" class="oe_highlight"
+                                icon="fa-eye" type="object" confirm="Read it?"
+                                states="unread"/>
+                        <button name="action_none" string="Accept" class="oe_highlight"
+                                icon="fa-check" type="object"
+                                states="read" help="You must click the Documents first to accept it."/>
+                        <button name="action_accept" string="Accept" class="oe_highlight"
+                                icon="fa-check" type="object" confirm="Accept it?"
+                                states="view" attrs="{'readonly':[('state','=','read')]}"/>
+                        <field name="state"
+                               widget="statusbar"
+                               nolabel="1"
+                               statusbar_visible="unread,read,view,receive"
+                               on_change="1"
+                               modifiers="{'readonly':true}"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_left">
+                            <h1>
+                                <field name="name" required="1"/>
+                            </h1>
+                        </div>
+                        <div class="oe_right oe_button_box">
+                            <button name="action_get_attachment_tree_view" class="oe_stat_button" icon="fa-book"
+                                    type="object" states="read,view,receive">
+                                <field name="attachment_number" widget="statinfo" string="Documents"/>
+                            </button>
+                        </div>
+                        <br/>
+                        <group col="4" colspan="4">
+                            <field name="transaction_date" required="1"/>
+                            <field name="send_date" required="1"/>
+                            <field name="document_type_id"/>
+                            <field name="delivery_method_id"/>
+                            <field name="state_date" states="receive"/>
+                            <newline/>
+                            <field name="sender_office_id"/>
+                            <field name="sender_id"/>
+                            <!--<field name="receiver_id" colspan="4"/>-->
+                            <field name="subject" colspan="4" states="read,view,receive"/>
+                        </group>
+                        <group>
+                            <field name="message" widget="html" states="read,view,receive"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
 
-      <record id="view_dts_document_delivery_tree" model="ir.ui.view">
-          <field name="name">dts.document.delivery.tree</field>
-          <field name="model">dts.document.delivery</field>
-          <field name="arch" type="xml">
-              <tree string="Document Type">
-                  <field name="name"/>
-              </tree>
-          </field>
-      </record>
+        <record id="view_dts_employee_document_tree" model="ir.ui.view">
+            <field name="name">dts.employee.documents.tree</field>
+            <field name="model">dts.employee.documents</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Documents" version="7.0">
+                    <field name="send_date"/>
+                    <field name="transaction_date"/>
+                    <field name="document_type_id" string="Type"/>
+                    <field name="name" string="Code"/>
+                    <field name="subject"/>
+                    <field name="sender_id" string="From"/>
+                    <field name="state"/>
+                    <field name="state_date"/>
 
-      <record id="action_dts_document_delivery" model="ir.actions.act_window">
-          <field name="name">Delivery Method</field>
-          <field name="type">ir.actions.act_window</field>
-          <field name="res_model">dts.document.delivery</field>
-          <field name="view_mode">tree,form</field>
-          <field name="help" type="html">
-            <p class="oe_view_nocontent_create">
-                Click here to Create Delivery Method.
-            </p><p>
-              <!-- More details about what a user can do with this object will be OK -->
-            </p>
-          </field>
-      </record>
+                </tree>
+            </field>
+        </record>
 
-  </data>
+        <record id="open_view_dts_document_incoming" model="ir.actions.act_window">
+            <field name="name">Incoming Documents</field>
+            <field name="res_model">dts.employee.documents</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{'create':False, 'edit':False}</field>
+            <field name="domain">[('receiver_id','=',uid)]</field>
+            <field name="search_view_id" ref="view_dts_employee_documents_filter"/>
+            <field name="help" type="html">
+                <p>
+                    No document yet.
+                </p>
+                <p>
+                    Your Incoming Documents will appear here.
+                </p>
+            </field>
+        </record>
+
+        <!-- Documents -->
+        <record id="ir_attachment_view_search_inherit_dts_document" model="ir.ui.view">
+            <field name="name">ir.attachment.search.inherit.recruitment</field>
+            <field name="model">ir.attachment</field>
+            <field name="mode">primary</field>
+            <field name="inherit_id" ref="base.view_attachment_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='create_date']" position="after">
+                    <field name="index_content" string="Content"/>
+                </xpath>
+                <xpath expr="//filter[@name='my_documents_filter']" position="attributes">
+                    <attribute name='invisible'>1</attribute>
+                </xpath>
+                <xpath expr="//filter[@name='url_filter']" position="attributes">
+                    <attribute name='invisible'>1</attribute>
+                </xpath>
+                <xpath expr="//filter[@name='binary_filter']" position="attributes">
+                    <attribute name='invisible'>1</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="dts_documents_cabinet">
+            <field name="name">Documents</field>
+            <field name="res_model">ir.attachment</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_id" ref="mail.view_document_file_kanban"/>
+            <field name="search_view_id" ref="ir_attachment_view_search_inherit_dts_document"/>
+            <field name="domain">[('res_model','=','dts.document')]</field>
+            <field name="context">{'create':False, 'edit':False}</field>
+            <field name="help" type="html">
+                <p>
+                    No document yet.
+                </p>
+                <p>
+                    This menu helps you search through resumes and motivation
+                    letters. Odoo automatically indexes .PDF, .DOC, DOCX, .TXT
+                    files so that you can search keywords from the content of these
+                    files.
+                </p>
+            </field>
+        </record>
+
+        <!-- Type -->
+        <record id="view_dts_document_type_form" model="ir.ui.view">
+            <field name="name">dts.document.type.form</field>
+            <field name="model">dts.document.type</field>
+            <field name="arch" type="xml">
+                <form string="Document Type">
+                    <sheet>
+                        <div class="oe_right oe_button_box">
+                            <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                                <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                            </button>
+                        </div>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <group>
+                            <field name="name"/>
+                            <field name="doc_code"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_dts_document_type_tree" model="ir.ui.view">
+            <field name="name">dts.document.type.tree</field>
+            <field name="model">dts.document.type</field>
+            <field name="arch" type="xml">
+                <tree string="Document Type">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_dts_document_type" model="ir.actions.act_window">
+            <field name="name">Document Type</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">dts.document.type</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click here to Create Document Type.
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+
+        <!-- Delivery Method -->
+        <record id="view_dts_document_delivery_form" model="ir.ui.view">
+            <field name="name">dts.document.delivery.form</field>
+            <field name="model">dts.document.delivery</field>
+            <field name="arch" type="xml">
+                <form string="Document Type">
+                    <sheet>
+                        <div class="oe_right oe_button_box">
+                            <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                                <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                            </button>
+                        </div>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_dts_document_delivery_tree" model="ir.ui.view">
+            <field name="name">dts.document.delivery.tree</field>
+            <field name="model">dts.document.delivery</field>
+            <field name="arch" type="xml">
+                <tree string="Document Type">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_dts_document_delivery" model="ir.actions.act_window">
+            <field name="name">Delivery Method</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">dts.document.delivery</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click here to Create Delivery Method.
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
+                </p>
+            </field>
+        </record>
+
+    </data>
 </odoo>
