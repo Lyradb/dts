@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="04e7721a-9d03-417c-86cb-a8fb0e8fb473" name="Default" comment="Add report popup window">
+    <list default="true" id="04e7721a-9d03-417c-86cb-a8fb0e8fb473" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/models/document_tracking.py" afterPath="$PROJECT_DIR$/models/document_tracking.py" />
-      <change beforePath="$PROJECT_DIR$/views/document_tracking_views.xml" afterPath="$PROJECT_DIR$/views/document_tracking_views.xml" />
-      <change beforePath="$PROJECT_DIR$/views/menuitems.xml" afterPath="$PROJECT_DIR$/views/menuitems.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,7 +19,7 @@
       <file leaf-file-name="document_tracking_views.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/document_tracking_views.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="164">
+            <state relative-caret-position="2810">
               <caret line="476" column="34" lean-forward="false" selection-start-line="476" selection-start-column="34" selection-end-line="476" selection-end-column="34" />
               <folding />
             </state>
@@ -339,7 +336,14 @@
       <option name="project" value="LOCAL" />
       <updated>1514960340745</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Add report popup window">
+      <created>1515072096794</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1515072096794</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TodoView">
@@ -418,7 +422,8 @@
     <MESSAGE value="mutiple receiver" />
     <MESSAGE value="Filters" />
     <MESSAGE value="Add data" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add data" />
+    <MESSAGE value="Add report popup window" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add report popup window" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -884,7 +889,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/document_tracking_views.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
+        <state relative-caret-position="2810">
           <caret line="476" column="34" lean-forward="false" selection-start-line="476" selection-start-column="34" selection-end-line="476" selection-end-column="34" />
           <folding />
         </state>
