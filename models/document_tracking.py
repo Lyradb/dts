@@ -2,6 +2,7 @@
 
 from odoo import models, fields, api
 from openerp.exceptions import ValidationError
+import time
 
 SUFFIX = [
     ('jr', 'JR'),
@@ -108,10 +109,10 @@ class HrEmployee(models.Model):
     @api.multi
     def write(self, values):
         if 'last_name' in values or 'first_name' in values or 'middle_name' in values or 'suffix' in values:
-            last_name = 'last_name' in values if values['last_name'].title().strip() else self.last_name
-            first_name = 'first_name' in values if values['first_name'].title().strip() else self.first_name
-            middle_name = 'middle_name' in values if values['middle_name'].title().strip() else self.middle_name
-            suffix = 'suffix' in values if values['suffix'] else self.suffix
+            last_name = values['last_name'].title().strip() if 'last_name' in values else self.last_name
+            first_name = values['first_name'].title().strip() if 'first_name' in values else self.first_name
+            middle_name = values['middle_name'].title().strip() if 'middle_name' in values else self.middle_name
+            suffix = values['suffix'] if 'suffix' in values else self.suffix
             name = '%s, %s' % (last_name, first_name)
             if suffix:
                 name = '%s %s' % (name, suffix)
@@ -229,7 +230,7 @@ class DtsDocument(models.Model):
     sender_id = fields.Many2one(comodel_name="hr.employee", string="Sender", default=_get_employee_id, readonly=True, related_sudo=True)
     sender_office_id = fields.Many2one(comodel_name="hr.department", string="Sender Office", required=True, related_sudo=True,related='sender_id.department_id', readonly="1")
     # # Recipient
-    document_type_id = fields.Many2one(comodel_name="dts.document.type", string="Document Type", required=True, domain="[('active', '=', True)]")
+    document_type_id = fields.Many2one(comodel_name="dts.document.type", string="Document Type", required=True, domain="[('active', '=', True)]", default=1)
     subject = fields.Char(string="Subject", required=True, )
     message = fields.Text(string="Message", required=False, )
 
@@ -237,7 +238,8 @@ class DtsDocument(models.Model):
     attachment_number = fields.Integer(compute='_get_attachment_number', string="Number of Attachments")
     attachment_ids = fields.One2many('ir.attachment','res_id', domain=[('res_model', '=', 'dts.document')], string='Attachments')
     receive_date = fields.Datetime(string="Received Date", required=False, readonly="1")
-    delivery_method_id = fields.Many2one(comodel_name="dts.document.delivery",string="Delivery Method", required=True, domain="[('active', '=', True)]")
+    delivery_method_id = fields.Many2one(comodel_name="dts.document.delivery",string="Delivery Method", required=True, domain="[('active', '=', True)]",
+                                         default=1)
 
     tracking_type = fields.Selection(string="Tracking Type",
                                            selection=[
@@ -297,13 +299,12 @@ class DtsDocument(models.Model):
                 vals['receiver_id'] = found.user_id.id
                 vals['employee_id'] = found.employee_id.id
                 self.env['dts.employee.documents'].sudo().create(vals)
-                self.send_to_channel('Hi! I send '+self.name+' with subject: '+self.subject, found.user_id.id)
+                self.send_to_channel('Hi! I send a <b>%s</b> with subject: <b>%s</b>.' % (self.name,self.subject), found.user_id.id)
         return self.write({'state': 'send', 'tracking_type': 'outgoing','send_date':fields.datetime.today()})
 
 
     def send_to_channel(self, body, to_user_id):
         to_user_rec = self.env['res.users'].browse(to_user_id)
-        fr_user_rec = self.env['res.users'].browse(self.env.user.id)
         ch_obj = self.env['mail.channel']
         ch_partner_obj = self.env['mail.channel.partner']
         vals = {}
@@ -380,7 +381,7 @@ class DtsEmployeeDocuments(models.Model):
 
     @api.multi
     def action_read(self):
-        self.env['dts.document'].send_to_channel('Hi! I am reading the document '+self.name+' with subject: '+self.subject, self.sender_id.user_id.id)
+        self.env['dts.document'].send_to_channel('Hi! I am reading the document <b>%s</b> with subject: <b>%s</b>.' % (self.name,self.subject), self.sender_id.user_id.id)
         return self.write({'state': 'read','state_date':fields.datetime.today()})
 
     @api.multi
@@ -390,12 +391,12 @@ class DtsEmployeeDocuments(models.Model):
 
     @api.multi
     def action_accept(self):
-        self.env['dts.document'].send_to_channel('Hi! I now accept the document '+self.name+' with subject: '+self.subject, self.sender_id.user_id.id)
+        self.env['dts.document'].send_to_channel('Hi! I now accept the document <b>%s</b> with subject: <b>%s</b>.' % (self.name,self.subject), self.sender_id.user_id.id)
         return self.write({'state': 'receive','state_date':fields.datetime.today()})
 
     @api.multi
     def action_viewed_docs(self):
-        self.env['dts.document'].send_to_channel('Hi! I am viewing the attachments of document '+self.name+' with subject: '+self.subject, self.sender_id.user_id.id)
+        self.env['dts.document'].send_to_channel('Hi! I am viewing the attachments of document <b>%s</b> with subject: <b>%s</b>.' % (self.name,self.subject), self.sender_id.user_id.id)
         return self.write({'state': 'view','state_date':fields.datetime.today()})
 
     @api.multi
@@ -456,7 +457,7 @@ class DtsSequence(models.Model):
         year = fields.date.today().strftime('%Y-%m-%d')[:4]
         company_id = self.env.user.company_id.id
         res_resource = self.env['resource.resource'].search([('user_id', '=', user_id), ('active', '=', True)],
-                                                            order="id desc", limit=1)
+                                                            order="id desc", limit=1) or None
         if not res_resource and user_id != 1:
             raise ValidationError("No related employee assigned to current user. Please consult System Admin")
         else:
@@ -467,13 +468,13 @@ class DtsSequence(models.Model):
                     raise ValidationError("Employee is not assigned to Department")
                 else:
                     if res_employee.department_id.dept_code:
-                        office_code = res_employee.department_id.dept_code
+                        office_code = res_employee.department_id.dept_code or None
 
-        rec = self.search([('company_id','=',company_id),('office_code','=',office_code),('year','=',year),('active','=',True)])
+        rec = self.search([('company_id','=',company_id),('doc_code','=',doc_code),('office_code','=',office_code),('year','=',year),('active','=',True)])
         if not rec:
-            res = self.create({'office_code':office_code})
+            res = self.create({'office_code':office_code,'doc_code':doc_code})
             if res:
-                rec = self.search([('company_id', '=', company_id), ('office_code', '=', office_code), ('year', '=', year),
+                rec = self.search([('company_id', '=', company_id),('doc_code','=',doc_code), ('office_code', '=', office_code), ('year', '=', year),
                                ('active', '=', True)])
 
         if rec:
@@ -486,6 +487,34 @@ class DtsSequence(models.Model):
                 ret = '%s: %s' % (doc_code,ret)
 
         return ret
+
+class DtsReports(models.TransientModel):
+    _name = 'dts.reports'
+
+    report_name = fields.Many2one('ir.actions.report.xml',string="Report Name", domain="[('model', 'like', 'dts.%')]")
+    document_type_id = fields.Many2one('dts.document.type',string="Document Type")
+    document_delivery_id = fields.Many2one('dts.document.delivery',string="Delivery Method")
+    office_id = fields.Many2one('hr.department',string="Department")
+    date_from = fields.Date(string="From"
+                             ,default = lambda *a: time.strftime('%Y-%m-%d'))
+    date_to = fields.Date(string="To"
+                           , default = lambda *a: time.strftime('%Y-%m-%d'))
+    state = fields.Selection(string="State",
+                             selection=[('choose', ''), ('get', ''), ],
+                             required=False,
+                             default='choose')
+    msg = fields.Char(String="Message")
+
+    @api.multi
+    def action_back(self):
+        self.write({'state':'choose','msg':None})
+        return {"type": "ir.actions.do_nothing",}
+
+    @api.multi
+    def action_download(self):
+        self.write({'state':'get','msg':None})
+        return {"type": "ir.actions.do_nothing",}
+
 
 
 

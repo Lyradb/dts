@@ -28,10 +28,17 @@
               sequence="300"
               groups="group_dts_document_manager"/>
 
+    <menuitem id="menu_dts_document_reports"
+              name="Reports"
+              parent="menu_dts_root"
+              action="open_view_dts_reports"
+              sequence="400"
+              groups="group_dts_document_user"/>
+
     <menuitem id="menu_dts_configuration"
               name="Configuration"
               parent="menu_dts_root"
-              sequence="400"
+              sequence="500"
               groups="group_dts_document_manager"/>
 
     <menuitem id="menu_dts_document_type"

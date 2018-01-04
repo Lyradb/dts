@@ -442,6 +442,57 @@
                 </p>
             </field>
         </record>
+        
+        
+        <!-- Reports -->
+        <record id="view_bioclock_logs_download_form" model="ir.ui.view">
+            <field name="name">dts.reports.form</field>
+            <field name="model">dts.reports</field>
+            <field name="arch" type="xml">
+                <form string="Reports">
+                    <sheet>
+                        <field name="state" invisible="True"/>
+                        <group states="choose">
+                            <field name="report_name" widget="selection"/>
+                            <field name="document_type_id" widget="selection"/>
+                            <field name="document_delivery_id" widget="selection"/>
+                            <field name="office_id" widget="selection"/>
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                            <newline/>
+                            <field name="msg" states="message"/>
+                        </group>
+                        <group states="get">
+                            <div class="oe_left">
+                                <h1>
+                                    <field name="msg" readonly="True" placeholder="Location"/>
+                                </h1>
+                            </div>
+                        </group>
+                <footer>
+                    <button name="action_back" string="Back" type="object" states="get" class="oe_highlight">
+                        <i class="fa fa-arrow-left" aria-hidden="True"/>
+                    </button>
+                    <button name="action_download" string="Print" type="object" states="choose" class="oe_highlight">
+                        <i class="fa fa-print" aria-hidden="True" states="choose"/>
+                    </button>
+                    <button special="cancel" string="Close" class="oe_highlight">
+                        <i class="fa fa-times" aria-hidden="True"/>
+                    </button>
+                </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="open_view_dts_reports" model="ir.actions.act_window">
+            <field name="name">Reports</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">dts.reports</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        </record>
 
     </data>
 </odoo>
