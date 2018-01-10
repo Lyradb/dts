@@ -8,3 +8,4 @@ access_dts_document_recipient_user,dts.document.recipient,model_dts_document_rec
 access_dts_document_type_manager,dts.document.type,model_dts_document_type,group_dts_document_manager,1,1,1,0
 access_dts_document_delivery_manager,dts.document.delivery,model_dts_document_delivery,group_dts_document_manager,1,0,0,0
 access_dts_res_users_manager,res.users,base.model_res_users,group_dts_document_manager,1,1,1,0
+access_dts_config_user,dts.config,model_dts_config,base.group_user,1,1,1,0

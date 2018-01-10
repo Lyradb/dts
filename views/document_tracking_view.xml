@@ -1,7 +1,6 @@
 <odoo>
     <data>
 
-
         <record id="hrms_employee_view_form" model="ir.ui.view">
             <field name="name">hr.employee.form</field>
             <field name="model">hr.employee</field>
@@ -59,13 +58,15 @@
                     <group expand="0" string="Group By">
                         <filter name="group_state" string="Status" context="{'group_by':'state'}"/>
                         <separator/>
-                        <filter name="groupby_trans_date" string="Transaction Date" context="{'group_by':'transaction_date'}"/>
+                        <filter name="groupby_trans_date" string="Transaction Date"
+                                context="{'group_by':'transaction_date'}"/>
                         <separator/>
                         <filter name="groupby_send_date" string="Send Date" context="{'group_by':'send_date'}"/>
                         <separator/>
                         <filter name="groupby_document_type" string="Type" context="{'group_by':'document_type_id'}"/>
                         <separator/>
-                        <filter name="groupby_delivery_type" string="Delivery" context="{'group_by':'delivery_method_id'}"/>
+                        <filter name="groupby_delivery_type" string="Delivery"
+                                context="{'group_by':'delivery_method_id'}"/>
                     </group>
                 </search>
             </field>
@@ -104,9 +105,11 @@
                         <br/>
                         <group col="4" colspan="4">
                             <field name="transaction_date" required="1"/>
-                            <field name="send_date"/>
-                            <field name="document_type_id" attrs="{'readonly':[('state','!=','draft')]}"/>
-                            <field name="delivery_method_id" attrs="{'readonly':[('state','!=','draft')]}"/>
+                            <field name="send_date" states="send,done"/>
+                            <field name="show_document_type" invisible="True"/>
+                            <field name="show_delivery_method" invisible="True"/>
+                            <field name="document_type_id" attrs="{'readonly':[('state','!=','draft')],'invisible':[('show_document_type','!=',True)],'required':'show_document_type'}"/>
+                            <field name="delivery_method_id" attrs="{'readonly':[('state','!=','draft')],'invisible':[('show_delivery_method','!=',True)]}"/>
                             <!--<field name="receive_date" states="send,receive,read"/>-->
                             <field name="sender_office_id"/>
                             <field name="sender_id"/>
@@ -247,7 +250,11 @@
                         <br/>
                         <group col="4" colspan="4">
                             <field name="transaction_date" required="1"/>
-                            <field name="send_date" required="1"/>
+                            <field name="send_date" states="send,done"/>
+                            <field name="show_document_type" invisible="True"/>
+                            <field name="show_delivery_method" invisible="True"/>
+                            <field name="document_type_id" attrs="{'invisible':[('show_document_type','!=',True)]}"/>
+                            <field name="delivery_method_id" attrs="{'invisible':[('show_delivery_method','!=',True)]}"/>
                             <field name="document_type_id"/>
                             <field name="delivery_method_id"/>
                             <field name="state_date" states="receive"/>
@@ -411,7 +418,14 @@
                         <br/>
                         <br/>
                         <group>
-                            <field name="name"/>
+                            <label for="id" string="Delivery Method"/>
+                            <div>
+                                <field name="name" class="oe_inline"/>
+                                <div>
+                                    <field name="require_attachment" class="oe_inline"/>
+                                    <label for="require_attachment"/>
+                                </div>
+                            </div>
                         </group>
                     </sheet>
                 </form>
@@ -424,6 +438,7 @@
             <field name="arch" type="xml">
                 <tree string="Document Type">
                     <field name="name"/>
+                    <field name="require_attachment"/>
                 </tree>
             </field>
         </record>
@@ -442,8 +457,8 @@
                 </p>
             </field>
         </record>
-        
-        
+
+
         <!-- Reports -->
         <record id="view_bioclock_logs_download_form" model="ir.ui.view">
             <field name="name">dts.reports.form</field>
@@ -469,17 +484,18 @@
                                 </h1>
                             </div>
                         </group>
-                <footer>
-                    <button name="action_back" string="Back" type="object" states="get" class="oe_highlight">
-                        <i class="fa fa-arrow-left" aria-hidden="True"/>
-                    </button>
-                    <button name="action_download" string="Print" type="object" states="choose" class="oe_highlight">
-                        <i class="fa fa-print" aria-hidden="True" states="choose"/>
-                    </button>
-                    <button special="cancel" string="Close" class="oe_highlight">
-                        <i class="fa fa-times" aria-hidden="True"/>
-                    </button>
-                </footer>
+                        <footer>
+                            <button name="action_back" string="Back" type="object" states="get" class="oe_highlight">
+                                <i class="fa fa-arrow-left" aria-hidden="True"/>
+                            </button>
+                            <button name="action_download" string="Print" type="object" states="choose"
+                                    class="oe_highlight">
+                                <i class="fa fa-print" aria-hidden="True" states="choose"/>
+                            </button>
+                            <button special="cancel" string="Close" class="oe_highlight">
+                                <i class="fa fa-times" aria-hidden="True"/>
+                            </button>
+                        </footer>
                     </sheet>
                 </form>
             </field>
@@ -489,9 +505,9 @@
             <field name="name">Reports</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">dts.reports</field>
-        <field name="view_type">form</field>
-        <field name="view_mode">form</field>
-        <field name="target">new</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
         </record>
 
     </data>

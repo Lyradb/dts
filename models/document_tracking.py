@@ -101,7 +101,6 @@ class HrEmployee(models.Model):
                 'password': res.identification_id,
                 'active': res.active
             })
-            print 'user_id',user_id
             res.write({'user_id': user_id.id})
 
         return res
@@ -132,7 +131,6 @@ class HrEmployee(models.Model):
                 'active': self.active
 
             })
-            print user_id
             self.write({'user_id': user_id.id})
 
         recipient_env = self.env['dts.document.recipient']
@@ -195,7 +193,8 @@ class DtsDocumentDelivery(models.Model):
         _name = 'dts.document.delivery'
 
         name = fields.Char('Delivery Method', required=True)
-        active = fields.Boolean(string="Active", default= True )
+        require_attachment = fields.Boolean(string="Require Attachment", default=True)
+        active = fields.Boolean(string="Active", default=True)
 
 class DtsDocumentRecipient(models.Model):
         _name = 'dts.document.recipient'
@@ -224,22 +223,57 @@ class DtsDocument(models.Model):
 
         return employee_id
 
+    @api.depends('name')
+    def _get_default_doc_type(self):
+        ret = None
+        rec = self.env['dts.config'].browse(1)
+        if rec:
+            if rec.show_document_type and rec.document_type_id_default:
+                ret = rec.document_type_id_default.id
+        return ret
+
+    @api.depends('name')
+    def _get_show_doc_type(self):
+        ret = False
+        rec = self.env['dts.config'].browse(1)
+        if rec:
+            ret = rec.show_document_type
+        return ret
+
+    @api.depends('name')
+    def _get_default_doc_delivery(self):
+        ret = None
+        rec = self.env['dts.config'].browse(1)
+        if rec:
+            if rec.show_delivery_method and rec.delivery_method_id_default:
+                ret = rec.delivery_method_id_default.id
+        return ret
+
+    @api.depends('name')
+    def _get_show_doc_delivery(self):
+        ret = False
+        rec = self.env['dts.config'].browse(1)
+        if rec:
+            ret = rec.show_delivery_method
+        return ret
+
     name = fields.Char(string="Name", required=False, default='New Document', readonly=True)
     transaction_date = fields.Datetime(string="Transaction Date", required=False, default=fields.datetime.today(), readonly="1")
-    send_date = fields.Datetime(string="Send Date", required=False, readonly="1")
+    send_date = fields.Datetime(string="Date Send", required=False, readonly="1")
     sender_id = fields.Many2one(comodel_name="hr.employee", string="Sender", default=_get_employee_id, readonly=True, related_sudo=True)
     sender_office_id = fields.Many2one(comodel_name="hr.department", string="Sender Office", required=True, related_sudo=True,related='sender_id.department_id', readonly="1")
     # # Recipient
-    document_type_id = fields.Many2one(comodel_name="dts.document.type", string="Document Type", required=True, domain="[('active', '=', True)]", default=1)
+    show_document_type = fields.Boolean(string="Show Document Type", default=_get_show_doc_type)
+    document_type_id = fields.Many2one(comodel_name="dts.document.type", string="Document Type", required=False, domain="[('active', '=', True)]", default=_get_default_doc_type)
     subject = fields.Char(string="Subject", required=True, )
     message = fields.Text(string="Message", required=False, )
 
     recipient_id = fields.Many2many(comodel_name='dts.document.recipient', string="Recipient", required="1", domain="[('active','=',True),('user_id','!=',uid)]")
     attachment_number = fields.Integer(compute='_get_attachment_number', string="Number of Attachments")
     attachment_ids = fields.One2many('ir.attachment','res_id', domain=[('res_model', '=', 'dts.document')], string='Attachments')
-    receive_date = fields.Datetime(string="Received Date", required=False, readonly="1")
-    delivery_method_id = fields.Many2one(comodel_name="dts.document.delivery",string="Delivery Method", required=True, domain="[('active', '=', True)]",
-                                         default=1)
+    receive_date = fields.Datetime(string="Date Received", required=False, readonly="1")
+    show_delivery_method = fields.Boolean(string="Show Delivery Method", default=_get_show_doc_delivery)
+    delivery_method_id = fields.Many2one(comodel_name="dts.document.delivery",string="Delivery Method", required=False, domain="[('active', '=', True)]", default=_get_default_doc_delivery)
 
     tracking_type = fields.Selection(string="Tracking Type",
                                            selection=[
@@ -288,8 +322,10 @@ class DtsDocument(models.Model):
 
     @api.multi
     def action_send(self):
-        if self.attachment_number < 1:
-            raise ValidationError("Cannot proceed, Please provide an attachment First.")
+        if self.show_delivery_method and self.delivery_method_id:
+            rec = self.env['dts.document.delivery'].browse(self.delivery_method_id.id)
+            if rec.require_attachment and self.attachment_number < 1:
+                raise ValidationError("Cannot proceed, Please provide an attachment First.")
 
         # tag the receiver
         vals = {'document_id': self.id}
@@ -372,10 +408,12 @@ class DtsEmployeeDocuments(models.Model):
     message = fields.Text(string="Message", required=False, store=False, related='document_id.message')
     name = fields.Char(string="Name", required=False, store=False, related='document_id.name')
     transaction_date = fields.Datetime(string="Transaction Date", store=False, related='document_id.transaction_date')
-    send_date = fields.Datetime(string="Send Date", store=False, related='document_id.send_date')
+    send_date = fields.Datetime(string="Date Send", store=False, related='document_id.send_date')
+    show_document_type = fields.Boolean(string="Show Document Type", related='document_id.show_document_type')
     document_type_id = fields.Many2one(comodel_name="dts.document.type", store=False, related='document_id.document_type_id')
     attachment_number = fields.Integer(compute='_get_attachment_number', store=False, related='document_id.attachment_number')
     attachment_ids = fields.One2many('ir.attachment','res_id', string='Attachments', store=False, related='document_id.attachment_ids')
+    show_delivery_method = fields.Boolean(string="Show Document Type", related='document_id.show_delivery_method')
     delivery_method_id = fields.Many2one(comodel_name="dts.document.delivery",string="Delivery Method", store=False, related='document_id.delivery_method_id')
     state_date = fields.Datetime(string="Status Date", required=False, readonly="1")
 
@@ -386,8 +424,16 @@ class DtsEmployeeDocuments(models.Model):
 
     @api.multi
     def action_none(self):
-        raise ValidationError("You must click the Documents first to accept it")
-        return None
+        ret = None
+        if self.show_delivery_method and self.delivery_method_id:
+            rec = self.env['dts.document.delivery'].browse(self.delivery_method_id.id)
+            if rec.require_attachment:
+                if self.attachment_number < 1:
+                    raise ValidationError("Attachment is missing, please inform the sender.")
+                raise ValidationError("You must click the Documents first to accept it")
+            else:
+               ret = self.action_accept()
+        return ret
 
     @api.multi
     def action_accept(self):
@@ -514,8 +560,3 @@ class DtsReports(models.TransientModel):
     def action_download(self):
         self.write({'state':'get','msg':None})
         return {"type": "ir.actions.do_nothing",}
-
-
-
-
-

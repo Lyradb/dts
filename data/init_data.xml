@@ -28,7 +28,7 @@
             <field name="name">DTS Company</field>
             <field name="email">info@dts.com</field>
             <field name="website">www.dts.com</field>
-            <!--<field name="image" type="base64" file="mgc_base/static/src/img/mutigroup_logo.png"/>-->
+            <field name="image" type="base64" file="dts/icon/link tracker.png"/>
             <field name="is_company" eval="True"/>
             <field name="owned_company" eval="True"/>
         </record>
@@ -48,7 +48,7 @@
             <field name="rml_header1">Public Service is our priority.</field>
             <!--<field name="type">business_unit</field>-->
             <field name="currency_id" ref="base.PHP"/>
-            <!--<field name="logo" type="base64" file="mgc_base/static/src/img/mutigroup_logo.png"/>-->
+            <field name="logo" type="base64" file="dts/icon/link tracker.png"/>
             <field name="partner_id" ref="base.main_partner"/>
         </record>
 
@@ -98,6 +98,7 @@
             <field name="doc_code">NOTICE</field>
             <field name="active" eval="True"/>
         </record>
+
 
     </data>
 </odoo>

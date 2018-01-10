@@ -26,8 +26,9 @@
         'data/init_data.xml',
         'security/dts_document_security.xml',
         'security/ir.model.access.csv',
-        'views/document_tracking_views.xml',
+        'views/document_tracking_view.xml',
         'views/menuitems.xml',
+        'views/res_config_view.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
