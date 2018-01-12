@@ -1,57 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
-
-        <record id="view_dts_configuration" model="ir.ui.view">
-            <field name="name">dts.config.settings.form</field>
-            <field name="model">dts.config.settings</field>
-            <field name="arch" type="xml">
-                <form string="Document Tracking Settings" class="oe_form_configuration">
-                    <header>
-                        <button string="Apply" type="object" name="execute" class="oe_highlight"/>
-                        <button string="Cancel" type="object" name="cancel" class="oe_link"/>
-                    </header>
-                    <separator string="Document Tracking Setting"/>
-                    <group>
-                        <label for="id" string="Document Type"/>
+    <record id="view_dts_configuration" model="ir.ui.view">
+        <field name="name">dts.config.settings.form</field>
+        <field name="model">dts.config.settings</field>
+        <field name="arch" type="xml">
+            <form string="Document Tracking Settings" class="oe_form_configuration">
+                <header>
+                    <button string="Apply" type="object" name="execute" class="oe_highlight"/>
+                    <button string="Cancel" type="object" name="cancel" class="oe_link"/>
+                </header>
+                <separator string="Document Tracking Setting"/>
+                <group>
+                    <label for="id" string="Document Type"/>
+                    <div>
                         <div>
-                            <div>
-                                <field name="show_document_type" class="oe_inline"/>
-                                <label for="show_document_type"/>
-                            </div>
-                        <label for="id" string="Default Value" attrs="{'invisible':[('show_document_type','=',False)]}"/>
-                            <field name="document_type_id_default" attrs="{'invisible':[('show_document_type','=',False)]}" class="oe_inline"/>
+                            <field name="show_document_type" class="oe_inline"/>
+                            <label for="show_document_type"/>
                         </div>
-                    </group>
-                    <group>
-                        <label for="id" string="Delivery Method"/>
+                        <label for="id" string="Default Value"
+                               attrs="{'invisible':[('show_document_type','=',False)]}"/>
+                        <field name="document_type_id_default" attrs="{'invisible':[('show_document_type','=',False)]}"
+                               class="oe_inline"/>
+                    </div>
+                </group>
+                <group>
+                    <label for="id" string="Delivery Method"/>
+                    <div>
                         <div>
-                            <div>
-                                <field name="show_delivery_method" class="oe_inline"/>
-                                <label for="show_delivery_method"/>
-                            </div>
-                        <label for="id" string="Default Value" attrs="{'invisible':[('show_delivery_method','=',False)]}"/>
-                            <field name="delivery_method_id_default" attrs="{'invisible':[('show_delivery_method','=',False)]}" class="oe_inline"/>
+                            <field name="show_delivery_method" class="oe_inline"/>
+                            <label for="show_delivery_method"/>
                         </div>
-                    </group>
+                        <label for="id" string="Default Value"
+                               attrs="{'invisible':[('show_delivery_method','=',False)]}"/>
+                        <field name="delivery_method_id_default"
+                               attrs="{'invisible':[('show_delivery_method','=',False)]}" class="oe_inline"/>
+                    </div>
+                </group>
 
-                </form>
-            </field>
-        </record>
+            </form>
+        </field>
+    </record>
 
-        <record id="action_dts_configuration" model="ir.actions.act_window">
-            <field name="name">dts.config.settings</field>
-            <field name="res_model">dts.config.settings</field>
-            <field name="view_mode">form</field>
-            <field name="target">inline</field>
-        </record>
+    <record id="action_dts_configuration" model="ir.actions.act_window">
+        <field name="name">dts.config.settings</field>
+        <field name="res_model">dts.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+    </record>
 
-        <menuitem id="menu_dts_settings"
-                  name="Settings"
-                  parent="menu_dts_configuration"
-                  sequence="100"
-                  action="action_dts_configuration"
-                  groups="base.group_system"/>
-
-    </data>
+    <menuitem id="menu_dts_settings"
+              name="Settings"
+              parent="menu_dts_configuration"
+              sequence="100"
+              action="action_dts_configuration"
+              groups="base.group_system"/>
 </odoo>

@@ -257,7 +257,11 @@ class DtsDocument(models.Model):
             ret = rec.show_delivery_method
         return ret
 
-    name = fields.Char(string="Name", required=False, default='New Document', readonly=True)
+    def get_name(self):
+        self.name = '%s: %s' % (self.document_type_id.name, self.doc_code)
+
+    name = fields.Char(string="Name", required=False, compute='get_name',store=False, default='New Document')
+    document_no = fields.Char(string="Document Number", required=False, readonly=True)
     transaction_date = fields.Datetime(string="Transaction Date", required=False, default=fields.datetime.today(), readonly="1")
     send_date = fields.Datetime(string="Date Send", required=False, readonly="1")
     sender_id = fields.Many2one(comodel_name="hr.employee", string="Sender", default=_get_employee_id, readonly=True, related_sudo=True)
@@ -297,7 +301,7 @@ class DtsDocument(models.Model):
             doc_code = rec.doc_code
         seq_number = self.env['dts.sequence']._get_code_series(doc_code)
         if seq_number:
-            values['name'] = seq_number
+            values['document_no'] = seq_number
         res = super(DtsDocument, self).create(values)
         return res
 
@@ -487,7 +491,6 @@ class DtsSequence(models.Model):
 
         return code
 
-    # name = fields.Char(string="Name", required=False, )
     doc_code = fields.Char(string="Document Type Code", required=False,)
     office_code = fields.Char(string="Office Code", required=False, default=_get_employee_office_code)
     company_id = fields.Many2one(comodel_name="res.company", string="Company", required=False, default=lambda self: self.env.user.company_id.id)
@@ -529,8 +532,8 @@ class DtsSequence(models.Model):
             ret = '%s-%s' % (rec.year,seq_series)
             if rec.office_code:
                 ret = '%s-%s' % (rec.office_code,ret)
-            if doc_code:
-                ret = '%s: %s' % (doc_code,ret)
+            # if doc_code:
+            #     ret = '%s: %s' % (doc_code,ret)
 
         return ret
 
