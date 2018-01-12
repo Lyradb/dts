@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="04e7721a-9d03-417c-86cb-a8fb0e8fb473" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    <list default="true" id="a6e358c7-89af-4197-97cb-dcc9ab882ef2" name="Default" comment="remove controller">
+      <change beforePath="$PROJECT_DIR$/.idea/dts.iml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -11,178 +15,8 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/dts$odoo_dts.coverage" NAME="odoo-dts Coverage Results" MODIFIED="1515416904925" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-  </component>
-  <component name="DatabaseView">
-    <option name="SHOW_INTERMEDIATE" value="true" />
-    <option name="GROUP_DATA_SOURCES" value="true" />
-    <option name="GROUP_SCHEMA" value="true" />
-    <option name="GROUP_CONTENTS" value="false" />
-    <option name="SORT_POSITIONED" value="false" />
-    <option name="SHOW_TABLE_DETAILS" value="true" />
-    <option name="SHOW_EMPTY_GROUPS" value="false" />
-    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
-    <expand />
-    <select />
-  </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="init_data.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/init_data.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="99" column="17" lean-forward="false" selection-start-line="99" selection-start-column="17" selection-end-line="99" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="document_tracking.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/document_tracking.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-810">
-              <caret line="134" column="0" lean-forward="false" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
-              <folding>
-                <marker date="1515418196769" expanded="true" signature="14969:15229" ph="select chann... channel_id" />
-                <marker date="1515418196769" expanded="true" signature="15044:15144" ph="select chann... mail_channel_partner" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="res_config.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/models/res_config.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="558">
-              <caret line="31" column="21" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dts_document_security.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/security/dts_document_security.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="354">
-              <caret line="30" column="17" lean-forward="false" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="document_tracking_view.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/document_tracking_view.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="251">
-              <caret line="229" column="44" lean-forward="false" selection-start-line="229" selection-start-column="40" selection-end-line="229" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="res_config_view.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/res_config_view.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
-              <caret line="28" column="33" lean-forward="false" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Python Script" />
-      </list>
-    </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>hr.bioclock.logs.download</find>
-      <find>doc_code</find>
-      <find>domain</find>
-      <find>button</find>
-      <find>cancel</find>
-      <find>document_type_id</find>
-      <find>readonly</find>
-      <find>requi</find>
-      <find>constr</find>
-      <find>apply</find>
-      <find>module_</find>
-      <find>Notif</find>
-      <find>outgoin</find>
-      <find>show_document</find>
-      <find>default_delivery_method_id</find>
-      <find>act_w</find>
-      <find>dts_document_type</find>
-      <find>_get_show_doc_type</find>
-      <find>related</find>
-      <find>config_id</find>
-      <find>_get_employee_id</find>
-      <find>show_document_type</find>
-      <find>show</find>
-      <find>send date</find>
-      <find>Incoming</find>
-      <find>show_document_delivery</find>
-      <find>send_date</find>
-      <find>dts.document.delivery</find>
-      <find>print</find>
-      <find>action_none</find>
-    </findStrings>
-    <replaceStrings>
-      <replace>doc.documents</replace>
-      <replace>doc.document</replace>
-      <replace>doc_document</replace>
-      <replace>DocDocument</replace>
-      <replace>dts.document</replace>
-      <replace>DtsDocument</replace>
-      <replace>dts_document</replace>
-      <replace>view_dts_document_incoming_form</replace>
-      <replace>view_dts_document_</replace>
-      <replace>view_dts_document_delivery</replace>
-      <replace>dts.document.delivery</replace>
-      <replace>office</replace>
-      <replace>dts.employee.documents</replace>
-      <replace>to_partner_rec</replace>
-      <replace>dts.reports</replace>
-      <replace>delivery_method_id_default</replace>
-      <replace>show_delivery_method</replace>
-    </replaceStrings>
-    <dirStrings>
-      <dir>$PROJECT_DIR$</dir>
-    </dirStrings>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/views/views.xml" />
-        <option value="$PROJECT_DIR$/models/models.py" />
-        <option value="$PROJECT_DIR$/views/menu.xml" />
-        <option value="$PROJECT_DIR$/views/document_incoming_views.xml" />
-        <option value="$PROJECT_DIR$/sequences/dts_document_sequence.xml" />
-        <option value="$PROJECT_DIR$/models/sequence.py" />
-        <option value="$PROJECT_DIR$/views/document_tracking_views.xml" />
-        <option value="$PROJECT_DIR$/views/menuitems.xml" />
-        <option value="$PROJECT_DIR$/views/res_config.xml" />
-        <option value="$PROJECT_DIR$/models/__init__.py" />
-        <option value="$PROJECT_DIR$/__manifest__.py" />
-        <option value="$PROJECT_DIR$/views/res_config_view.xml" />
-        <option value="$PROJECT_DIR$/security/dts_document_security.xml" />
-        <option value="$PROJECT_DIR$/security/ir.model.access.csv" />
-        <option value="$PROJECT_DIR$/data/init_data.xml" />
-        <option value="$PROJECT_DIR$/models/res_config.py" />
-        <option value="$PROJECT_DIR$/views/document_tracking_view.xml" />
-        <option value="$PROJECT_DIR$/models/document_tracking.py" />
-      </list>
-    </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
@@ -204,18 +38,20 @@
             <id />
           </State>
           <State>
+            <id>Python</id>
+          </State>
+          <State>
             <id>XML</id>
           </State>
         </expanded-state>
         <selected-state>
           <State>
-            <id>XML</id>
+            <id>Python</id>
           </State>
         </selected-state>
       </profile-state>
     </entry>
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
@@ -231,6 +67,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -238,48 +76,24 @@
               <item name="dts" type="b2602c69:ProjectViewProjectNode" />
               <item name="dts" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="dts" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dts" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dts" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dts" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dts" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dts" type="462c0819:PsiDirectoryNode" />
-              <item name="security" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dts" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dts" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="settings.editor.selected.configurable" value="Errors" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../MGC" />
-    <property name="settings.editor.selected.configurable" value="preferences.customizations" />
-    <property name="settings.editor.splitter.proportion" value="0.26019946" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/models" />
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/icon" />
-      <recent name="$PROJECT_DIR$/views" />
-      <recent name="$PROJECT_DIR$/security" />
-    </key>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myPythonConsoleState">
+      <console-settings sdk-home="/usr/bin/python2.7">
+        <option name="mySdkHome" value="/usr/bin/python2.7" />
+      </console-settings>
+    </option>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -293,180 +107,55 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
-    <configuration name="odoo-dts" type="PythonConfigurationType" factoryName="Python" singleton="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="/usr/bin/python2.7" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="dts" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../odoo-10.0/odoo-bin" />
-      <option name="PARAMETERS" value="-c/home/odoo/devs/odoo-10.0/odoo-bin-dts.conf -dDTS -udts" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
-  </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
-  </component>
-  <component name="StructureViewFactory">
-    <option name="ACTIVE_ACTIONS" value=",SHOW_INHERITED,SHOW_FIELDS" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="04e7721a-9d03-417c-86cb-a8fb0e8fb473" name="Default" comment="" />
-      <created>1512289109620</created>
+      <changelist id="a6e358c7-89af-4197-97cb-dcc9ab882ef2" name="Default" comment="" />
+      <created>1515742043126</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1512289109620</updated>
+      <updated>1515742043126</updated>
     </task>
-    <task id="LOCAL-00001" summary="working code, just like an email.">
-      <created>1514255444293</created>
+    <task id="LOCAL-00001" summary="remove controller">
+      <created>1515742160184</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1514255444293</updated>
+      <updated>1515742160184</updated>
     </task>
-    <task id="LOCAL-00002" summary="halfway.">
-      <created>1514376216811</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1514376216811</updated>
-    </task>
-    <task id="LOCAL-00003" summary="mutiple receiver">
-      <created>1514879276846</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1514879276846</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Filters">
-      <created>1514943815255</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1514943815255</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Filters">
-      <created>1514958126839</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1514958126839</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Add data">
-      <created>1514958577484</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1514958577484</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Add data">
-      <created>1514960340745</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1514960340745</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Add report popup window">
-      <created>1515072096794</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1515072096794</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Add report popup window">
-      <created>1515072152771</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1515072152771</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Add report popup window">
-      <created>1515547307207</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1515547307207</updated>
-    </task>
-    <option name="localTasksCounter" value="11" />
+    <option name="localTasksCounter" value="2" />
     <servers />
-  </component>
-  <component name="TodoView">
-    <todo-panel id="selected-file">
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="true" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
     <layout>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32984293" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Regex Tester" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36335078" sideWeight="0.5085683" order="13" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32879582" sideWeight="0.49806523" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32984293" sideWeight="0.49806523" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32879582" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32879582" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19845219" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32963988" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32984293" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1652847" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4052356" sideWeight="0.49143174" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290859" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Regex Tester" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2498618" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
-    <layout-to-restore>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32984293" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Regex Tester" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36335078" sideWeight="0.5085683" order="13" side_tool="true" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32982457" sideWeight="0.49806523" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32984293" sideWeight="0.49806523" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32879582" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3290859" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32879582" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19845219" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32963988" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32984293" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1652847" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4052356" sideWeight="0.49143174" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -475,474 +164,11 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="working code, just like an email." />
-    <MESSAGE value="halfway." />
-    <MESSAGE value="mutiple receiver" />
-    <MESSAGE value="Filters" />
-    <MESSAGE value="Add data" />
-    <MESSAGE value="Add report popup window" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add report popup window" />
+    <MESSAGE value="remove controller" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove controller" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/models/res_config.py</url>
-          <line>36</line>
-          <option name="timeStamp" value="149" />
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="157" />
-    </breakpoint-manager>
+    <breakpoint-manager />
     <watches-manager />
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/__manifest__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="27" lean-forward="false" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/templates.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/document_tracking_view.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="11" column="31" lean-forward="false" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/security/ir.model.access.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo/demo.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/controllers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/document_tracking.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="22" column="49" lean-forward="true" selection-start-line="22" selection-start-column="49" selection-end-line="22" selection-end-column="49" />
-          <folding>
-            <marker date="1515418196769" expanded="true" signature="14969:15229" ph="select chann... channel_id" />
-            <marker date="1515418196769" expanded="true" signature="15044:15144" ph="select chann... mail_channel_partner" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/__manifest__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="27" lean-forward="false" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/templates.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/document_tracking_view.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="11" column="31" lean-forward="false" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/security/ir.model.access.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo/demo.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/controllers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/document_tracking.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="22" column="49" lean-forward="true" selection-start-line="22" selection-start-column="49" selection-end-line="22" selection-end-column="49" />
-          <folding>
-            <marker date="1515418196769" expanded="true" signature="14969:15229" ph="select chann... channel_id" />
-            <marker date="1515418196769" expanded="true" signature="15044:15144" ph="select chann... mail_channel_partner" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/__manifest__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="21" column="28" lean-forward="false" selection-start-line="21" selection-start-column="28" selection-end-line="21" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/templates.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/document_tracking_view.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/security/ir.model.access.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/document_tracking.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1515418196769" expanded="true" signature="14969:15229" ph="select chann... channel_id" />
-            <marker date="1515418196769" expanded="true" signature="15044:15144" ph="select chann... mail_channel_partner" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo/demo.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/controllers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/controllers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/templates.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/idea.properties" />
-    <entry file="file://$PROJECT_DIR$/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="3" column="20" lean-forward="false" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/document_incoming_views.xml" />
-    <entry file="file://$PROJECT_DIR$/../../odoo-10.0/odoo/fields.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="865" column="0" lean-forward="false" selection-start-line="865" selection-start-column="0" selection-end-line="865" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../odoo-10.0/odoo/tools/func.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/base.config.settings.csv" />
-    <entry file="file://$PROJECT_DIR$/demo/demo.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/icon/link tracker.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/sequence.py" />
-    <entry file="file://$PROJECT_DIR$/sequences/dts_document_sequence.xml" />
-    <entry file="file://$PROJECT_DIR$/../../odoo-10.0/odoo/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102042">
-          <caret line="5699" column="0" lean-forward="false" selection-start-line="5699" selection-start-column="0" selection-end-line="5699" selection-end-column="0" />
-          <folding>
-            <marker date="1498066059000" expanded="true" signature="10569:10746" ph="UPDATE ir_model... " />
-            <marker date="1498066059000" expanded="true" signature="10815:11005" ph="INSERT INTO ir_model... " />
-            <marker date="1498066059000" expanded="true" signature="11391:11446" ph="SELECT * FRO... ir_model_data" />
-            <marker date="1498066059000" expanded="true" signature="11569:11759" ph="INSERT INTO ir_model_data... " />
-            <marker date="1498066059000" expanded="true" signature="11946:11990" ph="SELECT * FRO... ir_model_fields" />
-            <marker date="1498066059000" expanded="true" signature="14022:14079" ph="INSERT INTO ir_model_fields... " />
-            <marker date="1498066059000" expanded="true" signature="14587:14631" ph="SELECT name ir_model_data" />
-            <marker date="1498066059000" expanded="true" signature="14777:14971" ph="INSERT INTO ir_model_data... " />
-            <marker date="1498066059000" expanded="true" signature="15212:15296" ph="UPDATE ir_model_fields... " />
-            <marker date="1498066059000" expanded="true" signature="30724:30828" ph="SELECT 1 FRO... pg_class" />
-            <marker date="1498066059000" expanded="true" signature="58012:58095" ph="SELECT res_i... ir_model_data" />
-            <marker date="1498066059000" expanded="true" signature="87553:87777" ph="SELECT min(&quot;... missing_value" />
-            <marker date="1498066059000" expanded="true" signature="92061:92101" ph="SELECT id FR... missing_value" />
-            <marker date="1498066059000" expanded="true" signature="92200:92260" ph="UPDATE missing_value... " />
-            <marker date="1498066059000" expanded="true" signature="92650:92694" ph="SELECT id FR... missing_value" />
-            <marker date="1498066059000" expanded="true" signature="93699:94076" ph="SELECT a.att... pg_class" />
-            <marker date="1498066059000" expanded="true" signature="94408:94456" ph="ALTER TABLE &quot;missing_value&quot;... " />
-            <marker date="1498066059000" expanded="true" signature="95228:95452" ph="SELECT type,... ir_model_constraint" />
-            <marker date="1498066059000" expanded="true" signature="95608:95942" ph="INSERT INTO ir_model_constraint... " />
-            <marker date="1498066059000" expanded="true" signature="95825:95870" ph="SELECT id FR... ir_module_module" />
-            <marker date="1498066059000" expanded="true" signature="95894:95932" ph="SELECT id FR... ir_model" />
-            <marker date="1498066059000" expanded="true" signature="96169:96367" ph="UPDATE ir_model_constraint... " />
-            <marker date="1498066059000" expanded="true" signature="96545:96576" ph="ALTER TABLE missing_value... " />
-            <marker date="1498066059000" expanded="true" signature="96913:97116" ph="SELECT 1 FRO... ir_model_relation" />
-            <marker date="1498066059000" expanded="true" signature="97214:97517" ph="INSERT INTO ir_model_relation... " />
-            <marker date="1498066059000" expanded="true" signature="97408:97453" ph="SELECT id FR... ir_module_module" />
-            <marker date="1498066059000" expanded="true" signature="97477:97515" ph="SELECT id FR... ir_model" />
-            <marker date="1498066059000" expanded="true" signature="99089:99972" ph="SELECT confd... pg_constraint" />
-            <marker date="1498066059000" expanded="true" signature="102385:102427" ph="UPDATE &quot;missing_value&quot;... " />
-            <marker date="1498066059000" expanded="true" signature="104462:104488" ph="SELECT 1 FRO... missing_value" />
-            <marker date="1498066059000" expanded="true" signature="105889:105925" ph="ALTER TABLE &quot;missing_value&quot;... " />
-            <marker date="1498066059000" expanded="true" signature="107655:107695" ph="ALTER TABLE &quot;missing_value&quot;... " />
-            <marker date="1498066059000" expanded="true" signature="108103:108158" ph="ALTER TABLE &quot;missing_value&quot;... " />
-            <marker date="1498066059000" expanded="true" signature="108231:108264" ph="ALTER TABLE &quot;missing_value&quot;... " />
-            <marker date="1498066059000" expanded="true" signature="108355:108394" ph="UPDATE &quot;missing_value&quot;... " />
-            <marker date="1498066059000" expanded="true" signature="108485:108538" ph="ALTER TABLE &quot;missing_value&quot;... " />
-            <marker date="1498066059000" expanded="true" signature="109255:109295" ph="ALTER TABLE &quot;missing_value&quot;... " />
-            <marker date="1498066059000" expanded="true" signature="109579:109634" ph="ALTER TABLE &quot;missing_value&quot;... " />
-            <marker date="1498066059000" expanded="true" signature="109715:109748" ph="ALTER TABLE &quot;missing_value&quot;... " />
-            <marker date="1498066059000" expanded="true" signature="109837:109875" ph="UPDATE &quot;missing_value&quot;... " />
-            <marker date="1498066059000" expanded="true" signature="109964:110018" ph="ALTER TABLE &quot;missing_value&quot;... " />
-            <marker date="1498066059000" expanded="true" signature="110653:110903" ph="SELECT count... pg_class" />
-            <marker date="1498066059000" expanded="true" signature="111198:111246" ph="ALTER TABLE &quot;missing_value&quot;... " />
-            <marker date="1498066059000" expanded="true" signature="111319:111362" ph="ALTER TABLE &quot;missing_value&quot;... " />
-            <marker date="1498066059000" expanded="true" signature="111444:111477" ph="ALTER TABLE &quot;missing_value&quot;... " />
-            <marker date="1498066059000" expanded="true" signature="112348:112395" ph="ALTER TABLE &quot;missing_value&quot;... " />
-            <marker date="1498066059000" expanded="true" signature="113242:113290" ph="ALTER TABLE &quot;missing_value&quot;... " />
-            <marker date="1498066059000" expanded="true" signature="113685:113757" ph="SELECT index... pg_indexes" />
-            <marker date="1498066059000" expanded="true" signature="115687:115720" ph="ALTER TABLE &quot;missing_value&quot;... " />
-            <marker date="1498066059000" expanded="true" signature="117331:117378" ph="ALTER TABLE &quot;missing_value&quot;... " />
-            <marker date="1498066059000" expanded="true" signature="118163:118233" ph="SELECT relna... pg_class" />
-            <marker date="1498066059000" expanded="true" signature="119337:119405" ph="ALTER TABLE &quot;%s&quot;... " />
-            <marker date="1498066059000" expanded="true" signature="119965:120035" ph="SELECT relna... pg_class" />
-            <marker date="1498066059000" expanded="true" signature="120192:120247" ph="CREATE TABLE... missing_value" />
-            <marker date="1498066059000" expanded="true" signature="120496:120621" ph="SELECT c.rel... pg_class" />
-            <marker date="1498066059000" expanded="true" signature="120804:120853" ph="ALTER TABLE &quot;missing_value&quot;... " />
-            <marker date="1498066059000" expanded="true" signature="120899:120949" ph="ALTER TABLE &quot;missing_value&quot;... " />
-            <marker date="1498066059000" expanded="true" signature="122479:122849" ph="SELECT c.rel... " />
-            <marker date="1498066059000" expanded="true" signature="123383:123420" ph="ALTER TABLE &quot;missing_value&quot;... " />
-            <marker date="1498066059000" expanded="true" signature="123890:123927" ph="ALTER TABLE &quot;missing_value&quot;... " />
-            <marker date="1498066059000" expanded="true" signature="125030:125261" ph="SELECT defin... ir_model_constraint" />
-            <marker date="1498066059000" expanded="true" signature="144263:144353" ph="SELECT missi... missing_value" />
-            <marker date="1498066059000" expanded="true" signature="148247:148464" ph="SELECT missi... " />
-            <marker date="1498066059000" expanded="true" signature="149898:149922" ph="SELECT id FR... missing_value" />
-            <marker date="1498066059000" expanded="true" signature="150847:150880" ph="SELECT id FR... missing_value" />
-            <marker date="1498066059000" expanded="true" signature="153554:153604" ph="SELECT DISTI... missing_value" />
-            <marker date="1498066059000" expanded="true" signature="154120:154163" ph="SELECT missi... missing_value" />
-            <marker date="1498066059000" expanded="true" signature="157612:157642" ph="DELETE FROM missing_value... " />
-            <marker date="1498066059000" expanded="true" signature="158973:159037" ph="SELECT id FR... ir_attachment" />
-            <marker date="1498066059000" expanded="true" signature="166612:166685" ph="SELECT id FR... missing_value" />
-            <marker date="1498066059000" expanded="true" signature="166905:166969" ph="SELECT id FR... missing_value" />
-            <marker date="1498066059000" expanded="true" signature="168807:168841" ph="UPDATE &quot;missing_value&quot;... " />
-            <marker date="1498066059000" expanded="true" signature="171437:171479" ph="SELECT DISTI... missing_value" />
-            <marker date="1498066059000" expanded="true" signature="173061:173114" ph="SELECT paren... missing_value" />
-            <marker date="1498066059000" expanded="true" signature="173687:173737" ph="SELECT id, p... missing_value" />
-            <marker date="1498066059000" expanded="true" signature="174350:174389" ph="SELECT paren... missing_value" />
-            <marker date="1498066059000" expanded="true" signature="174722:174786" ph="UPDATE missing_value... " />
-            <marker date="1498066059000" expanded="true" signature="174852:174919" ph="UPDATE missing_value... " />
-            <marker date="1498066059000" expanded="true" signature="175113:175266" ph="UPDATE missing_value... " />
-            <marker date="1498066059000" expanded="true" signature="175437:175590" ph="UPDATE missing_value... " />
-            <marker date="1498066059000" expanded="true" signature="181674:181719" ph="INSERT INTO &quot;missing_value&quot;... " />
-            <marker date="1498066059000" expanded="true" signature="182990:183040" ph="SELECT paren... missing_value" />
-            <marker date="1498066059000" expanded="true" signature="183489:183528" ph="SELECT paren... missing_value" />
-            <marker date="1498066059000" expanded="true" signature="183754:183784" ph="SELECT MAX(p... missing_value" />
-            <marker date="1498066059000" expanded="true" signature="183965:184027" ph="UPDATE missing_value... " />
-            <marker date="1498066059000" expanded="true" signature="184109:184174" ph="UPDATE missing_value... " />
-            <marker date="1498066059000" expanded="true" signature="184256:184316" ph="UPDATE missing_value... " />
-            <marker date="1498066059000" expanded="true" signature="205590:205625" ph="SELECT id FR... missing_value" />
-            <marker date="1498066059000" expanded="true" signature="206687:206723" ph="SELECT &quot;miss... missing_value" />
-            <marker date="1498066059000" expanded="true" signature="207745:207811" ph="SELECT &quot;miss... missing_value" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/menuitems.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="738">
-          <caret line="41" column="51" lean-forward="false" selection-start-line="41" selection-start-column="51" selection-end-line="41" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/__manifest__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="32" lean-forward="false" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/security/dts_document_security.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="30" column="17" lean-forward="false" selection-start-line="30" selection-start-column="17" selection-end-line="30" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="24" lean-forward="false" selection-start-line="3" selection-start-column="24" selection-end-line="3" selection-end-column="24" />
-          <folding>
-            <element signature="e#25#56#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/security/ir.model.access.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="50" lean-forward="false" selection-start-line="10" selection-start-column="50" selection-end-line="10" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/init_data.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="99" column="17" lean-forward="false" selection-start-line="99" selection-start-column="17" selection-end-line="99" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/document_tracking.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-810">
-          <caret line="134" column="0" lean-forward="false" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
-          <folding>
-            <marker date="1515418196769" expanded="true" signature="14969:15229" ph="select chann... channel_id" />
-            <marker date="1515418196769" expanded="true" signature="15044:15144" ph="select chann... mail_channel_partner" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/document_tracking_view.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="229" column="44" lean-forward="false" selection-start-line="229" selection-start-column="40" selection-end-line="229" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/res_config_view.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="28" column="33" lean-forward="false" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/res_config.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="31" column="21" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
   </component>
 </project>
