@@ -2,7 +2,7 @@
 <odoo>
     <data>
 
-        <!--Bioclock-->
+            <!--Bioclock-->
         <record id="module_dts_document" model="ir.module.category">
             <field name="name">Document Tracking</field>
         </record>

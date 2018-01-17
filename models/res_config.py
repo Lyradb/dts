@@ -32,22 +32,12 @@ class DtsConfiguration(models.TransientModel):
                 res.update(vals)
         return res
 
-    # @api.model
-    # def get_config_settings(self):
-    #     vals = {}
-    #
-    #     rec = self.env['dts.config'].default_get([('id','=',1)])
-    #     if rec:
-    #         vals['show_document_type'] = rec.show_document_type
-    #         vals['document_type_id_default'] = rec.document_type_id_default.id
-    #         vals['show_delivery_method'] = rec.show_delivery_method
-    #         vals['delivery_method_id_default'] = rec.delivery_method_id_default.id
-    #
-    #     return vals
-
     @api.multi
     def set_config_settings(self):
         vals = {}
+
+        menu_type_id = self.env.ref('dts.menu_dts_document_type').id
+        menu_delivery_id = self.env.ref('dts.menu_dts_document_delivery').id
 
         vals['show_document_type'] = self.show_document_type
         vals['document_type_id_default'] = self.document_type_id_default.id
@@ -59,5 +49,19 @@ class DtsConfiguration(models.TransientModel):
             rec.create(vals)
         else:
             rec.write(vals)
+
+        active = False
+        menu_rec = self.env['ir.ui.menu']
+
+        res = menu_rec.search([('id','=',menu_type_id)])
+        if self.show_document_type:
+            active = True
+        res.write({'active':active})
+
+        active = False
+        menu_rec.search([('id','=',menu_delivery_id)])
+        if self.show_delivery_method:
+            active = True
+        res.write({'active':active})
 
         return rec

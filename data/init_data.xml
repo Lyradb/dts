@@ -99,6 +99,12 @@
             <field name="active" eval="True"/>
         </record>
 
+        <record id="dts_config_settings" model="dts.config">
+            <field name="show_document_type" eval="True"/>
+            <field name="document_type_id_default" eval="1"/>
+            <field name="show_delivery_method" eval="True"/>
+        </record>
+
 
     </data>
 </odoo>
