@@ -194,7 +194,7 @@ class HrEmployee(models.Model):
             uid = user_id.id if 'user_id' in values else self.user_id.id
 
             #Delete Previous DTS Access
-            self._cr.execute('delete from res_groups_users_rel where guid = %s and uid = %s' % (self.group_id.id,uid))
+            self._cr.execute('delete from res_groups_users_rel where gid = %s and uid = %s' % (self.group_id.id,uid))
             self._cr.commit()
 
             self._cr.execute('insert into res_groups_users_rel(gid,uid) values(%s,%s)' % (gid,uid))
