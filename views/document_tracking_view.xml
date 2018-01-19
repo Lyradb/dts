@@ -11,6 +11,19 @@
                     <attribute name="readonly">True</attribute>
                 </field>
 
+
+                <field name="user_id" position="attributes">
+                    <attribute name="readonly">True</attribute>
+                </field>
+
+                <field name="company_id" position="attributes">
+                    <attribute name="readonly">True</attribute>
+                </field>
+
+                <field name="department_id" position="attributes">
+                    <attribute name="required">1</attribute>
+                </field>
+
                 <xpath expr="//page[1]" position="attributes">
                     <attribute name="string">Organizational Information</attribute>
                 </xpath>
@@ -23,7 +36,16 @@
                         <field name="prefix"/>
                     </group>
                 </xpath>
-
+                <xpath expr="//page[3]" position="attributes">
+                    <attribute name="string">User Access</attribute>
+                </xpath>
+                <xpath expr="//page[3]/group/group" position="before">
+                    <group string="Access">
+                        <field name="group_id" required="True" widget="selection"/>
+                        <field name="user_name" required="True"
+                               attrs="{'readonly':[('user_id','!=',False)]}"/>
+                    </group>
+                </xpath>
             </field>
         </record>
 

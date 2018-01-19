@@ -17,12 +17,18 @@ SUFFIX = [
 class HrEmployee(models.Model):
     _inherit = 'hr.employee'
 
+    def _get_username(self):
+        self.user_name = self.user_id.name
+
     department_id = fields.Many2one('hr.department', string='Office')
     first_name = fields.Char(string="First Name")
     middle_name = fields.Char(string="Middle Name")
     last_name = fields.Char(string="Last Name")
     suffix = fields.Selection(SUFFIX, string="Suffix")
     prefix = fields.Many2one('res.partner.title', string="Prefix")
+    user_name = fields.Char(string="User Name")
+    group_id = fields.Many2one(comodel_name="res.groups", string="Job Position", required=False,
+                               domain="[('category_id.name', '=','Document Tracking')]")
 
     _sql_constraints = [
         ('name_uniq', 'unique(name)', 'Employee already exists!'),
@@ -82,26 +88,75 @@ class HrEmployee(models.Model):
             name = '%s %s' % (name, values['suffix'])
         values['name'] = '%s %s' % (name, values['middle_name'].title().strip())
         res = super(HrEmployee, self).create(values)
+
+        if res.user_name:
+
+            found = self.env['res.users'].search([('login','=',res.user_name)])
+            if found:
+                raise ValidationError('User Name Already Exists!')
+
+            user_id = self.env['res.users'].sudo().create({
+                'name': res.name,
+                'login': res.user_name,
+                'company_id': res.company_id.id,
+                'state': 'active',
+                'password': res.user_name,
+                'active': res.active
+            })
+            res.write({'user_id': user_id.id})
+
+            if res.group_id:
+                #DTS Access
+                gid = res.group_id.id
+                uid = user_id.id
+                self._cr.execute('insert into res_groups_users_rel(gid,uid) values(%s,%s)' % (gid,uid))
+                self._cr.commit()
+
+                g_res = self.env['res.groups'].browse(gid)
+                if g_res.name == 'Manager':
+                    #Employees Access
+                    grp_mgt_emp_id = self.env.ref('hr.group_hr_manager').id
+                    self._cr.execute('select * from res_groups_users_rel where gid=%s and uid = %s' % (grp_mgt_emp_id,uid))
+                    found = self._cr.fetchone()
+                    if not found:
+                        self._cr.execute('insert into res_groups_users_rel(gid,uid) values(%s,%s)' % (grp_mgt_emp_id,uid))
+                        self._cr.commit()
+
+                    #Administration Access
+                    grp_mgt_admin_id = self.env.ref('base.group_erp_manager').id
+                    self._cr.execute('select * from res_groups_users_rel where gid=%s and uid = %s' % (grp_mgt_emp_id,uid))
+                    found = self._cr.fetchone()
+                    if not found:
+                        self._cr.execute('insert into res_groups_users_rel(gid,uid) values(%s,%s)' % (grp_mgt_emp_id,uid))
+                        self._cr.commit()
+
+                if g_res.name == 'Supervisor':
+                    #Employees Access
+                    grp_spr_emp_id = self.env.ref('hr.group_hr_user').id
+                    self._cr.execute('select * from res_groups_users_rel where gid=%s and uid = %s' % (grp_spr_emp_id,uid))
+                    found = self._cr.fetchone()
+                    if not found:
+                        self._cr.execute('insert into res_groups_users_rel(gid,uid) values(%s,%s)' % (grp_spr_emp_id,uid))
+                        self._cr.commit()
+
+                if g_res.name == 'User':
+                    #Employee Access
+                    grp_emp_user_id = self.env.ref('base.group_user').id
+                    self._cr.execute('select * from res_groups_users_rel where gid=%s and uid = %s' % (grp_mgt_user_id,uid))
+                    found = self._cr.fetchone()
+                    if not found:
+                        self._cr.execute('insert into res_groups_users_rel(gid,uid) values(%s,%s)' % (grp_emp_user_id,uid))
+                        self._cr.commit()
+
         if 'department_id' in values:
             if values['department_id']:
                 department = self.env['hr.department'].browse(values['department_id'])['name']
                 vals['name'] = "%s \ %s" % (department,values['name'])
                 vals['employee_id'] = res.id
                 vals['department_id'] = values['department_id']
-                vals['user_id'] = values['user_id']
+                vals['user_id'] = user_id.id
                 vals['active'] = values['active']
                 self.env['dts.document.recipient'].sudo().create(vals)
-
-        if res.identification_id:
-            user_id = self.env['res.users'].sudo().create({
-                'name': res.name,
-                'login': res.identification_id,
-                'company_id': res.company_id.id,
-                'state': 'active',
-                'password': res.identification_id,
-                'active': res.active
-            })
-            res.write({'user_id': user_id.id})
 
         return res
 
@@ -117,21 +172,96 @@ class HrEmployee(models.Model):
                 name = '%s %s' % (name, suffix)
             values['name'] = '%s %s' % (name, middle_name)
 
-        add_user = not self.identification_id and 'identification_id' in values
+        add_user = not self.user_name and 'user_name' in values
 
         res = super(HrEmployee, self).write(values)
 
         if add_user:
             user_id = self.env['res.users'].sudo().create({
                 'name': self.name,
-                'login': self.identification_id,
+                'login': self.user_name,
                 'company_id': self.company_id.id,
                 'state': 'active',
-                'password': self.identification_id,
+                'password': self.user_name,
                 'active': self.active
 
             })
             self.write({'user_id': user_id.id})
+
+        if 'group_id' in values:
+            #DTS Access
+            gid = values['group_id']
+            uid = user_id.id if 'user_id' in values else self.user_id.id
+
+            #Delete Previous DTS Access
+            self._cr.execute('delete from res_groups_users_rel where guid = %s and uid = %s' % (self.group_id.id,uid))
+            self._cr.commit()
+
+            self._cr.execute('insert into res_groups_users_rel(gid,uid) values(%s,%s)' % (gid,uid))
+            self._cr.commit()
+
+            prev_g_res = self.env['res.groups'].browse(self.group_id.id)
+
+            #Previous
+            if prev_g_res.name == 'Manager':
+                #Delete Previous Employee Access
+                del_id = self.env.ref('hr.group_hr_manager').id
+                self._cr.execute('delete from res_groups_users_rel where guid = %s and uid = %s' % (del_id,uid))
+                self._cr.commit()
+
+                #Delete Previous Administration Access
+                del_id = self.env.ref('base.group_erp_manager').id
+                self._cr.execute('delete from res_groups_users_rel where guid = %s and uid = %s' % (del_id,uid))
+                self._cr.commit()
+
+            if prev_g_res.name == 'Supervisor':
+                #Delete Previous Employee Access
+                del_id = self.env.ref('hr.group_hr_user').id
+                self._cr.execute('delete from res_groups_users_rel where guid = %s and uid = %s' % (del_id,uid))
+                self._cr.commit()
+
+            if prev_g_res.name == 'User':
+                #Delete Previous Employee Access
+                del_id = self.env.ref('base.group_user').id
+                self._cr.execute('delete from res_groups_users_rel where guid = %s and uid = %s' % (del_id,uid))
+                self._cr.commit()
+
+            #New Access
+            g_res = self.env['res.groups'].browse(gid)
+            if g_res.name == 'Manager':
+                #Employees Access
+                grp_mgt_emp_id = self.env.ref('hr.group_hr_manager').id
+                self._cr.execute('select * from res_groups_users_rel where gid=%s and uid = %s' % (grp_mgt_emp_id,uid))
+                found = self._cr.fetchone()
+                if not found:
+                    self._cr.execute('insert into res_groups_users_rel(gid,uid) values(%s,%s)' % (grp_mgt_emp_id,uid))
+                    self._cr.commit()
+
+                #Administration Access
+                grp_mgt_admin_id = self.env.ref('base.group_erp_manager').id
+                self._cr.execute('select * from res_groups_users_rel where gid=%s and uid = %s' % (grp_mgt_admin_id,uid))
+                found = self._cr.fetchone()
+                if not found:
+                    self._cr.execute('insert into res_groups_users_rel(gid,uid) values(%s,%s)' % (grp_mgt_admin_id,uid))
+                    self._cr.commit()
+
+            if g_res.name == 'Supervisor':
+                #Employees Access
+                grp_spr_emp_id = self.env.ref('hr.group_hr_user').id
+                self._cr.execute('select * from res_groups_users_rel where gid=%s and uid = %s' % (grp_spr_emp_id,uid))
+                found = self._cr.fetchone()
+                if not found:
+                    self._cr.execute('insert into res_groups_users_rel(gid,uid) values(%s,%s)' % (grp_spr_emp_id,uid))
+                    self._cr.commit()
+
+            if g_res.name == 'User':
+                #Employee Access
+                grp_emp_user_id = self.env.ref('base.group_user').id
+                self._cr.execute('select * from res_groups_users_rel where gid=%s and uid = %s' % (grp_emp_user_id,uid))
+                found = self._cr.fetchone()
+                if not found:
+                    self._cr.execute('insert into res_groups_users_rel(gid,uid) values(%s,%s)' % (grp_emp_user_id,uid))
+                    self._cr.commit()
 
         recipient_env = self.env['dts.document.recipient']
         if res:
