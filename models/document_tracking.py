@@ -30,6 +30,8 @@ class HrEmployee(models.Model):
     group_id = fields.Many2one(comodel_name="res.groups", string="Access Level", required=False,
                                domain="[('category_id.name', '=','Document Tracking')]")
 
+    state = fields.Selection(string="", selection=[('', ''), ('', ''), ], required=False, )
+
     _sql_constraints = [
         ('name_uniq', 'unique(name)', 'Employee already exists!'),
         ('user_id_uniq', 'unique(user_id)', 'User already in used!'),
