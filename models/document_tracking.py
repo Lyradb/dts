@@ -142,7 +142,7 @@ class HrEmployee(models.Model):
                 if g_res.name == 'User':
                     #Employee Access
                     grp_emp_user_id = self.env.ref('base.group_user').id
-                    self._cr.execute('select * from res_groups_users_rel where gid=%s and uid = %s' % (grp_mgt_user_id,uid))
+                    self._cr.execute('select * from res_groups_users_rel where gid=%s and uid = %s' % (grp_emp_user_id,uid))
                     found = self._cr.fetchone()
                     if not found:
                         self._cr.execute('insert into res_groups_users_rel(gid,uid) values(%s,%s)' % (grp_emp_user_id,uid))
