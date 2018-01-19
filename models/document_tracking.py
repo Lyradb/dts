@@ -655,7 +655,7 @@ class DtsSequence(models.Model):
             raise ValidationError("No related employee assigned to current user. Please consult System Admin")
         else:
             resource_id = res_resource.id
-            res_employee = self.env['hr.employee'].search([('resource_id', '=', resource_id), ('active', '=', True)])
+            res_employee = self.env['hr.employee'].search([('resource_id', '=', resource_id)])
             if res_employee:
                 if not res_employee.department_id:
                     raise ValidationError("Employee is not assigned to Department")
