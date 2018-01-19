@@ -27,13 +27,21 @@ class HrEmployee(models.Model):
     suffix = fields.Selection(SUFFIX, string="Suffix")
     prefix = fields.Many2one('res.partner.title', string="Prefix")
     user_name = fields.Char(string="User Name")
-    group_id = fields.Many2one(comodel_name="res.groups", string="Job Position", required=False,
+    group_id = fields.Many2one(comodel_name="res.groups", string="Access Level", required=False,
                                domain="[('category_id.name', '=','Document Tracking')]")
 
     _sql_constraints = [
         ('name_uniq', 'unique(name)', 'Employee already exists!'),
         ('user_id_uniq', 'unique(user_id)', 'User already in used!'),
     ]
+
+    @api.model_cr
+    def init(self):
+        admin_id = self.env.ref('hr.employee_root').id
+        group_id = self.env.ref('hr.group_hr_manager').id
+        self._cr.execute("""update hr_employee set user_name='admin', group_id = %s where id = %s;
+    update resource_resource set active=False where user_id = %s""" % (group_id, admin_id, admin_id))
+        self._cr.commit()
 
     @api.onchange('first_name', 'middle_name', 'last_name', 'suffix')
     def onchange_name(self):
@@ -312,6 +320,10 @@ class HrDepartment(models.Model):
         ('dept_code_uniq', 'unique(dept_code)', 'Office Code already exists!'),
     ]
 
+    @api.onchange('dept_code')
+    def onchange_name(self):
+        self.dept_code = self.dept_code.upper()
+
 class DtsDocumentType(models.Model):
     _name = 'dts.document.type'
 
@@ -388,7 +400,7 @@ class DtsDocument(models.Model):
         return ret
 
     def get_name(self):
-        self.name = '%s: %s' % (self.document_type_id.name, self.doc_code)
+        self.name = '%s: %s' % (self.document_type_id.name, self.document_no)
 
     name = fields.Char(string="Name", required=False, compute='get_name',store=False, default='New Document')
     document_no = fields.Char(string="Document Number", required=False, readonly=True)

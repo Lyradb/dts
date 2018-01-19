@@ -46,7 +46,6 @@
             <field name="name">DTS Company</field>
             <field name="abbreviation">DTS</field>
             <field name="rml_header1">Public Service is our priority.</field>
-            <!--<field name="type">business_unit</field>-->
             <field name="currency_id" ref="base.PHP"/>
             <field name="logo" type="base64" file="dts/icon/link tracker.png"/>
             <field name="partner_id" ref="base.main_partner"/>
@@ -72,7 +71,6 @@
             <field name="name">Fax</field>
             <field name="active" eval="True"/>
         </record>
-
 
         <!-- Document Type -->
         <record id="dts_doctype_memo" model="dts.document.type">
