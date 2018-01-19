@@ -206,24 +206,24 @@ class HrEmployee(models.Model):
             if prev_g_res.name == 'Manager':
                 #Delete Previous Employee Access
                 del_id = self.env.ref('hr.group_hr_manager').id
-                self._cr.execute('delete from res_groups_users_rel where guid = %s and uid = %s' % (del_id,uid))
+                self._cr.execute('delete from res_groups_users_rel where gid = %s and uid = %s' % (del_id,uid))
                 self._cr.commit()
 
                 #Delete Previous Administration Access
                 del_id = self.env.ref('base.group_erp_manager').id
-                self._cr.execute('delete from res_groups_users_rel where guid = %s and uid = %s' % (del_id,uid))
+                self._cr.execute('delete from res_groups_users_rel where gid = %s and uid = %s' % (del_id,uid))
                 self._cr.commit()
 
             if prev_g_res.name == 'Supervisor':
                 #Delete Previous Employee Access
                 del_id = self.env.ref('hr.group_hr_user').id
-                self._cr.execute('delete from res_groups_users_rel where guid = %s and uid = %s' % (del_id,uid))
+                self._cr.execute('delete from res_groups_users_rel where gid = %s and uid = %s' % (del_id,uid))
                 self._cr.commit()
 
             if prev_g_res.name == 'User':
                 #Delete Previous Employee Access
                 del_id = self.env.ref('base.group_user').id
-                self._cr.execute('delete from res_groups_users_rel where guid = %s and uid = %s' % (del_id,uid))
+                self._cr.execute('delete from res_groups_users_rel where gid = %s and uid = %s' % (del_id,uid))
                 self._cr.commit()
 
             #New Access
