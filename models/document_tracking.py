@@ -401,6 +401,8 @@ class DtsDocument(models.Model):
             ret = rec.show_delivery_method
         return ret
 
+    @api.one
+    @api.depends('document_no')
     def get_name(self):
         self.name = '%s: %s' % (self.document_type_id.name, self.document_no)
 
