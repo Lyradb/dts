@@ -324,7 +324,9 @@ class HrDepartment(models.Model):
 
     @api.onchange('dept_code')
     def onchange_name(self):
-        self.dept_code = self.dept_code.upper()
+        dept_code = self.dept_code
+        if dept_code:
+            self.dept_code = dept_code.upper()
 
 class DtsDocumentType(models.Model):
     _name = 'dts.document.type'
@@ -412,31 +414,27 @@ class DtsDocument(models.Model):
     send_date = fields.Datetime(string="Date Send", required=False, readonly="1")
     sender_id = fields.Many2one(comodel_name="hr.employee", string="Sender", default=_get_employee_id, readonly=True, related_sudo=True)
     sender_office_id = fields.Many2one(comodel_name="hr.department", string="Sender Office", required=True, related_sudo=True,related='sender_id.department_id', readonly="1")
-    # # Recipient
     show_document_type = fields.Boolean(string="Show Document Type", default=_get_show_doc_type)
     document_type_id = fields.Many2one(comodel_name="dts.document.type", string="Document Type", required=False, domain="[('active', '=', True)]", default=_get_default_doc_type)
     subject = fields.Char(string="Subject", required=True, )
     message = fields.Text(string="Message", required=False, )
-
     recipient_id = fields.Many2many(comodel_name='dts.document.recipient', string="Recipient", required="1", domain="[('active','=',True),('user_id','!=',uid)]")
     attachment_number = fields.Integer(compute='_get_attachment_number', string="Number of Attachments")
     attachment_ids = fields.One2many('ir.attachment','res_id', domain=[('res_model', '=', 'dts.document')], string='Attachments')
     receive_date = fields.Datetime(string="Date Received", required=False, readonly="1")
     show_delivery_method = fields.Boolean(string="Show Delivery Method", default=_get_show_doc_delivery)
     delivery_method_id = fields.Many2one(comodel_name="dts.document.delivery",string="Delivery Method", required=False, domain="[('active', '=', True)]", default=_get_default_doc_delivery)
-
     tracking_type = fields.Selection(string="Tracking Type",
                                            selection=[
                                                ('incoming', 'Incoming'),
                                                ('outgoing', 'Outgoing'),
                                            ], default='outgoing')
-
     state = fields.Selection(string="state",
                                      selection=[
                                          ('draft', 'Draft'),
                                          ('send', 'Sent'),
                                      ], default='draft')
-
+    require_reply = fields.Boolean(string="Needs Reply?", default=False)
     recipient_ids = fields.One2many(comodel_name="dts.employee.documents", inverse_name="document_id", string="Receiver", required=False, )
 
     @api.model
@@ -566,6 +564,7 @@ class DtsEmployeeDocuments(models.Model):
     show_delivery_method = fields.Boolean(string="Show Document Type", related='document_id.show_delivery_method')
     delivery_method_id = fields.Many2one(comodel_name="dts.document.delivery",string="Delivery Method", store=False, related='document_id.delivery_method_id')
     state_date = fields.Datetime(string="Status Date", required=False, readonly="1")
+    require_reply = fields.Boolean(string="Require Reply", related='document_id.require_reply')
 
     @api.multi
     def action_read(self):
