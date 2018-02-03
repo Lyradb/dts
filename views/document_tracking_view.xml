@@ -140,7 +140,7 @@
                             <!--<field name="recipient_office_id" attrs="{'readonly':[('state','!=','draft')]}"/>
                             <field name="recipient_id" attrs="{'readonly':[('state','!=','draft')]}"/>-->
                             <field name="subject" colspan="4" attrs="{'readonly':[('state','!=','draft')]}"/>
-                            <field name="require_reply"/>
+                            <!--<field name="require_reply"/>-->
                         </group>
                         <group>
                             <field name="message" widget="html" attrs="{'readonly':[('state','!=','draft')]}"/>
