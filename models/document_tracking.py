@@ -325,7 +325,7 @@ class HrDepartment(models.Model):
     @api.onchange('dept_code')
     def onchange_name(self):
         dept_code = self.dept_code
-        if dept_code:
+        if 'str' in type(dept_code):
             self.dept_code = dept_code.upper()
 
 class DtsDocumentType(models.Model):
