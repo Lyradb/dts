@@ -322,11 +322,11 @@ class HrDepartment(models.Model):
         ('dept_code_uniq', 'unique(dept_code)', 'Office Code already exists!'),
     ]
 
-    @api.onchange('dept_code')
-    def onchange_dept_code(self):
-        dept_code = str(self.dept_code)
-        if  dept_code:
-            self.dept_code = dept_code.upper()
+    # @api.onchange('dept_code')
+    # def onchange_dept_code(self):
+    #     dept_code = str(self.dept_code)
+    #     if  dept_code:
+    #         self.dept_code = dept_code.upper()
 
 
 class DtsDocumentType(models.Model):
