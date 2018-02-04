@@ -435,7 +435,7 @@ class DtsDocument(models.Model):
                                          ('draft', 'Draft'),
                                          ('send', 'Sent'),
                                      ], default='draft')
-    require_reply = fields.Boolean(string="Needs Reply?", default=False)
+    # require_reply = fields.Boolean(string="Needs Reply?", default=False)
     recipient_ids = fields.One2many(comodel_name="dts.employee.documents", inverse_name="document_id", string="Receiver", required=False, )
 
     @api.model
@@ -565,7 +565,7 @@ class DtsEmployeeDocuments(models.Model):
     show_delivery_method = fields.Boolean(string="Show Document Type", related='document_id.show_delivery_method')
     delivery_method_id = fields.Many2one(comodel_name="dts.document.delivery",string="Delivery Method", store=False, related='document_id.delivery_method_id')
     state_date = fields.Datetime(string="Status Date", required=False, readonly="1")
-    require_reply = fields.Boolean(string="Require Reply", related='document_id.require_reply')
+    # require_reply = fields.Boolean(string="Require Reply", related='document_id.require_reply')
 
     @api.multi
     def action_read(self):
