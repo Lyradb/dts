@@ -122,6 +122,14 @@ class HrEmployee(models.Model):
                 self._cr.execute('insert into res_groups_users_rel(gid,uid) values(%s,%s)' % (gid,uid))
                 self._cr.commit()
 
+                #Delete the default Employees Access
+                grp_default_user = self.env.ref('base.default_user').id
+                self._cr.execute('select * from res_groups_users_rel where gid=%s and uid = %s' % (grp_default_user,uid))
+                found = self._cr.fetchone()
+                if found:
+                    self._cr.execute('delete from res_groups_users_rel(gid,uid) where gid=%s and uid = %s' % (grp_default_user,uid))
+                    self._cr.commit()
+
                 g_res = self.env['res.groups'].browse(gid)
                 if g_res.name == 'Manager':
                     #Employees Access
@@ -183,6 +191,7 @@ class HrEmployee(models.Model):
             values['name'] = '%s %s' % (name, middle_name)
 
         add_user = not self.user_name and 'user_name' in values
+        prev_g_res = self.env['res.groups'].browse(self.group_id.id)
 
         res = super(HrEmployee, self).write(values)
 
@@ -204,13 +213,11 @@ class HrEmployee(models.Model):
             uid = user_id.id if 'user_id' in values else self.user_id.id
 
             #Delete Previous DTS Access
-            self._cr.execute('delete from res_groups_users_rel where gid = %s and uid = %s' % (self.group_id.id,uid))
+            self._cr.execute('delete from res_groups_users_rel where gid = %s and uid = %s' % (prev_g_res.id,uid))
             self._cr.commit()
 
             self._cr.execute('insert into res_groups_users_rel(gid,uid) values(%s,%s)' % (gid,uid))
             self._cr.commit()
-
-            prev_g_res = self.env['res.groups'].browse(self.group_id.id)
 
             #Previous
             if prev_g_res.name == 'Manager':
@@ -435,7 +442,7 @@ class DtsDocument(models.Model):
                                          ('draft', 'Draft'),
                                          ('send', 'Sent'),
                                      ], default='draft')
-    # require_reply = fields.Boolean(string="Needs Reply?", default=False)
+# require_reply = fields.Boolean(string="Needs Reply?", default=False)
     recipient_ids = fields.One2many(comodel_name="dts.employee.documents", inverse_name="document_id", string="Receiver", required=False, )
 
     @api.model

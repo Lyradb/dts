@@ -1,6 +1,19 @@
 <odoo>
     <data>
 
+        <record id="dts_view_attachment_form" model="ir.ui.view">
+            <field name="name">ir.attachment.form</field>
+            <field name="model">ir.attachment</field>
+            <field name="inherit_id" ref="base.view_attachment_form"/>
+            <field name="arch" type="xml">
+
+                <field name="type" position="attributes">
+                    <attribute name="readonly">True</attribute>
+                </field>
+
+            </field>
+        </record>
+
         <record id="hrms_employee_view_form" model="ir.ui.view">
             <field name="name">hr.employee.form</field>
             <field name="model">hr.employee</field>
@@ -9,6 +22,14 @@
 
                 <field name="name" position="attributes">
                     <attribute name="readonly">True</attribute>
+                </field>
+
+                <field name="parent_id" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </field>
+
+                <field name="coach_id" position="attributes">
+                    <attribute name="invisible">True</attribute>
                 </field>
 
 
