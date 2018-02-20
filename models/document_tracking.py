@@ -421,7 +421,8 @@ class DtsDocument(models.Model):
     transaction_date = fields.Datetime(string="Transaction Date", required=False, default=fields.datetime.today(), readonly="1")
     send_date = fields.Datetime(string="Date Send", required=False, readonly="1")
     sender_id = fields.Many2one(comodel_name="hr.employee", string="Sender", default=_get_employee_id, readonly=True, related_sudo=True)
-    sender_office_id = fields.Many2one(comodel_name="hr.department", string="Sender Office", required=True, related_sudo=True,related='sender_id.department_id', readonly="1")
+    sender_office_id = fields.Many2one(comodel_name="hr.department", string="Sender Office", required=True,
+                                       related_sudo=True,related='sender_id.department_id',readonly="1",store=True)
     show_document_type = fields.Boolean(string="Show Document Type", default=_get_show_doc_type)
     document_type_id = fields.Many2one(comodel_name="dts.document.type", string="Document Type", required=False, domain="[('active', '=', True)]", default=_get_default_doc_type)
     subject = fields.Char(string="Subject", required=True, )
@@ -473,7 +474,7 @@ class DtsDocument(models.Model):
         action = attachment_action.read()[0]
         action['context'] = {'default_res_model': self._name, 'default_res_id': self.ids[0]}
         action['domain'] = str(['&', ('res_model', '=', self._name), ('res_id', 'in', self.ids)])
-        action['search_view_id'] = (self.env.ref('dts.ir_attachment_view_search_inherit_dts_document').id, )
+        action['search_view_id'] = (self.env.ref('dts.ir_attachment_view_search_dts_document').id, )
         return action
 
     @api.multi
@@ -490,6 +491,7 @@ class DtsDocument(models.Model):
             if found:
                 vals['receiver_id'] = found.user_id.id
                 vals['employee_id'] = found.employee_id.id
+                # vals['receiver_office_id'] = found.department_id.id
                 self.env['dts.employee.documents'].sudo().create(vals)
                 self.send_to_channel('Hi! I send a <b>%s</b> with subject: <b>%s</b>.' % (self.name,self.subject), found.user_id.id)
         return self.write({'state': 'send', 'tracking_type': 'outgoing','send_date':fields.datetime.today()})
@@ -557,7 +559,7 @@ class DtsEmployeeDocuments(models.Model):
                                          ('receive', 'Accepted'),
                                      ], default='unread')
     employee_id = fields.Many2one(comodel_name="hr.employee", string="Recipient", required=False)
-    receiver_office_id = fields.Many2one(comodel_name="hr.department", string="Receiver Office", store=False, related='employee_id.department_id')
+    receiver_office_id = fields.Many2one(comodel_name="hr.department", string="Receiver Office",store=True, related='employee_id.department_id')
     sender_id = fields.Many2one(comodel_name="hr.employee", string="Sender", store=False, related="document_id.sender_id")
     sender_office_id = fields.Many2one(comodel_name="hr.department", string="Sender Office", store=False, related='document_id.sender_id.department_id')
     subject = fields.Char(string="Subject", required=True, store=False, related='document_id.subject')
@@ -712,7 +714,26 @@ class DtsReports(models.TransientModel):
         self.write({'state':'choose','msg':None})
         return {"type": "ir.actions.do_nothing",}
 
+    # @api.multi
+    # def action_download(self):
+    #     self.write({'state':'get','msg':None})
+    #     return {"type": "ir.actions.do_nothing",}
+
     @api.multi
-    def action_download(self):
+    def action_print(self):
+
+        self.ensure_one()
+        data = {}
+        data['ids'] = self.env.context.get('active_ids', [])
+        data['model'] = self.env.context.get('active_model', 'ir.ui.menu')
+        data['form'] = self.read(['date_from','date_to','document_type_id','document_delivery_id','office_id','report_name'])[0]
         self.write({'state':'get','msg':None})
         return {"type": "ir.actions.do_nothing",}
+
+        return self._print_report(data)
+
+    def _print_report(self, data):
+        print 'test handler'
+
+        return self.env['report'].sudo().get_action(self, 'dts.document_report_template',
+                                                        data=data)

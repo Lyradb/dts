@@ -57,6 +57,19 @@
                         <field name="prefix"/>
                     </group>
                 </xpath>
+
+                <field name="passport_id" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </field>
+
+                <field name="bank_account_id" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </field>
+
+                <xpath expr="//page[2]/group/group[2]" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+
                 <xpath expr="//page[3]" position="attributes">
                     <attribute name="string">User Access</attribute>
                 </xpath>
@@ -357,8 +370,8 @@
         </record>
 
         <!-- Documents -->
-        <record id="ir_attachment_view_search_inherit_dts_document" model="ir.ui.view">
-            <field name="name">ir.attachment.search.inherit.recruitment</field>
+        <record id="ir_attachment_view_search_dts_document" model="ir.ui.view">
+            <field name="name">ir.attachment.search.dts.document</field>
             <field name="model">ir.attachment</field>
             <field name="mode">primary</field>
             <field name="inherit_id" ref="base.view_attachment_search"/>
@@ -384,7 +397,7 @@
             <field name="view_type">form</field>
             <field name="view_mode">kanban,tree,form</field>
             <field name="view_id" ref="mail.view_document_file_kanban"/>
-            <field name="search_view_id" ref="ir_attachment_view_search_inherit_dts_document"/>
+            <field name="search_view_id" ref="ir_attachment_view_search_dts_document"/>
             <field name="domain">[('res_model','=','dts.document')]</field>
             <field name="context">{'create':False, 'edit':False}</field>
             <field name="help" type="html">
@@ -535,7 +548,7 @@
                             <button name="action_back" string="Back" type="object" states="get" class="oe_highlight">
                                 <i class="fa fa-arrow-left" aria-hidden="True"/>
                             </button>
-                            <button name="action_download" string="Print" type="object" states="choose"
+                            <button name="action_print" string="Print" type="object" states="choose"
                                     class="oe_highlight">
                                 <i class="fa fa-print" aria-hidden="True" states="choose"/>
                             </button>
