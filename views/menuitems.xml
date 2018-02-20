@@ -19,8 +19,8 @@
               name="Outgoing"
               sequence="200"
               action="open_view_dts_document_outgoing"
-              groups="group_dts_document_supervisor"/>
-              <!--# remove Manager-->
+              groups="group_dts_document_manager"/>
+              <!--# remove Supervisor-->
               <!--groups="group_dts_document_manager,group_dts_document_supervisor"/>-->
 
     <menuitem id="menu_dts_documents"
