@@ -71,7 +71,7 @@
                 </xpath>
 
                 <xpath expr="//page[3]" position="attributes">
-                    <attribute name="string">User Access</attribute>
+                    <attribute name="string">User Account</attribute>
                 </xpath>
                 <xpath expr="//page[3]/group/group" position="before">
                     <group string="Access">
