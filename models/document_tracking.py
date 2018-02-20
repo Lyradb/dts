@@ -28,7 +28,7 @@ class HrEmployee(models.Model):
     prefix = fields.Many2one('res.partner.title', string="Prefix")
     user_name = fields.Char(string="User Name")
     group_id = fields.Many2one(comodel_name="res.groups", string="Access Level", required=False,
-                               domain="[('category_id.name', '=','Document Tracking')]")
+                               domain="[('category_id.name', '=','Document Tracking')]",related_sudo=True, defalut=lambda self: self.env.ref('base.group_user').id)
 
     state = fields.Selection(string="", selection=[('', ''), ('', ''), ], required=False, )
 
@@ -94,8 +94,16 @@ class HrEmployee(models.Model):
     def create(self, values):
         vals = {}
         name = '%s, %s' % (values['last_name'].title().strip(), values['first_name'].title().strip())
-        if values['suffix']:
-            name = '%s %s' % (name, values['suffix'])
+        flag = self.env['res.users'].has_group('hr.group_hr_manager')
+        if 'group_id' in values:
+            g_res = self.env['res.groups'].browse(values['group_id'])
+
+            if not flag and g_res.name in ('Manager','Supervisor'):
+                raise ValidationError('You are only allowed to add Access Level: User.')
+
+        if 'suffix' in values:
+            if values['suffix']:
+                name = '%s %s' % (name, values['suffix'])
         values['name'] = '%s %s' % (name, values['middle_name'].title().strip())
         res = super(HrEmployee, self).create(values)
 
@@ -105,7 +113,7 @@ class HrEmployee(models.Model):
             if found:
                 raise ValidationError('User Name Already Exists!')
 
-            user_id = self.env['res.users'].sudo().create({
+            new_user_id = self.env['res.users'].sudo().create({
                 'name': res.name,
                 'login': res.user_name,
                 'company_id': res.company_id.id,
@@ -113,57 +121,57 @@ class HrEmployee(models.Model):
                 'password': res.user_name,
                 'active': res.active
             })
-            res.write({'user_id': user_id.id})
+            res.write({'user_id': new_user_id.id,'new': 'new'})
 
             if res.group_id:
                 #DTS Access
                 gid = res.group_id.id
-                uid = user_id.id
-                self._cr.execute('insert into res_groups_users_rel(gid,uid) values(%s,%s)' % (gid,uid))
-                self._cr.commit()
+                new_uid = new_user_id.id
+                # self._cr.execute('insert into res_groups_users_rel(gid,uid) values(%s,%s)' % (gid,new_uid))
+                # self._cr.commit()
 
                 #Delete the default Employees Access
                 grp_default_user = self.env.ref('base.default_user').id
-                self._cr.execute('select * from res_groups_users_rel where gid=%s and uid = %s' % (grp_default_user,uid))
+                self._cr.execute('select * from res_groups_users_rel where gid=%s and uid = %s' % (grp_default_user,new_uid))
                 found = self._cr.fetchone()
                 if found:
-                    self._cr.execute('delete from res_groups_users_rel(gid,uid) where gid=%s and uid = %s' % (grp_default_user,uid))
+                    self._cr.execute('delete from res_groups_users_rel(gid,uid) where gid=%s and uid = %s' % (grp_default_user,new_uid))
                     self._cr.commit()
 
                 g_res = self.env['res.groups'].browse(gid)
                 if g_res.name == 'Manager':
                     #Employees Access
                     grp_mgt_emp_id = self.env.ref('hr.group_hr_manager').id
-                    self._cr.execute('select * from res_groups_users_rel where gid=%s and uid = %s' % (grp_mgt_emp_id,uid))
+                    self._cr.execute('select * from res_groups_users_rel where gid=%s and uid = %s' % (grp_mgt_emp_id,new_uid))
                     found = self._cr.fetchone()
                     if not found:
-                        self._cr.execute('insert into res_groups_users_rel(gid,uid) values(%s,%s)' % (grp_mgt_emp_id,uid))
+                        self._cr.execute('insert into res_groups_users_rel(gid,uid) values(%s,%s)' % (grp_mgt_emp_id,new_uid))
                         self._cr.commit()
 
                     #Administration Access
                     grp_mgt_admin_id = self.env.ref('base.group_erp_manager').id
-                    self._cr.execute('select * from res_groups_users_rel where gid=%s and uid = %s' % (grp_mgt_emp_id,uid))
+                    self._cr.execute('select * from res_groups_users_rel where gid=%s and uid = %s' % (grp_mgt_emp_id,new_uid))
                     found = self._cr.fetchone()
                     if not found:
-                        self._cr.execute('insert into res_groups_users_rel(gid,uid) values(%s,%s)' % (grp_mgt_emp_id,uid))
+                        self._cr.execute('insert into res_groups_users_rel(gid,uid) values(%s,%s)' % (grp_mgt_emp_id,new_uid))
                         self._cr.commit()
 
-                if g_res.name == 'Supervisor':
+                elif g_res.name == 'Supervisor':
                     #Employees Access
                     grp_spr_emp_id = self.env.ref('hr.group_hr_user').id
-                    self._cr.execute('select * from res_groups_users_rel where gid=%s and uid = %s' % (grp_spr_emp_id,uid))
+                    self._cr.execute('select * from res_groups_users_rel where gid=%s and uid = %s' % (grp_spr_emp_id,new_uid))
                     found = self._cr.fetchone()
                     if not found:
-                        self._cr.execute('insert into res_groups_users_rel(gid,uid) values(%s,%s)' % (grp_spr_emp_id,uid))
+                        self._cr.execute('insert into res_groups_users_rel(gid,uid) values(%s,%s)' % (grp_spr_emp_id,new_uid))
                         self._cr.commit()
 
-                if g_res.name == 'User':
+                elif g_res.name == 'User':
                     #Employee Access
                     grp_emp_user_id = self.env.ref('base.group_user').id
-                    self._cr.execute('select * from res_groups_users_rel where gid=%s and uid = %s' % (grp_emp_user_id,uid))
+                    self._cr.execute('select * from res_groups_users_rel where gid=%s and uid = %s' % (grp_emp_user_id,new_uid))
                     found = self._cr.fetchone()
                     if not found:
-                        self._cr.execute('insert into res_groups_users_rel(gid,uid) values(%s,%s)' % (grp_emp_user_id,uid))
+                        self._cr.execute('insert into res_groups_users_rel(gid,uid) values(%s,%s)' % (grp_emp_user_id,new_uid))
                         self._cr.commit()
 
         if 'department_id' in values:
@@ -172,7 +180,7 @@ class HrEmployee(models.Model):
                 vals['name'] = "%s \ %s" % (department,values['name'])
                 vals['employee_id'] = res.id
                 vals['department_id'] = values['department_id']
-                vals['user_id'] = user_id.id
+                vals['user_id'] = new_user_id.id
                 vals['active'] = values['active']
                 self.env['dts.document.recipient'].sudo().create(vals)
 
@@ -180,6 +188,13 @@ class HrEmployee(models.Model):
 
     @api.multi
     def write(self, values):
+        flag = self.env['res.users'].has_group('hr.group_hr_manager')
+        if 'group_id' in values:
+            g_res = self.env['res.groups'].browse(values['group_id'])
+
+            if not flag and g_res.name in ('Manager','Supervisor'):
+                raise ValidationError('You are not allowed to edit User Level.')
+
         if 'last_name' in values or 'first_name' in values or 'middle_name' in values or 'suffix' in values:
             last_name = values['last_name'].title().strip() if 'last_name' in values else self.last_name
             first_name = values['first_name'].title().strip() if 'first_name' in values else self.first_name
@@ -196,7 +211,7 @@ class HrEmployee(models.Model):
         res = super(HrEmployee, self).write(values)
 
         if add_user:
-            user_id = self.env['res.users'].sudo().create({
+            new_user_id = self.env['res.users'].sudo().create({
                 'name': self.name,
                 'login': self.user_name,
                 'company_id': self.company_id.id,
@@ -205,42 +220,46 @@ class HrEmployee(models.Model):
                 'active': self.active
 
             })
-            self.write({'user_id': user_id.id})
+            self.write({'user_id': new_user_id.id})
 
-        if 'group_id' in values:
+        edit = True
+        if 'new' in values:
+            edit = False
+
+        if 'group_id' in values and edit:
             #DTS Access
             gid = values['group_id']
-            uid = user_id.id if 'user_id' in values else self.user_id.id
+            new_uid = new_user_id.id if 'user_id' in values else self.user_id.id
 
             #Delete Previous DTS Access
-            self._cr.execute('delete from res_groups_users_rel where gid = %s and uid = %s' % (prev_g_res.id,uid))
+            self._cr.execute('delete from res_groups_users_rel where gid = %s and uid = %s' % (prev_g_res.id,new_uid))
             self._cr.commit()
 
-            self._cr.execute('insert into res_groups_users_rel(gid,uid) values(%s,%s)' % (gid,uid))
+            self._cr.execute('insert into res_groups_users_rel(gid,uid) values(%s,%s)' % (gid,new_uid))
             self._cr.commit()
 
             #Previous
             if prev_g_res.name == 'Manager':
                 #Delete Previous Employee Access
                 del_id = self.env.ref('hr.group_hr_manager').id
-                self._cr.execute('delete from res_groups_users_rel where gid = %s and uid = %s' % (del_id,uid))
+                self._cr.execute('delete from res_groups_users_rel where gid = %s and uid = %s' % (del_id,new_uid))
                 self._cr.commit()
 
                 #Delete Previous Administration Access
                 del_id = self.env.ref('base.group_erp_manager').id
-                self._cr.execute('delete from res_groups_users_rel where gid = %s and uid = %s' % (del_id,uid))
+                self._cr.execute('delete from res_groups_users_rel where gid = %s and uid = %s' % (del_id,new_uid))
                 self._cr.commit()
 
-            if prev_g_res.name == 'Supervisor':
+            elif prev_g_res.name == 'Supervisor':
                 #Delete Previous Employee Access
                 del_id = self.env.ref('hr.group_hr_user').id
-                self._cr.execute('delete from res_groups_users_rel where gid = %s and uid = %s' % (del_id,uid))
+                self._cr.execute('delete from res_groups_users_rel where gid = %s and uid = %s' % (del_id,new_uid))
                 self._cr.commit()
 
-            if prev_g_res.name == 'User':
+            elif prev_g_res.name == 'User':
                 #Delete Previous Employee Access
                 del_id = self.env.ref('base.group_user').id
-                self._cr.execute('delete from res_groups_users_rel where gid = %s and uid = %s' % (del_id,uid))
+                self._cr.execute('delete from res_groups_users_rel where gid = %s and uid = %s' % (del_id,new_uid))
                 self._cr.commit()
 
             #New Access
@@ -248,36 +267,36 @@ class HrEmployee(models.Model):
             if g_res.name == 'Manager':
                 #Employees Access
                 grp_mgt_emp_id = self.env.ref('hr.group_hr_manager').id
-                self._cr.execute('select * from res_groups_users_rel where gid=%s and uid = %s' % (grp_mgt_emp_id,uid))
+                self._cr.execute('select * from res_groups_users_rel where gid=%s and uid = %s' % (grp_mgt_emp_id,new_uid))
                 found = self._cr.fetchone()
                 if not found:
-                    self._cr.execute('insert into res_groups_users_rel(gid,uid) values(%s,%s)' % (grp_mgt_emp_id,uid))
+                    self._cr.execute('insert into res_groups_users_rel(gid,uid) values(%s,%s)' % (grp_mgt_emp_id,new_uid))
                     self._cr.commit()
 
                 #Administration Access
                 grp_mgt_admin_id = self.env.ref('base.group_erp_manager').id
-                self._cr.execute('select * from res_groups_users_rel where gid=%s and uid = %s' % (grp_mgt_admin_id,uid))
+                self._cr.execute('select * from res_groups_users_rel where gid=%s and uid = %s' % (grp_mgt_admin_id,new_uid))
                 found = self._cr.fetchone()
                 if not found:
-                    self._cr.execute('insert into res_groups_users_rel(gid,uid) values(%s,%s)' % (grp_mgt_admin_id,uid))
+                    self._cr.execute('insert into res_groups_users_rel(gid,uid) values(%s,%s)' % (grp_mgt_admin_id,new_uid))
                     self._cr.commit()
 
-            if g_res.name == 'Supervisor':
+            elif g_res.name == 'Supervisor':
                 #Employees Access
                 grp_spr_emp_id = self.env.ref('hr.group_hr_user').id
-                self._cr.execute('select * from res_groups_users_rel where gid=%s and uid = %s' % (grp_spr_emp_id,uid))
+                self._cr.execute('select * from res_groups_users_rel where gid=%s and uid = %s' % (grp_spr_emp_id,new_uid))
                 found = self._cr.fetchone()
                 if not found:
-                    self._cr.execute('insert into res_groups_users_rel(gid,uid) values(%s,%s)' % (grp_spr_emp_id,uid))
+                    self._cr.execute('insert into res_groups_users_rel(gid,uid) values(%s,%s)' % (grp_spr_emp_id,new_uid))
                     self._cr.commit()
 
-            if g_res.name == 'User':
+            elif g_res.name == 'User':
                 #Employee Access
                 grp_emp_user_id = self.env.ref('base.group_user').id
-                self._cr.execute('select * from res_groups_users_rel where gid=%s and uid = %s' % (grp_emp_user_id,uid))
+                self._cr.execute('select * from res_groups_users_rel where gid=%s and uid = %s' % (grp_emp_user_id,new_uid))
                 found = self._cr.fetchone()
                 if not found:
-                    self._cr.execute('insert into res_groups_users_rel(gid,uid) values(%s,%s)' % (grp_emp_user_id,uid))
+                    self._cr.execute('insert into res_groups_users_rel(gid,uid) values(%s,%s)' % (grp_emp_user_id,new_uid))
                     self._cr.commit()
 
         recipient_env = self.env['dts.document.recipient']
@@ -427,7 +446,7 @@ class DtsDocument(models.Model):
     document_type_id = fields.Many2one(comodel_name="dts.document.type", string="Document Type", required=False, domain="[('active', '=', True)]", default=_get_default_doc_type)
     subject = fields.Char(string="Subject", required=True, )
     message = fields.Text(string="Message", required=False, )
-    recipient_id = fields.Many2many(comodel_name='dts.document.recipient', string="Recipient", required="1", domain="[('active','=',True),('user_id','!=',uid)]")
+    recipient_id = fields.Many2many(comodel_name='dts.document.recipient', string="Recipient", required="1", domain="[('active','=',True),('user_id','!=',new_uid)]")
     attachment_number = fields.Integer(compute='_get_attachment_number', string="Number of Attachments")
     attachment_ids = fields.One2many('ir.attachment','res_id', domain=[('res_model', '=', 'dts.document')], string='Attachments')
     receive_date = fields.Datetime(string="Date Received", required=False, readonly="1")
