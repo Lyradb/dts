@@ -187,7 +187,10 @@
                                 <br/>
                                 <field name="recipient_ids">
                                     <tree string="Status" create="false" edit="false" delete="false"
-                                          list_options='{"limit":50}'>
+                                          list_options='{"limit":50}' decoration-danger="state == 'unread'"
+                                                                decoration-success="state == 'receive'"
+                                                                decoration-primary="state == 'read'"
+                                                                decoration-info="state == 'view'">
                                         <field name="receiver_office_id" string="Office"/>
                                         <field name="employee_id" string="Name"/>
                                         <field name="state"/>
@@ -206,7 +209,8 @@
             <field name="model">dts.document</field>
             <field name="type">tree</field>
             <field name="arch" type="xml">
-                <tree string="Documents" version="7.0">
+                <tree string="Documents" version="7.0" decoration-success="state == 'send'"
+                                                    decoration-muted="state =='draft'">
                     <field name="transaction_date"/>
                     <field name="document_type_id" string="Type"/>
                     <field name="name" string="Code"/>
@@ -337,7 +341,10 @@
             <field name="model">dts.employee.documents</field>
             <field name="type">tree</field>
             <field name="arch" type="xml">
-                <tree string="Documents" version="7.0">
+                <tree string="Documents" version="7.0" decoration-danger="state == 'unread'"
+                                                    decoration-success="state == 'receive'"
+                                                    decoration-primary="state == 'read'"
+                                                    decoration-info="state == 'view'">
                     <field name="send_date"/>
                     <field name="transaction_date"/>
                     <field name="document_type_id" string="Type"/>
