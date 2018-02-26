@@ -17,6 +17,12 @@ SUFFIX = [
 class HrEmployee(models.Model):
     _inherit = 'hr.employee'
 
+
+    def _get_default_group_id(self):
+        group_id = self.env.sudo().ref('dts.group_dts_document_user').id
+
+        return group_id
+
     def _get_username(self):
         self.user_name = self.user_id.name
 
@@ -27,8 +33,9 @@ class HrEmployee(models.Model):
     suffix = fields.Selection(SUFFIX, string="Suffix")
     prefix = fields.Many2one('res.partner.title', string="Prefix")
     user_name = fields.Char(string="User Name")
-    group_id = fields.Many2one(comodel_name="res.groups", string="Access Level", required=False,
-                               domain="[('category_id.name', '=','Document Tracking')]",related_sudo=True, defalut=lambda self: self.env.ref('base.group_user').id)
+    group_id = fields.Many2one(comodel_name="res.groups", string="Access Level", required=True,
+                               domain="[('category_id.name', '=','Document Tracking')]",related_sudo=True,
+                               defalut=_get_default_group_id)
 
     state = fields.Selection(string="", selection=[('', ''), ('', ''), ], required=False, )
 
