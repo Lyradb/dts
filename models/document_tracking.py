@@ -585,7 +585,7 @@ class DtsEmployeeDocuments(models.Model):
                                          ('receive', 'Accepted'),
                                      ], default='unread')
     employee_id = fields.Many2one(comodel_name="hr.employee", string="Recipient", required=False)
-    receiver_office_id = fields.Many2one(comodel_name="hr.department", string="Receiver Office",store=True, related='employee_id.department_id')
+    receiver_office_id = fields.Many2one(comodel_name="hr.department", string="Receiver Office",store=True)
     sender_id = fields.Many2one(comodel_name="hr.employee", string="Sender", store=False, related="document_id.sender_id")
     sender_office_id = fields.Many2one(comodel_name="hr.department", string="Sender Office", store=False, related='document_id.sender_id.department_id')
     subject = fields.Char(string="Subject", required=True, store=False, related='document_id.subject')

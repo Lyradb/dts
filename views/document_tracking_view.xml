@@ -341,12 +341,10 @@
                         <group col="4" colspan="4">
                             <field name="transaction_date" required="1"/>
                             <field name="send_date" states="send,done"/>
-                            <field name="show_document_type" invisible="True"/>
-                            <field name="show_delivery_method" invisible="True"/>
+                            <field name="show_document_type" invisible="1"/>
+                            <field name="show_delivery_method" invisible="1"/>
                             <field name="document_type_id" attrs="{'invisible':[('show_document_type','!=',True)]}"/>
                             <field name="delivery_method_id" attrs="{'invisible':[('show_delivery_method','!=',True)]}"/>
-                            <field name="document_type_id"/>
-                            <field name="delivery_method_id"/>
                             <field name="state_date" states="receive"/>
                             <newline/>
                             <field name="sender_office_id"/>
