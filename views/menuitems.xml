@@ -41,7 +41,7 @@
               name="Configuration"
               parent="menu_dts_root"
               sequence="500"
-              groups="group_system"/>
+              groups="base.group_system"/>
 
     <menuitem id="menu_dts_document_type"
               parent="menu_dts_configuration"
