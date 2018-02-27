@@ -47,18 +47,18 @@ class DtsConfiguration(models.TransientModel):
         else:
             rec.write(vals)
 
-        # menu_rec = self.env['ir.ui.menu']
+        # menu_rec = self.env['ir.ui.menu'].sudo()
         #
         # active = False
         # menu_type_id = self.env.ref('dts.menu_dts_document_type').id
-        # res = menu_rec.search([('id','=',menu_type_id)])
+        # res = menu_rec.browse(menu_type_id) #menu_rec.search([('id','=',menu_type_id)])
         # if self.show_document_type:
         #     active = True
         # res.write({'active':active})
         #
         # menu_delivery_id = self.env.ref('dts.menu_dts_document_delivery').id
         # active = False
-        # res = menu_rec.search([('id','=',menu_delivery_id)])
+        # res = menu_rec.browse(menu_delivery_id) #menu_rec.search([('id','=',menu_delivery_id)])
         # if self.show_delivery_method:
         #     active = True
         # res.write({'active':active})
