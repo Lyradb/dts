@@ -347,6 +347,7 @@
                             <field name="delivery_method_id" attrs="{'invisible':[('show_delivery_method','!=',True)]}"/>
                             <field name="state_date" states="receive"/>
                             <newline/>
+
                             <field name="sender_office_id"/>
                             <field name="sender_id"/>
                             <!--<field name="receiver_id" colspan="4"/>-->
