@@ -387,6 +387,8 @@ class DtsDocumentRecipient(models.Model):
 
 class DtsDocument(models.Model):
     _name = 'dts.document'
+    # _inherit = 'mail.thread'
+    # _mail_post_access = 'read'
     _description = 'Memo Document'
     _order = 'transaction_date desc, send_date desc'
 
@@ -408,7 +410,7 @@ class DtsDocument(models.Model):
         ret = None
         rec = self.env['dts.config'].browse(1)
         if rec:
-            if rec.show_document_type and rec.document_type_id_default:
+            if rec.document_type_id_default:
                 ret = rec.document_type_id_default.id
         return ret
 
@@ -453,7 +455,7 @@ class DtsDocument(models.Model):
     document_type_id = fields.Many2one(comodel_name="dts.document.type", string="Document Type", required=False, domain="[('active', '=', True)]", default=_get_default_doc_type)
     subject = fields.Char(string="Subject", required=True, )
     message = fields.Text(string="Message", required=False, )
-    recipient_id = fields.Many2many(comodel_name='dts.document.recipient', string="Recipient", required="1", domain="[('active','=',True),('user_id','!=',new_uid)]")
+    recipient_id = fields.Many2many(comodel_name='dts.document.recipient', string="Recipient", required="1", domain="[('active','=',True),('user_id','!=',uid)]")
     attachment_number = fields.Integer(compute='_get_attachment_number', string="Number of Attachments")
     attachment_ids = fields.One2many('ir.attachment','res_id', domain=[('res_model', '=', 'dts.document')], string='Attachments')
     receive_date = fields.Datetime(string="Date Received", required=False, readonly="1")
@@ -573,6 +575,8 @@ class DtsDocument(models.Model):
 
 class DtsEmployeeDocuments(models.Model):
     _name = 'dts.employee.documents'
+    # _inherit = 'mail.thread'
+    # _mail_post_access = 'read'
     _order = 'id desc'
 
     receiver_id = fields.Many2one(comodel_name="res.users", string="User", required=False, )
@@ -601,6 +605,8 @@ class DtsEmployeeDocuments(models.Model):
     delivery_method_id = fields.Many2one(comodel_name="dts.document.delivery",string="Delivery Method", store=False, related='document_id.delivery_method_id')
     state_date = fields.Datetime(string="Status Date", required=False, readonly="1")
     # require_reply = fields.Boolean(string="Require Reply", related='document_id.require_reply')
+    # message_ids = fields.One2many(
+    #     'mail.message', 'res_id', string='Messages', auto_join=True, related='document_id.message_ids')
 
     @api.multi
     def action_read(self):

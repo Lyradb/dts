@@ -225,6 +225,10 @@
                                 </field>
                             </page>
                         </notebook>
+                        <!--<div class="oe_chatter" states="send">-->
+                            <!--&lt;!&ndash;<field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>&ndash;&gt;-->
+                            <!--<field name="message_ids" widget="mail_thread"/>-->
+                        <!--</div>-->
                     </sheet>
                 </form>
             </field>
@@ -343,7 +347,7 @@
                             <field name="send_date" states="send,done"/>
                             <field name="show_document_type" invisible="1"/>
                             <field name="show_delivery_method" invisible="1"/>
-                            <field name="document_type_id" attrs="{'invisible':[('show_document_type','!=',True)]}"/>
+                            <field name="document_type_id" attrs="{'invisible':[('show_document_type','!=',True)],'required':[('show_document_type','=',True)]}"/>
                             <field name="delivery_method_id" attrs="{'invisible':[('show_delivery_method','!=',True)]}"/>
                             <field name="state_date" states="receive"/>
                             <newline/>
@@ -356,6 +360,13 @@
                         <group>
                             <field name="message" widget="html" states="read,view,receive"/>
                         </group>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <!--<div class="oe_chatter" states="receive">-->
+                            <!--&lt;!&ndash;<field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>&ndash;&gt;-->
+                            <!--<field name="message_ids" widget="mail_thread"/>-->
+                        <!--</div>-->
                     </sheet>
                 </form>
             </field>
