@@ -142,7 +142,7 @@ class HrEmployee(models.Model):
                 self._cr.execute('select * from res_groups_users_rel where gid=%s and uid = %s' % (grp_default_user,new_uid))
                 found = self._cr.fetchone()
                 if found:
-                    self._cr.execute('delete from res_groups_users_rel(gid,uid) where gid=%s and uid = %s' % (grp_default_user,new_uid))
+                    self._cr.execute('delete from res_groups_users_rel where gid=%s and uid = %s' % (grp_default_user,new_uid))
                     self._cr.commit()
 
                 g_res = self.env['res.groups'].browse(gid)
