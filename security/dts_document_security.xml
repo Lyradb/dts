@@ -24,7 +24,7 @@
 
         <!--manager-->
         <record id="group_dts_document_manager" model="res.groups">
-            <field name="name">Systems Manager</field>
+            <field name="name">System Manager</field>
             <field name="category_id" ref="module_dts_document"/>
             <field name="implied_ids" eval="[(4, ref('group_dts_document_supervisor'))]"/>
             <field name="users" eval="[(4, ref('base.user_root'))]"/>

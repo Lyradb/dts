@@ -47,7 +47,7 @@ class HrEmployee(models.Model):
     @api.model_cr
     def init(self):
         admin_id = self.env.ref('hr.employee_root').id
-        group_id = self.env.ref('hr.group_hr_manager').id
+        group_id = self.env.ref('hr.group_hr_user').id
         self._cr.execute("""update hr_employee set user_name='admin', group_id = %s where id = %s;
     update resource_resource set active=False where user_id = %s""" % (group_id, admin_id, admin_id))
         self._cr.commit()
@@ -101,11 +101,11 @@ class HrEmployee(models.Model):
     def create(self, values):
         vals = {}
         name = '%s, %s' % (values['last_name'].title().strip(), values['first_name'].title().strip())
-        flag = self.env['res.users'].has_group('hr.group_hr_manager')
+        flag = self.env['res.users'].has_group('hr.group_hr_user')
         if 'group_id' in values:
             g_res = self.env['res.groups'].browse(values['group_id'])
 
-            if not flag and g_res.name in ('Manager','Supervisor'):
+            if not flag and g_res.name in ('System Manager','Department Manager'):
                 raise ValidationError('You are only allowed to add Access Level: User.')
 
         if 'suffix' in values:
@@ -126,7 +126,8 @@ class HrEmployee(models.Model):
                 'company_id': res.company_id.id,
                 'state': 'active',
                 'password': res.user_name,
-                'active': res.active
+                'active': res.active,
+                'email': '%s@tboli.gov.ph' % res.user_name
             })
             res.write({'user_id': new_user_id.id,'new': 'new'})
 
@@ -144,11 +145,11 @@ class HrEmployee(models.Model):
                 if found:
                     self._cr.execute('delete from res_groups_users_rel where gid=%s and uid = %s' % (grp_default_user,new_uid))
                     self._cr.commit()
-
+                    
                 g_res = self.env['res.groups'].browse(gid)
-                if g_res.name == 'Manager':
+                if g_res.name == 'System Manager':
                     #Employees Access
-                    grp_mgt_emp_id = self.env.ref('hr.group_hr_manager').id
+                    grp_mgt_emp_id = self.env.ref('hr.group_hr_user').id
                     self._cr.execute('select * from res_groups_users_rel where gid=%s and uid = %s' % (grp_mgt_emp_id,new_uid))
                     found = self._cr.fetchone()
                     if not found:
@@ -156,14 +157,14 @@ class HrEmployee(models.Model):
                         self._cr.commit()
 
                     #Administration Access
-                    grp_mgt_admin_id = self.env.ref('base.group_erp_manager').id
-                    self._cr.execute('select * from res_groups_users_rel where gid=%s and uid = %s' % (grp_mgt_emp_id,new_uid))
+                    grp_mgt_admin_id = self.env.ref('dts.group_dts_document_manager').id
+                    self._cr.execute('select * from res_groups_users_rel where gid=%s and uid = %s' % (grp_mgt_admin_id,new_uid))
                     found = self._cr.fetchone()
                     if not found:
-                        self._cr.execute('insert into res_groups_users_rel(gid,uid) values(%s,%s)' % (grp_mgt_emp_id,new_uid))
+                        self._cr.execute('insert into res_groups_users_rel(gid,uid) values(%s,%s)' % (grp_mgt_admin_id,new_uid))
                         self._cr.commit()
 
-                elif g_res.name == 'Supervisor':
+                elif g_res.name == 'Department Head':
                     #Employees Access
                     grp_spr_emp_id = self.env.ref('hr.group_hr_user').id
                     self._cr.execute('select * from res_groups_users_rel where gid=%s and uid = %s' % (grp_spr_emp_id,new_uid))
@@ -195,7 +196,7 @@ class HrEmployee(models.Model):
 
     @api.multi
     def write(self, values):
-        flag = self.env['res.users'].has_group('hr.group_hr_manager')
+        flag = self.env['res.users'].has_group('hr.group_hr_user')
         if 'group_id' in values:
             g_res = self.env['res.groups'].browse(values['group_id'])
 
@@ -246,18 +247,18 @@ class HrEmployee(models.Model):
             self._cr.commit()
 
             #Previous
-            if prev_g_res.name == 'Manager':
+            if prev_g_res.name == 'System Manager':
                 #Delete Previous Employee Access
-                del_id = self.env.ref('hr.group_hr_manager').id
+                del_id = self.env.ref('hr.group_hr_user').id
                 self._cr.execute('delete from res_groups_users_rel where gid = %s and uid = %s' % (del_id,new_uid))
                 self._cr.commit()
 
                 #Delete Previous Administration Access
-                del_id = self.env.ref('base.group_erp_manager').id
+                del_id = self.env.ref('dts.group_dts_document_manager').id
                 self._cr.execute('delete from res_groups_users_rel where gid = %s and uid = %s' % (del_id,new_uid))
                 self._cr.commit()
 
-            elif prev_g_res.name == 'Supervisor':
+            elif prev_g_res.name == 'Department Head':
                 #Delete Previous Employee Access
                 del_id = self.env.ref('hr.group_hr_user').id
                 self._cr.execute('delete from res_groups_users_rel where gid = %s and uid = %s' % (del_id,new_uid))
@@ -271,9 +272,9 @@ class HrEmployee(models.Model):
 
             #New Access
             g_res = self.env['res.groups'].browse(gid)
-            if g_res.name == 'Manager':
+            if g_res.name == 'System Manager':
                 #Employees Access
-                grp_mgt_emp_id = self.env.ref('hr.group_hr_manager').id
+                grp_mgt_emp_id = self.env.ref('hr.group_hr_user').id
                 self._cr.execute('select * from res_groups_users_rel where gid=%s and uid = %s' % (grp_mgt_emp_id,new_uid))
                 found = self._cr.fetchone()
                 if not found:
@@ -281,14 +282,14 @@ class HrEmployee(models.Model):
                     self._cr.commit()
 
                 #Administration Access
-                grp_mgt_admin_id = self.env.ref('base.group_erp_manager').id
+                grp_mgt_admin_id = self.env.ref('dts.group_dts_document_manager').id
                 self._cr.execute('select * from res_groups_users_rel where gid=%s and uid = %s' % (grp_mgt_admin_id,new_uid))
                 found = self._cr.fetchone()
                 if not found:
                     self._cr.execute('insert into res_groups_users_rel(gid,uid) values(%s,%s)' % (grp_mgt_admin_id,new_uid))
                     self._cr.commit()
 
-            elif g_res.name == 'Supervisor':
+            elif g_res.name == 'Department Manager':
                 #Employees Access
                 grp_spr_emp_id = self.env.ref('hr.group_hr_user').id
                 self._cr.execute('select * from res_groups_users_rel where gid=%s and uid = %s' % (grp_spr_emp_id,new_uid))
@@ -449,7 +450,7 @@ class DtsDocument(models.Model):
     transaction_date = fields.Datetime(string="Transaction Date", required=False, default=fields.datetime.today(), readonly="1")
     send_date = fields.Datetime(string="Date Send", required=False, readonly="1")
     sender_id = fields.Many2one(comodel_name="hr.employee", string="Sender", default=_get_employee_id, readonly=True, related_sudo=True)
-    sender_office_id = fields.Many2one(comodel_name="hr.department", string="Sender Office", required=True,
+    sender_office_id = fields.Many2one(comodel_name="hr.department", string="Sender Office",
                                        related_sudo=True,related='sender_id.department_id',readonly="1",store=True)
     show_document_type = fields.Boolean(string="Show Document Type", default=_get_show_doc_type)
     document_type_id = fields.Many2one(comodel_name="dts.document.type", string="Document Type", required=False, domain="[('active', '=', True)]", default=_get_default_doc_type)
@@ -591,7 +592,8 @@ class DtsEmployeeDocuments(models.Model):
     employee_id = fields.Many2one(comodel_name="hr.employee", string="Recipient", required=False)
     receiver_office_id = fields.Many2one(comodel_name="hr.department", string="Receiver Office",store=True)
     sender_id = fields.Many2one(comodel_name="hr.employee", string="Sender", store=False, related="document_id.sender_id")
-    sender_office_id = fields.Many2one(comodel_name="hr.department", string="Sender Office", store=False, related='document_id.sender_id.department_id')
+    sender_office_id = fields.Many2one(comodel_name="hr.department", string="Sender Office",
+                                       related_sudo=True, store=False, related='document_id.sender_id.department_id')
     subject = fields.Char(string="Subject", required=True, store=False, related='document_id.subject')
     message = fields.Text(string="Message", required=False, store=False, related='document_id.message')
     name = fields.Char(string="Name", required=False, store=False, related='document_id.name')

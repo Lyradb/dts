@@ -205,7 +205,7 @@
                             <field name="send_date" states="send,done"/>
                             <field name="show_document_type" invisible="True"/>
                             <field name="show_delivery_method" invisible="True"/>
-                            <field name="document_type_id" attrs="{'readonly':[('state','!=','draft')],'invisible':[('show_document_type','!=',True)],'required':'show_document_type'}"/>
+                            <field name="document_type_id" attrs="{'readonly':[('state','!=','draft')],'invisible':[('show_document_type','!=',True)]}"/>
                             <field name="delivery_method_id" attrs="{'readonly':[('state','!=','draft')],'invisible':[('show_delivery_method','!=',True)]}"/>
                             <!--<field name="receive_date" states="send,receive,read"/>-->
                             <field name="sender_office_id"/>
@@ -217,9 +217,9 @@
                             <field name="subject" colspan="4" attrs="{'readonly':[('state','!=','draft')]}"/>
                             <!--<field name="require_reply"/>-->
                         </group>
-                        <!--<group>-->
-                            <!--<field name="message" widget="html" attrs="{'readonly':[('state','!=','draft')]}"/>-->
-                        <!--</group>-->
+                        <group>
+                            <field name="message" widget="html" attrs="{'readonly':[('state','!=','draft')]}"/>
+                        </group>
                         <br/>
                         <br/>
                         <br/>
@@ -372,12 +372,12 @@
                             <!--<field name="receiver_id" colspan="4"/>-->
                             <field name="subject" colspan="4" states="read,view,receive"/>
                         </group>
-                        <!--<group>-->
-                            <!--<field name="message" widget="html" states="read,view,receive"/>-->
-                        <!--</group>-->
-                        <!--<br/>-->
-                        <!--<br/>-->
-                        <!--<br/>-->
+                        <group>
+                            <field name="message" widget="html" states="read,view,receive"/>
+                        </group>
+                        <br/>
+                        <br/>
+                        <br/>
                         <!--<div class="oe_chatter" states="receive">-->
                             <!--&lt;!&ndash;<field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>&ndash;&gt;-->
                             <!--<field name="message_ids" widget="mail_thread"/>-->

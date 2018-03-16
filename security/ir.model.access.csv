@@ -5,6 +5,8 @@ access_dts_document_type_user,dts.document.type,model_dts_document_type,base.gro
 access_dts_document_delivery_user,dts.document.delivery,model_dts_document_delivery,base.group_user,1,0,0,0
 access_dts_employee_documents_user,dts.employee.documents,model_dts_employee_documents,base.group_user,1,1,0,0
 access_dts_document_recipient_user,dts.document.recipient,model_dts_document_recipient,base.group_user,1,1,1,1
+access_dts_department,hr.department,model_hr_department,group_dts_document_manager,1,0,0,0
+access_dts_document,dts.document,model_dts_document,group_dts_document_manager,1,1,1,0
 access_dts_document_type_manager,dts.document.type,model_dts_document_type,group_dts_document_manager,1,1,1,0
 access_dts_document_delivery_manager,dts.document.delivery,model_dts_document_delivery,group_dts_document_manager,1,0,0,0
 access_dts_res_users_manager,res.users,base.model_res_users,group_dts_document_manager,1,1,1,0
