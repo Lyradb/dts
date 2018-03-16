@@ -655,9 +655,8 @@ class DtsEmployeeDocuments(models.Model):
         action = attachment_action.read()[0]
         action['context'] = {'default_res_model': self.document_id._name, 'default_res_id': self.document_id.ids[0]}
         action['domain'] = str(['&', ('res_model', '=', self.document_id._name), ('res_id', 'in', self.document_id.ids)])
-        action['search_view_id'] = (self.env.ref('dts.ir_attachment_view_search_inherit_dts_document').id, )
+        action['search_view_id'] = (self.env.ref('dts.ir_attachment_view_search_dts_document').id, )
         return action
-
 
 class DtsSequence(models.Model):
     _name = 'dts.sequence'
