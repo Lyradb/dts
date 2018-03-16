@@ -217,9 +217,9 @@
                             <field name="subject" colspan="4" attrs="{'readonly':[('state','!=','draft')]}"/>
                             <!--<field name="require_reply"/>-->
                         </group>
-                        <group>
-                            <field name="message" widget="html" attrs="{'readonly':[('state','!=','draft')]}"/>
-                        </group>
+                        <!--<group>-->
+                            <!--<field name="message" widget="html" attrs="{'readonly':[('state','!=','draft')]}"/>-->
+                        <!--</group>-->
                         <br/>
                         <br/>
                         <br/>
@@ -372,12 +372,12 @@
                             <!--<field name="receiver_id" colspan="4"/>-->
                             <field name="subject" colspan="4" states="read,view,receive"/>
                         </group>
-                        <group>
-                            <field name="message" widget="html" states="read,view,receive"/>
-                        </group>
-                        <br/>
-                        <br/>
-                        <br/>
+                        <!--<group>-->
+                            <!--<field name="message" widget="html" states="read,view,receive"/>-->
+                        <!--</group>-->
+                        <!--<br/>-->
+                        <!--<br/>-->
+                        <!--<br/>-->
                         <!--<div class="oe_chatter" states="receive">-->
                             <!--&lt;!&ndash;<field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>&ndash;&gt;-->
                             <!--<field name="message_ids" widget="mail_thread"/>-->
