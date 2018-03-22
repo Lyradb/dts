@@ -50,16 +50,42 @@
                     <attribute name="invisible">True</attribute>
                 </field>
 
+                <xpath expr="//page[2]" position="replace"/>
+
                 <xpath expr="//page[1]" position="attributes">
                     <attribute name="string">Organizational Information</attribute>
                 </xpath>
+
                 <xpath expr="//page[1]/group/group" position="before">
+
                     <group string="General Information">
                         <field name="first_name" required="True"/>
                         <field name="middle_name" required="True"/>
                         <field name="last_name" required="True"/>
                         <field name="suffix"/>
                         <field name="prefix"/>
+                    </group>
+
+                    <group string="Citizenship &amp; Other Information" groups="hr.group_hr_user">
+                        <field name="country_id" options='{"no_open": True, "no_create": True}'/>
+                        <field name="identification_id" groups="hr.group_hr_user"/>
+                        <field name="passport_id" groups="hr.group_hr_user"/>
+                        <field name="bank_account_id" context="{'default_partner_id': address_home_id}"/>
+                    </group>
+
+                    <group string="Contact Information" groups="hr.group_hr_user">
+                        <field name="address_home_id"
+                               context="{'show_address': 1}"
+                               options='{"always_reload": True, "highlight_first_line": True}'/>
+                    </group>
+
+                    <group string="Birth" groups="hr.group_hr_user">
+                        <field name="birthday"/>
+                    </group>
+
+                    <group string="Status" groups="hr.group_hr_user">
+                        <field name="gender"/>
+                        <field name="marital"/>
                     </group>
                 </xpath>
 
@@ -71,19 +97,19 @@
                     <attribute name="invisible">True</attribute>
                 </field>
 
-                <xpath expr="//page[2]/group/group[2]" position="attributes">
-                    <attribute name="invisible">True</attribute>
-                </xpath>
+                <!--<xpath expr="//page[2]/group/group[2]" position="attributes">-->
+                    <!--<attribute name="invisible">True</attribute>-->
+                <!--</xpath>-->
 
-                <xpath expr="//page[3]" position="attributes">
+                <xpath expr="//page[2]" position="attributes">
                     <attribute name="string">User Account</attribute>
                 </xpath>
 
-                <xpath expr="//page[3]/group/group" position="attributes">
+                <xpath expr="//page[2]/group/group" position="attributes">
                     <attribute name="invisible">True</attribute>
                 </xpath>
 
-                <xpath expr="//page[3]/group/group" position="before">
+                <xpath expr="//page[2]/group/group" position="before">
                     <group string="Access">
                         <field name="group_id" required="True" widget="selection"/>
                         <field name="user_name" required="True" string="Email/Login Name"
@@ -92,7 +118,7 @@
                 </xpath>
 
                 <!--<xpath expr="//page[3]/group/group/page" position="attributes">-->
-                    <!--<attribute name="invisible">True</attribute>-->
+                <!--<attribute name="invisible">True</attribute>-->
                 <!--</xpath>-->
 
             </field>
@@ -205,8 +231,10 @@
                             <field name="send_date" states="send,done"/>
                             <field name="show_document_type" invisible="True"/>
                             <field name="show_delivery_method" invisible="True"/>
-                            <field name="document_type_id" attrs="{'readonly':[('state','!=','draft')],'invisible':[('show_document_type','!=',True)]}"/>
-                            <field name="delivery_method_id" attrs="{'readonly':[('state','!=','draft')],'invisible':[('show_delivery_method','!=',True)]}"/>
+                            <field name="document_type_id"
+                                   attrs="{'readonly':[('state','!=','draft')],'invisible':[('show_document_type','!=',True)]}"/>
+                            <field name="delivery_method_id"
+                                   attrs="{'readonly':[('state','!=','draft')],'invisible':[('show_delivery_method','!=',True)]}"/>
                             <!--<field name="receive_date" states="send,receive,read"/>-->
                             <field name="sender_office_id"/>
                             <field name="sender_id"/>
@@ -229,9 +257,9 @@
                                 <field name="recipient_ids">
                                     <tree string="Status" create="false" edit="false" delete="false"
                                           list_options='{"limit":50}' decoration-danger="state == 'unread'"
-                                                                decoration-success="state == 'receive'"
-                                                                decoration-primary="state == 'read'"
-                                                                decoration-info="state == 'view'">
+                                          decoration-success="state == 'receive'"
+                                          decoration-primary="state == 'read'"
+                                          decoration-info="state == 'view'">
                                         <field name="receiver_office_id" string="Office"/>
                                         <field name="employee_id" string="Name"/>
                                         <field name="state"/>
@@ -241,8 +269,8 @@
                             </page>
                         </notebook>
                         <!--<div class="oe_chatter" states="send">-->
-                            <!--&lt;!&ndash;<field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>&ndash;&gt;-->
-                            <!--<field name="message_ids" widget="mail_thread"/>-->
+                        <!--&lt;!&ndash;<field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>&ndash;&gt;-->
+                        <!--<field name="message_ids" widget="mail_thread"/>-->
                         <!--</div>-->
                     </sheet>
                 </form>
@@ -255,7 +283,7 @@
             <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Documents" version="7.0" decoration-success="state == 'send'"
-                                                    decoration-muted="state =='draft'">
+                      decoration-muted="state =='draft'">
                     <field name="transaction_date"/>
                     <field name="document_type_id" string="Type"/>
                     <field name="name" string="Code"/>
@@ -362,8 +390,10 @@
                             <field name="send_date" states="send,done"/>
                             <field name="show_document_type" invisible="1"/>
                             <field name="show_delivery_method" invisible="1"/>
-                            <field name="document_type_id" attrs="{'invisible':[('show_document_type','!=',True)],'required':[('show_document_type','=',True)]}"/>
-                            <field name="delivery_method_id" attrs="{'invisible':[('show_delivery_method','!=',True)]}"/>
+                            <field name="document_type_id"
+                                   attrs="{'invisible':[('show_document_type','!=',True)],'required':[('show_document_type','=',True)]}"/>
+                            <field name="delivery_method_id"
+                                   attrs="{'invisible':[('show_delivery_method','!=',True)]}"/>
                             <field name="state_date" states="receive"/>
                             <newline/>
 
@@ -379,8 +409,8 @@
                         <br/>
                         <br/>
                         <!--<div class="oe_chatter" states="receive">-->
-                            <!--&lt;!&ndash;<field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>&ndash;&gt;-->
-                            <!--<field name="message_ids" widget="mail_thread"/>-->
+                        <!--&lt;!&ndash;<field name="message_follower_ids" widget="mail_followers" groups="base.group_user"/>&ndash;&gt;-->
+                        <!--<field name="message_ids" widget="mail_thread"/>-->
                         <!--</div>-->
                     </sheet>
                 </form>
@@ -393,9 +423,9 @@
             <field name="type">tree</field>
             <field name="arch" type="xml">
                 <tree string="Documents" version="7.0" decoration-danger="state == 'unread'"
-                                                    decoration-success="state == 'receive'"
-                                                    decoration-primary="state == 'read'"
-                                                    decoration-info="state == 'view'">
+                      decoration-success="state == 'receive'"
+                      decoration-primary="state == 'read'"
+                      decoration-info="state == 'view'">
                     <field name="send_date"/>
                     <field name="transaction_date"/>
                     <field name="document_type_id" string="Type"/>
