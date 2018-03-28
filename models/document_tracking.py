@@ -508,6 +508,9 @@ class DtsDocument(models.Model):
 
     @api.multi
     def action_send(self):
+
+        base_url = self.env['ir.config_parameter'].sudo().search([['key','=','web.base.url']])['value']
+
         if self.show_delivery_method and self.delivery_method_id:
             rec = self.env['dts.document.delivery'].browse(self.delivery_method_id.id)
             if rec.require_attachment and self.attachment_number < 1:
@@ -518,11 +521,12 @@ class DtsDocument(models.Model):
         for recipient in self.recipient_id:
             found = self.env['dts.document.recipient'].sudo().browse(recipient.id)
             if found:
+                url = """%s/web#id=%s&view_type=form&model=dts.employee.documents&action=112""" % (base_url,found.id)
                 vals['receiver_id'] = found.user_id.id
                 vals['employee_id'] = found.employee_id.id
                 # vals['receiver_office_id'] = found.department_id.id
                 self.env['dts.employee.documents'].sudo().create(vals)
-                self.send_to_channel('Hi! I send a <b>%s</b> with subject: <b>%s</b>.' % (self.name,self.subject), found.user_id.id)
+                self.send_to_channel("""Hi! I send a <a href="%s">%s</a> with subject: <b>%s</b>.""" % (url,self.name,self.subject), found.user_id.id)
         return self.write({'state': 'send', 'tracking_type': 'outgoing','send_date':fields.datetime.today()})
 
 
@@ -612,7 +616,9 @@ class DtsEmployeeDocuments(models.Model):
 
     @api.multi
     def action_read(self):
-        self.env['dts.document'].send_to_channel('Hi! I am reading the document <b>%s</b> with subject: <b>%s</b>.' % (self.name,self.subject), self.sender_id.user_id.id)
+        base_url = self.env['ir.config_parameter'].sudo().search([['key','=','web.base.url']])['value']
+        url = """%s/web#id=%s&view_type=form&model=dts.document&menu_id=98&action=111""" % (base_url,self.document_id.id)
+        self.env['dts.document'].send_to_channel('Hi! I am reading the document <a href="%s">%s</a> with subject: <b>%s</b>.' % (url,self.name,self.subject), self.sender_id.user_id.id)
         return self.write({'state': 'read','state_date':fields.datetime.today()})
 
     @api.multi
@@ -630,12 +636,16 @@ class DtsEmployeeDocuments(models.Model):
 
     @api.multi
     def action_accept(self):
-        self.env['dts.document'].send_to_channel('Hi! I now accept the document <b>%s</b> with subject: <b>%s</b>.' % (self.name,self.subject), self.sender_id.user_id.id)
+        base_url = self.env['ir.config_parameter'].sudo().search([['key','=','web.base.url']])['value']
+        url = """%s/web#id=%s&view_type=form&model=dts.document&menu_id=98&action=111""" % (base_url,self.document_id.id)
+        self.env['dts.document'].send_to_channel('Hi! I now accept the document <a href="%s">%s</a> with subject: <b>%s</b>.' % (url,self.name,self.subject), self.sender_id.user_id.id)
         return self.write({'state': 'receive','state_date':fields.datetime.today()})
 
     @api.multi
     def action_viewed_docs(self):
-        self.env['dts.document'].send_to_channel('Hi! I am viewing the attachments of document <b>%s</b> with subject: <b>%s</b>.' % (self.name,self.subject), self.sender_id.user_id.id)
+        base_url = self.env['ir.config_parameter'].sudo().search([['key','=','web.base.url']])['value']
+        url = """%s/web#id=%s&view_type=form&model=dts.document&menu_id=98&action=111""" % (base_url,self.document_id.id)
+        self.env['dts.document'].send_to_channel('Hi! I am viewing the attachments of document <a href="%s">%s</a> with subject: <b>%s</b>.' % (url,self.name,self.subject), self.sender_id.user_id.id)
         return self.write({'state': 'view','state_date':fields.datetime.today()})
 
     @api.multi

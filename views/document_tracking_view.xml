@@ -28,6 +28,10 @@
                     <attribute name="invisible">True</attribute>
                 </field>
 
+                <field name="mobile_phone" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </field>
+
                 <field name="coach_id" position="attributes">
                     <attribute name="invisible">True</attribute>
                 </field>
